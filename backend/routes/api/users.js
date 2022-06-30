@@ -1,7 +1,9 @@
 // backend/routes/api/users.js
 const express = require('express');
+
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
 const { User } = require('../../db/models');
+
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 
@@ -28,6 +30,11 @@ const validateSignup = [
   ];
 
 // Sign up
+// call the signup static method on the User model. 
+// If the user is successfully created, then call setTokenCookie and return 
+// a JSON response with the user information. 
+// If the creation of the user is unsuccessful, then a Sequelize Validation
+// error will be passed onto the next error-handling middleware.
 router.post(
     '/',
     validateSignup,

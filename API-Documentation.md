@@ -611,7 +611,7 @@ Request a new membership for a group specified by id.
 
 * Require Authentication: true
 * Request
-  * Method: GET
+  * Method: POST
   * URL: /groups/:groupId/join
   * Headers:
     * Content-Type: application/json
@@ -1479,7 +1479,7 @@ Request attendance for an event specified by id.
 * Require Authentication: true
 * Require Authorization: Current User must be a member of the group
 * Request
-  * Method: GET/POST
+  * Method: POST
   * URL: /events/:eventId/join
   * Headers:
     * Content-Type: application/json
