@@ -36,7 +36,7 @@ const validateSignup = [
 // If the creation of the user is unsuccessful, then a Sequelize Validation
 // error will be passed onto the next error-handling middleware.
 router.post(
-    '/',
+    '/join',
     validateSignup,
     async (req, res) => {
       const { email, password, username } = req.body;

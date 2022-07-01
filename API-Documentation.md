@@ -50,7 +50,7 @@ Returns the information about the current user that is logged in.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: /users/:userId
+  * URL: /users/currentUser
   * Body: none
 
 * Successful Response
@@ -76,7 +76,7 @@ information.
 * Require Authentication: false
 * Request
   * Method: POST
-  * URL: /users/login
+  * URL: /sessions
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -250,7 +250,7 @@ Returns all the groups.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: /groups/users/:userId
+  * URL: /groups/users/current
   * Body: none
 
 * Successful Response
@@ -340,7 +340,7 @@ Creates and returns a new group.
 * Require Authentication: true
 * Request
   * Method: POST
-  * URL: /groups
+  * URL: /new/groups
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -881,7 +881,7 @@ Returns all the events of a group specified by its id
 * Require Authentication: false
 * Request
   * Method: GET
-  * URL: /events/groups/:groupId
+  * URL: /groups/:groupId/events
   * Body: none
 
 * Successful Response
@@ -1020,7 +1020,7 @@ Creates and returns a new venue for a group specified by its id
   the group with a status of "co-host"
 * Request
   * Method: POST
-  * URL: /venues/groups/:groupId
+  * URL: /groups/:groupId/new/venues
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -1170,7 +1170,7 @@ Creates and returns a new event for a group specified by its id
   the group with a status of "co-host"
 * Request
   * Method: POST
-  * URL: events/groups/:groupId
+  * URL: /groups/:groupId/new/event
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -1548,7 +1548,7 @@ Change the status of an attendance for an event specified by id.
   have a membership to the group with the status of "co-host"
 * Request
   * Method: PUT
-  * URL: /events/:eventId/users/:userId
+  * URL: /events/:eventId/attendees/:userId
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -1661,7 +1661,7 @@ Create and return a new image for a group specified by id.
 * Require proper authorization: Current User must be the organizer for the group
 * Request
   * Method: POST
-  * URL: /groups/:groupId/images
+  * URL: /groups/:groupId/new/image
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -1708,7 +1708,7 @@ Create and return a new image for an event specified by id.
 * Require proper authorization: Current User must be an attendee of the event
 * Request
   * Method: POST
-  * URL: /events/:eventId/images
+  * URL: /events/:eventId/new/image
   * Headers:
     * Content-Type: application/json
   * Body:
