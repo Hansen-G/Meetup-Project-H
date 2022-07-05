@@ -13,9 +13,11 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Image.belongsTo(models.Event, {
         foreignKey: eventId,
+        onDelete: 'CASCADE',
       });
       Image.belongsTo(models.Group, {
         foreignKey: groupId,
+        onDelete: 'CASCADE',
       })
     }
   }

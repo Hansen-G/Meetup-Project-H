@@ -11,14 +11,14 @@ module.exports = {
       eventId: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        reference: {
+        references: {
           model: 'Events'
         }
       },
       userId: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        reference: {
+        references: {
           model: 'Users'
         }
       },

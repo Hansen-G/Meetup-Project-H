@@ -10,13 +10,13 @@ module.exports = {
       },
       eventId: {
         type: Sequelize.INTEGER,
-        reference: {
+        references: {
           model: 'Events'
         }
       },
       groupId: {
         type: Sequelize.INTEGER,
-        reference: {
+        references: {
           model: 'Groups'
         }
       },
