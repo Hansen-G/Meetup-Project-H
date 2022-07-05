@@ -17,6 +17,9 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Venue.init({
+    address: {
+      type: DataTypes.STRING,
+    },
     city: DataTypes.STRING,
     state: DataTypes.STRING,
     latitude: DataTypes.FLOAT,
