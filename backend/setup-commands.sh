@@ -13,7 +13,7 @@ npx sequelize-cli model:generate --name Group --attributes organizerId:INTEGER,n
 
 # Generate Event Model & Migration
 
-npx sequelize-cli model:generate --name Event --attributes groupId:INTEGER,venueId:INTEGER,name:STRING,type:STRING,startDate:DATE,numAttending:INTEGER,previewImage:STRING
+npx sequelize-cli model:generate --name Event --attributes groupId:INTEGER,venueId:INTEGER,name:STRING,type:STRING,startDate:DATE,endDate:Date,numAttending:INTEGER,previewImage:STRING,price:FLOAT,description:STRING,capacity:INTEGER
 
 # Generate Venue Model & Migration
 
