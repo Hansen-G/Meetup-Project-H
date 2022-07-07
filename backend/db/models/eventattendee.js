@@ -13,11 +13,9 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       EventAttendee.belongsTo(models.User, { 
         foreignKey: 'userId',
-        // onDelete: 'CASCADE',
        });
       EventAttendee.belongsTo(models.Event, { 
         foreignKey: 'eventId',
-        // onDelete: 'CASCADE',
        });
     }
   }

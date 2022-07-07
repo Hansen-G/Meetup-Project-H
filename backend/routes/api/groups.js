@@ -12,8 +12,10 @@ const express = require('express');
 const router = express.Router();
 const { Op, json } = require('sequelize');
 const e = require('express');
+// const group = require('../../db/models/group');
+const groupmember = require('../../db/models/groupmember');
 
-const checkAuth = (req, res, next) => {
+const checkAuth = async (req, res, next) => {
     if (!req.user) {
         const err = new Error('No log In')
         next(err);
@@ -22,11 +24,63 @@ const checkAuth = (req, res, next) => {
     }
 }
 
-// Change the status of a membership for a group specified by id
+// Delete membership to a group specified by id
+router.delete('/:groupId/members/:memberId', checkAuth, async (req, res, next) => {
+    let { groupId, memberId } = req.params;
+    const group = await Group.findByPk(groupId);
+    if (!group) {
+        res.status(404).json({
+            "message": "Group couldn't be found",
+            "statusCode": 404
+        })
+    } 
+    let groupMemberToBeDeleted = await GroupMember.findOne({
+        where:{
+            groupId: groupId,
+            userId: memberId
+        }
+    })
+    if (!groupMemberToBeDeleted){
+        return res.status(404).json({
+            "message": "Membership between the user and the group does not exits",
+            "statusCode": 404
+        })
+    };
 
+    let userId = req.user.id;
+    const statuesOfCurrentUser = await GroupMember.findOne({
+        where: {
+            userId: userId,
+            groupId: groupId,
+        }
+    })
+    if (!statuesOfCurrentUser) {
+        return res.status(400).json({
+            "message": "Current User must be the organizer or a co-host to delete",
+            "statusCode": 400
+        })
+    }
+
+    if (!(statuesOfCurrentUser.memberStatus === 'co-host' || group.organizerId === userId)) {
+        return res.status(400).json({
+            "message": "Current User must be the organizer or a co-host to delete",
+            "statusCode": 400
+        })
+    }
+
+    groupMemberToBeDeleted.destroy();
+    res.json({
+        "message": "Successfully deleted membership from group"
+    }
+)})
+
+
+
+// Change the status of a membership for a group specified by id
 router.put('/:groupId/members/change', checkAuth, async (req, res, next) => {
     let { groupId } = req.params;
     groupId = parseInt(groupId);
+
     let { memberId, status } = req.body;
     memberId = parseInt(memberId);
 
@@ -37,9 +91,9 @@ router.put('/:groupId/members/change', checkAuth, async (req, res, next) => {
             "statusCode": 404
         })
     }
+
     const userId = req.user.id;
     if (group.organizerId !== userId && status === "co-host") {
-        //console.log(req.user.id);
         return res.status(403).json({
             "message": "Current User must be the organizer to add a co-host",
             "statusCode": 403
@@ -52,6 +106,7 @@ router.put('/:groupId/members/change', checkAuth, async (req, res, next) => {
             "statusCode": 400
         })
     }
+
     const statuesOfCurrentUser = await GroupMember.findOne({
         where:{
             userId: userId,
@@ -59,11 +114,12 @@ router.put('/:groupId/members/change', checkAuth, async (req, res, next) => {
         }
     })
     if (!statuesOfCurrentUser){
-        return res.status(404).json({
-            "message": "Membership between the user and the group does not exits",
-            "statusCode": 404
+        return res.status(400).json({
+            "message": "Current User must be the organizer or a co-host to make someone a member",
+            "statusCode": 400
         })
     }
+
     if (status === "member" && !(statuesOfCurrentUser.memberStatus === 'co-host' || group.organizerId === userId)) {
         return res.status(400).json({
             "message": "Current User must be the organizer or a co-host to make someone a member",
@@ -71,19 +127,25 @@ router.put('/:groupId/members/change', checkAuth, async (req, res, next) => {
         })
     }
 
-    const userToBeChanged = await GroupMember.findOne({
+    let userToBeChanged = await GroupMember.findOne({
         attributes: ['id', 'userId', 'groupId', 'memberStatus'],
         where: {
-            userId: memberId,
             groupId: groupId,
+            userId: memberId,
         },
     })
 
-    userToBeChanged.update({
+    if (!userToBeChanged) {
+        return res.status(404).json({
+            "message": "Membership between the user and the group does not exits",
+            "statusCode": 404
+        })
+    }
+
+    await userToBeChanged.update({
         memberStatus: status
     });
     await userToBeChanged.save();
-    
     res.json(userToBeChanged)
 })
 
@@ -92,6 +154,7 @@ router.put('/:groupId/members/change', checkAuth, async (req, res, next) => {
 router.post('/:groupId/join', checkAuth, async (req, res, next) => {
     let { groupId } = req.params;
     groupId = parseInt(groupId)
+
     const group = await Group.findByPk(groupId);
     if (!group) {
         res.status(404).json({
@@ -130,7 +193,6 @@ router.post('/:groupId/join', checkAuth, async (req, res, next) => {
     }
 
     const memberStatus = 'pending';
-    
     const newMember = await GroupMember.create(
         {userId,
         groupId,
@@ -144,7 +206,6 @@ router.post('/:groupId/join', checkAuth, async (req, res, next) => {
 })
 
 // Get all Members of a Group specified by its id
-
 router.get('/:groupId/members', async (req, res, next) => {
     const userId = req.user.id;
     const { groupId } = req.params;
@@ -155,6 +216,7 @@ router.get('/:groupId/members', async (req, res, next) => {
             "statusCode": 404
         })
     }
+
     if ( userId === group.organizerId ){
         const groupMembers = await User.scope('generalInfoForGroups').findAll(
             {
@@ -168,7 +230,6 @@ router.get('/:groupId/members', async (req, res, next) => {
             }
         )
         return res.json(groupMembers)
-
     } else {
         const groupMembers = await User.scope('generalInfoForGroups').findAll(
             {
@@ -200,14 +261,12 @@ router.delete('/:groupId', checkAuth, async (req, res) => {
             statusCode: 404
         });
     }
-    // const user = await User.findByPk();
+
     if (group.organizerId !== req.user.id) {
-        //console.log(req.user.id);
         return res.status(403).json({
-            message: 'No Authentication',
+            message: 'No Authorization',
             status: 403
         })
-        // throw new Error('Not authorized');
     }
     await group.destroy();
     return res.json({
@@ -292,7 +351,6 @@ router.post('/new', checkAuth, async (req, res, next) => {
         
         res.json({ newGroup })
     } catch (err) {
-        //const error = new Error('Body validations for the name, about, type, private, city, or state are violated')
         res.status(400).json(
             {
                 "message": "Validation Error",
