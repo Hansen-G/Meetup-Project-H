@@ -16,15 +16,22 @@ module.exports = (sequelize, DataTypes) => {
       });
       Event.hasMany(models.Image, {
         foreignKey: 'eventId',
+        onDelete: 'CASCADE',
+
       });
       Event.belongsTo(models.Venue, {
         foreignKey: 'venueId',
+        // onDelete: 'CASCADE',
       });
       Event.belongsTo(models.Group, {
         foreignKey: 'groupId',
-        onDelete: 'CASCADE',
+        // onDelete: 'CASCADE',
       })
-      
+      Event.hasMany(models.EventAttendee, {
+        foreignKey:'eventId',
+        onDelete: 'CASCADE',
+
+      })
 
     }
   }

@@ -13,7 +13,8 @@ module.exports = {
         allowNull: false,
         references: {
           model: 'Users'
-        }
+        },
+        onDelete: 'cascade'
       },
       name: {
         type: Sequelize.STRING,
@@ -39,7 +40,6 @@ module.exports = {
       },
       numMembers: {
         type: Sequelize.INTEGER,
-        allowNull: false,
       },
       previewImage: {
         type: Sequelize.STRING

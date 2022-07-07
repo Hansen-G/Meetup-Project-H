@@ -13,14 +13,16 @@ module.exports = {
         allowNull: false,
         references: {
           model: 'Events'
-        }
+        },
+        onDelete: 'cascade'
       },
       userId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
           model: 'Users'
-        }
+        },
+        onDelete: 'cascade'
       },
       attendeeStatus: {
         type: Sequelize.STRING

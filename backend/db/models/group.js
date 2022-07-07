@@ -16,12 +16,22 @@ module.exports = (sequelize, DataTypes) => {
       });
       Group.hasMany(models.Image, {
         foreignKey: 'groupId',
+        onDelete: 'CASCADE',
+
       });
       Group.hasMany(models.Event, {
         foreignKey: 'groupId',
+        onDelete: 'CASCADE',
+
       });
       Group.belongsTo(models.User, {
         foreignKey: 'organizerId',
+        // onDelete: 'CASCADE',
+      });
+      Group.hasMany(models.GroupMember, {
+        foreignKey: 'groupId',
+        onDelete: 'CASCADE',
+
       })
     }
   }
@@ -34,13 +44,22 @@ module.exports = (sequelize, DataTypes) => {
       type:DataTypes.STRING,
       allowNull: false,
       unique: true,
+      validate: {
+        len: [0, 60],
+      }
     },
     about: {
       type: DataTypes.STRING,
+      validate: {
+        len: [50, 10000],
+      }
     },
     type: {
       type: DataTypes.STRING,
       allowNull: false,
+      validate: {
+        isIn: [['In person', 'Online']],
+      }
     },
     private: {
       type: DataTypes.BOOLEAN,
@@ -54,7 +73,7 @@ module.exports = (sequelize, DataTypes) => {
     },   
     numMembers: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+     
     },
     previewImage: {
       type: DataTypes.STRING,
