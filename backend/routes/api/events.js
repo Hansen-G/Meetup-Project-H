@@ -64,6 +64,7 @@ router.post('/:eventId/new/image', checkAuth, async (req, res, next) => {
     })
     let newImageJson = newImage.toJSON();
     delete newImageJson.userId;
+    delete newImageJson.groupId;
     delete newImageJson.updatedAt;
     delete newImageJson.createdAt;
 

@@ -50,6 +50,7 @@ router.post('/:groupId/new/image', checkAuth, async (req, res, next) => {
     })
     let newImageJson = newImage.toJSON();
     delete newImageJson.userId;
+    delete newImageJson.eventId;
     delete newImageJson.updatedAt;
     delete newImageJson.createdAt;
 
