@@ -67,9 +67,9 @@ module.exports = (sequelize, DataTypes) => {
       // User.belongsToMany(models.Group,{
       //   through: models.GroupMember
       // });
-      User.belongsToMany(models.Event, {
-        through: models.EventAttendee
-      });
+      // User.belongsToMany(models.Event, {
+      //   through: models.EventAttendee
+      // });
       User.hasMany(models.Group, {
         foreignKey: 'organizerId',
         onDelete: 'CASCADE',

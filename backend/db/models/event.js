@@ -1,6 +1,6 @@
 'use strict';
 const {
-  Model
+  Model, NOW
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Event extends Model {
@@ -11,9 +11,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Event.belongsToMany(models.User, {
-        through: models.EventAttendee
-      });
+      // Event.belongsToMany(models.User, {
+      //   through: models.EventAttendee
+      // });
       Event.hasMany(models.Image, {
         foreignKey: 'eventId',
         onDelete: 'CASCADE',
@@ -60,15 +60,18 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DATE,
       allowNull: false,
       validate: {
-        isAfter: DataTypes.NOW
-        //TO BE DONE IN THE FUTURE
+        isAfter: sequelize.fn('NOW') 
       }
     },
     endDate: {
       type: DataTypes.DATE,
       allowNull: false,
       validate:{
-        isAfter: this.startDate
+        endDateAfterStartDate(value) {
+          if (value < this.startDate) {
+            throw new Error('Must be after start date');
+          }
+        }
       }
     },
     price:{
@@ -81,7 +84,6 @@ module.exports = (sequelize, DataTypes) => {
     },
     numAttending: {
       type: DataTypes.INTEGER,
-      allowNull: false,
     },
     previewImage: {
       type: DataTypes.STRING,
@@ -89,6 +91,11 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Event',
+    defaultScope: {
+      attributes: {
+        exclude: ['price', 'endDate','createdAt', 'updatedAt']
+      },
+    }
   });
   return Event;
 };

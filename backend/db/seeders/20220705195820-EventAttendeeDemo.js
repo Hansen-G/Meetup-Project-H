@@ -6,17 +6,37 @@ module.exports = {
       {
         eventId: 1,
         userId: 1,
-        attendeeStatus: 'Panding'
+        attendeeStatus: 'pending'
       },
       {
         eventId: 1,
         userId: 2,
-        attendeeStatus: 'Accepted'
+        attendeeStatus: 'member'
       },
       {
         eventId: 1,
         userId: 3,
-        attendeeStatus: 'Waiting list'
+        attendeeStatus: 'waiting list'
+      },
+      {
+        eventId: 2,
+        userId: 1,
+        attendeeStatus: 'member'
+      },
+      {
+        eventId: 2,
+        userId: 2,
+        attendeeStatus: 'waiting list'
+      },
+      {
+        eventId: 2,
+        userId: 3,
+        attendeeStatus: 'pending'
+      },
+      {
+        eventId: 3,
+        userId: 3,
+        attendeeStatus: 'waiting list'
       },
     ], {});
 

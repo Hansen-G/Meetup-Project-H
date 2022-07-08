@@ -11,12 +11,6 @@ const express = require('express');
 const router = express.Router();
 
 
-
-
-
-
-
-
 router.get('/:groupId', async (req, res, next) => {
     const { groupId } = req.params;
     const group = await Group.scope('defaultScope').findByPk(groupId, {

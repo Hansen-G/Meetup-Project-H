@@ -945,7 +945,7 @@ Returns all the events of a group specified by its id
 * Require Authentication: false
 * Request
   * Method: GET
-  * URL: /groups/:groupId/events
+  * URL: /events/groups/:groupId
   * Body: none
 
 * Successful Response
@@ -1084,7 +1084,7 @@ Creates and returns a new venue for a group specified by its id
   the group with a status of "co-host"
 * Request
   * Method: POST
-  * URL: /groups/:groupId/new/venues
+  * URL: /venues/new/groups/:groupId
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -1234,7 +1234,7 @@ Creates and returns a new event for a group specified by its id
   the group with a status of "co-host"
 * Request
   * Method: POST
-  * URL: /groups/:groupId/new/event
+  * URL: /events/new/groups/:groupId
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -1612,7 +1612,7 @@ Change the status of an attendance for an event specified by id.
   have a membership to the group with the status of "co-host"
 * Request
   * Method: PUT
-  * URL: /events/:eventId/attendees/:userId
+  * URL: /events/:eventId/attendees
   * Headers:
     * Content-Type: application/json
   * Body:

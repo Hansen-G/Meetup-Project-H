@@ -11,9 +11,6 @@ const {
 const express = require('express');
 const router = express.Router();
 const { Op, json } = require('sequelize');
-const e = require('express');
-// const group = require('../../db/models/group');
-const groupmember = require('../../db/models/groupmember');
 
 const checkAuth = async (req, res, next) => {
     if (!req.user) {
