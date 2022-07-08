@@ -46,6 +46,10 @@ app.use(
 
 app.use(routes);
 
+app.get('/', async(req, res, next) => {
+    res.json("Hi, this is Hansen's meetup project")
+})
+
 app.use((_req, _res, next) => {
     const err = new Error("The requested resource couldn't be found.");
     err.title = "Resource Not Found";
