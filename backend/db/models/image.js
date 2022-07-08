@@ -13,11 +13,11 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Image.belongsTo(models.Event, {
         foreignKey: 'eventId',
-        onDelete: 'CASCADE',
+        // onDelete: 'CASCADE',
       });
       Image.belongsTo(models.Group, {
         foreignKey: 'groupId',
-        onDelete: 'CASCADE',
+        // onDelete: 'CASCADE',
       })
     }
   }
@@ -31,6 +31,11 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Image',
+    defaultScope: {
+      attributes: {
+        include: ['url']
+      }
+    },
   });
   return Image;
 };

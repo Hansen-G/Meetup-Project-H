@@ -250,7 +250,7 @@ Returns all the groups.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: /groups/users/current
+  * URL: /api/groups/users/current
   * Body: none
 
 * Successful Response
@@ -340,7 +340,7 @@ Creates and returns a new group.
 * Require Authentication: true
 * Request
   * Method: POST
-  * URL: /new/groups
+  * URL: /groups/new
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -442,6 +442,27 @@ Updates and returns an existing group.
       "updatedAt": "2021-11-20 10:06:40" 
     }
     ```
+    
+    ```
+    fetch('/api/groups/1', {
+  method: 'PUT',
+  headers: {
+    "Content-Type": "application/json",
+"XSRF-TOKEN": `nBQ2ZlEI-SwpvwvO2Uqhnh4i8TQK4G_3yRp8`
+  },
+  body: JSON.stringify(
+{
+  "name": "Hansen'groupq",
+  "about": "Enjoy rounds of tennis with a tight-nit group of people on the water facing the Brooklyn Bridge. Singles or doubles.",
+  "type": "In person",
+  "private": true,
+  "city": "New York",
+  "state": "NY",
+}
+)
+}).then(res => res.json()).then(data => console.log(data));
+    ```
+
 
 * Error Response: Body validation error
   * Status Code: 400
@@ -475,6 +496,26 @@ Updates and returns an existing group.
       "message": "Group couldn't be found",
       "statusCode": 404
     }
+    ```
+
+    ```
+    fetch('/api/groups/2', {
+  method: 'PUT',
+  headers: {
+    "Content-Type": "application/json",
+"XSRF-TOKEN": `nBQ2ZlEI-SwpvwvO2Uqhnh4i8TQK4G_3yRp8`
+  },
+  body: JSON.stringify(
+{
+  "name": "Hansen'group2",
+  "about": "Enjoy rounds of tennis with a tight-nit group of people on the water facing the Brooklyn Bridge. Singles or doubles.",
+  "type": "In person",
+  "private": true,
+  "city": "New York",
+  "state": "NY",
+}
+)
+}).then(res => res.json()).then(data => console.log(data));
     ```
 
 ## Delete a Group
@@ -630,6 +671,14 @@ Request a new membership for a group specified by id.
       "status": "pending"
     }
     ```
+    ```
+        fetch('/api/groups/3', {
+  method: 'POST',
+  headers: {
+    "Content-Type": "application/json",
+"XSRF-TOKEN": `nBQ2ZlEI-SwpvwvO2Uqhnh4i8TQK4G_3yRp8`
+  },}).then(res => res.json()).then(data => console.log(data));
+    ```
 
 * Error response: Couldn't find a Group with the specified id
   * Status Code: 404
@@ -706,6 +755,21 @@ Change the status of a membership for a group specified by id.
       "status": "member"
     }
     ```
+    ```
+    fetch('/api/groups/1/members/change', {
+  method: 'PUT',
+  headers: {
+    "Content-Type": "application/json",
+"XSRF-TOKEN": `nBQ2ZlEI-SwpvwvO2Uqhnh4i8TQK4G_3yRp8`
+  },
+  body: JSON.stringify(
+{
+  "memberId": 2,
+  "status": "member"
+}
+)}).then(res => res.json()).then(data => console.log(data));
+    ```
+
 
 * Error response: Couldn't find a Group with the specified id
   * Status Code: 404
@@ -881,7 +945,7 @@ Returns all the events of a group specified by its id
 * Require Authentication: false
 * Request
   * Method: GET
-  * URL: /groups/:groupId/events
+  * URL: /events/groups/:groupId
   * Body: none
 
 * Successful Response
@@ -1020,7 +1084,7 @@ Creates and returns a new venue for a group specified by its id
   the group with a status of "co-host"
 * Request
   * Method: POST
-  * URL: /groups/:groupId/new/venues
+  * URL: /venues/new/groups/:groupId
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -1170,7 +1234,7 @@ Creates and returns a new event for a group specified by its id
   the group with a status of "co-host"
 * Request
   * Method: POST
-  * URL: /groups/:groupId/new/event
+  * URL: /events/new/groups/:groupId
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -1548,7 +1612,7 @@ Change the status of an attendance for an event specified by id.
   have a membership to the group with the status of "co-host"
 * Request
   * Method: PUT
-  * URL: /events/:eventId/attendees/:userId
+  * URL: /events/:eventId/attendees
   * Headers:
     * Content-Type: application/json
   * Body:

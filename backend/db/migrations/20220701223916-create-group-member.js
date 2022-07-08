@@ -12,15 +12,17 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: 'Users'
-        }
+          model: 'Users',
+        },
+        onDelete: 'cascade'
       },
       groupId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
           model: 'Groups'
-        }
+        },
+        onDelete: 'cascade'
       },
       memberStatus: {
         type: Sequelize.STRING

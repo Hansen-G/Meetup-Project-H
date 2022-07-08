@@ -17,7 +17,27 @@ module.exports = {
         userId: 1,
         groupId: 3,
         memberStatus: 'member',
-      }
+      },
+      {
+        userId: 2,
+        groupId: 1,
+        memberStatus: 'pending',
+      },
+      {
+        userId: 2,
+        groupId: 2,
+        memberStatus: 'member',
+      },
+      {
+        userId: 3,
+        groupId: 2,
+        memberStatus: 'pending',
+      },
+      {
+        userId: 3,
+        groupId: 4,
+        memberStatus: 'pending',
+      },
     ], {});
   },
 

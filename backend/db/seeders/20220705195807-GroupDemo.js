@@ -36,6 +36,17 @@ module.exports = {
           state: 'MD',
           numMembers: 100,
           previewImage: 'url3'
+        },
+        {
+          organizerId: 3,
+          name: 'HG Group4',
+          about: 'HG first group',
+          type: 'Game',
+          private: false,
+          city: 'Baltimore',
+          state: 'MD',
+          numMembers: 100,
+          previewImage: 'url4'
         }
       ], {});
 

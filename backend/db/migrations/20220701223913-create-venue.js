@@ -8,19 +8,26 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      groupId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
       address: {
         type: Sequelize.STRING,
+        allowNull: false,
       },
       city: {
         type: Sequelize.STRING,
+        allowNull: false,
       },
       state: {
-        type: Sequelize.STRING,       
+        type: Sequelize.STRING,    
+        allowNull: false,   
       },
-      latitude: {
+      lat: {
         type: Sequelize.FLOAT
       },
-      longitude: {
+      lng: {
         type: Sequelize.FLOAT
       },
       createdAt: {

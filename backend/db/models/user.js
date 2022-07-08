@@ -64,14 +64,26 @@ module.exports = (sequelize, DataTypes) => {
 
     static associate(models) {
       // define association here
-      User.belongsToMany(models.Group,{
-        through: models.GroupMember
-      });
-      User.belongsToMany(models.Event, {
-        through: models.EventAttendee
-      });
+      // User.belongsToMany(models.Group,{
+      //   through: models.GroupMember
+      // });
+      // User.belongsToMany(models.Event, {
+      //   through: models.EventAttendee
+      // });
       User.hasMany(models.Group, {
-        foreignKey: 'organizerId'
+        foreignKey: 'organizerId',
+        onDelete: 'CASCADE',
+
+      });
+      User.hasMany(models.GroupMember, {
+        foreignKey: 'userId',
+        onDelete: 'CASCADE',
+
+      });
+      User.hasMany(models.EventAttendee, {
+        foreignKey: 'userId',
+        onDelete: 'CASCADE',
+
       })
 
     }
@@ -104,6 +116,14 @@ module.exports = (sequelize, DataTypes) => {
         validate: {
           len: [60, 60]
         }
+      },
+      firstName: {
+        type: DataTypes.STRING(56),
+        allowNull: false,
+      },
+      lastName: {
+        type: DataTypes.STRING(56),
+        allowNull: false,
       }
     },
     {
@@ -117,6 +137,9 @@ module.exports = (sequelize, DataTypes) => {
       scopes: {
         currentUser: {
           attributes: { exclude: ['hashedPassword'] },
+        },
+        generalInfoForGroups: {
+          attributes: { exclude: ['username','hashedPassword', 'email', 'createdAt', 'updatedAt'] },
         },
         loginUser: {
           attributes: {},

@@ -13,14 +13,16 @@ module.exports = {
         allowNull: false,
         references: {
           model: 'Groups'
-        }
+        },
+        onDelete: 'cascade'
       },
       venueId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
           model: 'Venues'
-        }
+        },
+        onDelete: 'cascade'
         
       },
       name: {
@@ -53,7 +55,6 @@ module.exports = {
       },
       numAttending: {
         type: Sequelize.INTEGER,
-        allowNull: false,
       },
       previewImage: {
         type: Sequelize.STRING,
