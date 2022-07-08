@@ -8,6 +8,9 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      imageableType: {
+        type: Sequelize.STRING,
+      },
       eventId: {
         type: Sequelize.INTEGER,
         references: {
@@ -21,6 +24,12 @@ module.exports = {
           model: 'Groups'
         },
         onDelete: 'cascade'
+      },
+      userId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Users'
+        },
       },
       url: {
         type: Sequelize.STRING,

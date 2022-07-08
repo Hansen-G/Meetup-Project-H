@@ -52,6 +52,9 @@ module.exports = (sequelize, DataTypes) => {
     type: {
       type: DataTypes.STRING,
       allowNull: false,
+      validate:{
+        isIn: [['Online', 'In Person']]
+      }
     },
     description: {
       type: DataTypes.STRING,
@@ -93,7 +96,7 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'Event',
     defaultScope: {
       attributes: {
-        exclude: ['price', 'endDate','createdAt', 'updatedAt']
+        exclude: ['price', 'endDate', 'createdAt', 'updatedAt', 'description']
       },
     }
   });

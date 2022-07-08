@@ -83,7 +83,9 @@ module.exports = (sequelize, DataTypes) => {
       User.hasMany(models.EventAttendee, {
         foreignKey: 'userId',
         onDelete: 'CASCADE',
-
+      });
+      User.hasMany(models.Image, {
+        foreignKey: 'userId',
       })
 
     }
