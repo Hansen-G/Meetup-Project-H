@@ -21,6 +21,43 @@ const checkAuth = async (req, res, next) => {
     }
 }
 
+// Add an Image to a Group based on the Group's id
+router.post('/:groupId/new/image', checkAuth, async (req, res, next) => {
+    const { groupId } = req.params;
+    const { url } = req.body;
+
+    const group = await Group.findByPk(groupId);
+    if (!group) {
+        res.status(404).json({
+            "message": "Group couldn't be found",
+            "statusCode": 404
+        })
+    } 
+    let userId = req.user.id;
+    if (userId !== group.organizerId){
+        res.status(403).json({
+            "message": "Current User must be the organizer for the group",
+            "statusCode": 403
+        })
+    }
+
+    const imageableType = 'group'
+    const newImage = await Image.create({
+        imageableType: imageableType, 
+        groupId: groupId, 
+        userId: userId,
+        url: url
+    })
+    let newImageJson = newImage.toJSON();
+    delete newImageJson.userId;
+    delete newImageJson.updatedAt;
+    delete newImageJson.createdAt;
+
+    res.json(newImageJson)
+})
+
+
+
 // Delete membership to a group specified by id
 router.delete('/:groupId/members/:memberId', checkAuth, async (req, res, next) => {
     let { groupId, memberId } = req.params;

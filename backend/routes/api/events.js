@@ -21,6 +21,51 @@ const checkAuth = async (req, res, next) => {
     }
 }
 
+// Add an Image to a Event based on the Event's id
+router.post('/:eventId/new/image', checkAuth, async (req, res, next) => {
+    const { eventId } = req.params;
+    const { url } = req.body;
+
+    const event = await Event.findByPk(eventId);
+    if (!event) {
+        res.status(404).json({
+            "message": "Event couldn't be found",
+            "statusCode": 404
+        })
+    }
+    let userId = req.user.id;
+
+    const statusOfCurrentUser = await EventAttendee.findOne({
+        where: {
+            userId: userId,
+            eventId: eventId,
+        }
+    })
+
+    if (statusOfCurrentUser.attendeeStatus !== 'member') {
+        return res.status(403).json({
+            "message": "Current User must be an attendee of the event",
+            "statusCode": 403
+        })
+    }
+
+    const imageableType = 'event'
+    const newImage = await Image.create({
+        imageableType: imageableType,
+        eventId: eventId,
+        userId: userId,
+        url: url
+    })
+    let newImageJson = newImage.toJSON();
+    delete newImageJson.userId;
+    delete newImageJson.updatedAt;
+    delete newImageJson.createdAt;
+
+    res.json(newImageJson)
+})
+
+
+
 // Delete attendance to an event specified by id
 router.delete('/:eventId/attendees/:userId', checkAuth, async (req, res, next) => {
     let { eventId, userId } = req.params;
@@ -564,20 +609,88 @@ router.get('/groups/:groupId', async (req, res, next) => {
 
 // Get all Events
 router.get('/', async (req, res, next) => {
-    const allEvents = await Event.findAll({
-        include: [{
-            model: Group,
-            attributes: [
-                'id', 'name', 'city', 'state'
-            ]
-        },{
-            model: Venue,
-            attributes: [
-                'id', 'city', 'state'
-            ]
-        }]
-    })
-    res.json(allEvents)
+    let pagination = {};
+    let { page, size, name, type, startDate } = req.query;
+    page = page === undefined ? 0 : parseInt(page)
+    size = size === undefined ? 20 : parseInt(size)
+
+    if (Number.isInteger(page) && Number.isInteger(size) && size >= 0 && page > 0 && size <= 20 && page <= 10) {
+        pagination.limit = size
+        pagination.offset = size * (page - 1)
+    } else if (page === 0) {
+        pagination = {};
+    } else {
+        return res.status(400).json(
+            {
+                "message": "Validation Error",
+                "statusCode": 400,
+                "errors": {
+                    "page": "Page must be greater than or equal to 0",
+                    "size": "Size must be greater than or equal to 0",
+                    "name": "Name must be a string",
+                    "type": "Type must be 'Online' or 'In Person'",
+                    "startDate": "Start date must be a valid datetime",
+                }
+            }
+        )
+    }
+    if (type){
+        if (!(type === 'Online' || type === 'In Person')) {
+            return res.status(400).json(
+                {
+                    "message": "Validation Error",
+                    "statusCode": 400,
+                    "errors": {
+                        "page": "Page must be greater than or equal to 0",
+                        "size": "Size must be greater than or equal to 0",
+                        "name": "Name must be a string",
+                        "type": "Type must be 'Online' or 'In Person'",
+                        "startDate": "Start date must be a valid datetime",
+                    }
+                }
+            )
+        }
+    }
+
+
+    let where = {};
+    if (name) where.name = { [Op.like]: `%${name}%` };
+    if (type) where.type = type;
+    if (startDate) where.startDate = startDate;
+
+    try {
+        const allEvents = await Event.findAll({
+            include: [{
+                model: Group,
+                attributes: [
+                    'id', 'name', 'city', 'state'
+                ]
+            }, {
+                model: Venue,
+                attributes: [
+                    'id', 'city', 'state'
+                ]
+            }],
+            where,
+            ...pagination,
+        })
+        res.json(allEvents)
+    } catch(err) {
+        return res.status(400).json(
+            {
+                "message": "Validation Error",
+                "statusCode": 400,
+                "errors": {
+                    "page": "Page must be greater than or equal to 0",
+                    "size": "Size must be greater than or equal to 0",
+                    "name": "Name must be a string",
+                    "type": "Type must be 'Online' or 'In Person'",
+                    "startDate": "Start date must be a valid datetime",
+                }
+            }
+        )
+    }
+    
 })
 
 module.exports = router;

@@ -50,4 +50,18 @@ router.post(
     }
   );
 
+const checkAuth = async (req, res, next) => {
+  if (!req.user) {
+    const err = new Error('No log In')
+    next(err);
+  } else {
+    next();
+  }
+}
+router.get('/current', checkAuth, async (req, res, next) => {
+  const currentUser = await User.findByPk(req.user.id);
+
+  res.json(currentUser)
+})
+
 module.exports = router;

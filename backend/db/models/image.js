@@ -11,19 +11,47 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Image.belongsTo(models.Event, {
-        foreignKey: 'eventId',
+      Image.belongsTo(models.User, {
+        foreignKey: 'userId',
         // onDelete: 'CASCADE',
       });
       Image.belongsTo(models.Group, {
         foreignKey: 'groupId',
         // onDelete: 'CASCADE',
+      });
+      Image.belongsTo(models.Event, {
+        foreignKey: 'eventId',
+        // onDelete: 'CASCADE',
       })
     }
   }
   Image.init({
-    eventId: DataTypes.INTEGER,
-    groupId: DataTypes.INTEGER,
+    imageableType: {
+      type: DataTypes.STRING,
+      validate: {
+        isIn: [['group', 'event']]
+      }
+    },
+    eventId: {
+      type: DataTypes.INTEGER,
+      validate:{
+        eitherOr(value){
+          if (this.groupId && value){
+            throw new Error ("Can only have either evenId or groupId")
+          }
+        }
+      }
+    },
+    groupId: {
+      type: DataTypes.INTEGER,
+      validate: {
+        eitherOr(value) {
+          if (this.eventId && value) {
+            throw new Error("Can only have either evenId or groupId")
+          }
+        }
+      },
+    },
     url: {
       type: DataTypes.STRING,
       allowNull: false,

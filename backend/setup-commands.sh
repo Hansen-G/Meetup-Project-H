@@ -30,4 +30,4 @@ npx sequelize-cli model:generate --name EventAttendee --attributes eventId:INTEG
 
 # Generate Image Model & Migration
 
-npx sequelize-cli model:generate --name Image --attributes eventId:INTEGER,groupId:INTEGER,url:STRING
+npx sequelize-cli model:generate --name Image --attributes imageableType:STRING,eventId:INTEGER,groupId:INTEGER,userId:INTEGER,url:STRING
