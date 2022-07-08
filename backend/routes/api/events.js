@@ -49,8 +49,7 @@ router.delete('/:eventId/attendees/:userId', checkAuth, async (req, res, next) =
             "statusCode": 400
         })
     }
-
-    if (!(statuesOfCurrentUser.memberStatus === 'co-host' || group.organizerId === currentUserId)) {
+    if (!(statuesOfCurrentUser.memberStatus === 'co-host' || group.organizerId === currentUserId || currentUserId == userId) ) {
         return res.status(400).json({
             "message": "Current User must be the organizer or a co-host to delete an attendee",
             "statusCode": 400
@@ -109,13 +108,14 @@ router.put('/:eventId/attendees', checkAuth, async (req, res, next) => {
             groupId: groupId,
         }
     })
+    
     if (!statuesOfCurrentUser) {
         return res.status(400).json({
             "message": "Current User must be the organizer or a co-host to change an attendee",
             "statusCode": 400
         })
     }
-
+    
     if (!(statuesOfCurrentUser.memberStatus === 'co-host' || group.organizerId === currentUserId)) {
         return res.status(400).json({
             "message": "Current User must be the organizer or a co-host to change an attendee",
