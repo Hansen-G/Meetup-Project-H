@@ -34,9 +34,11 @@ module.exports = {
       },
       city: {
         type: Sequelize.STRING,
+        allowNull: false,
       },
       state: {
         type: Sequelize.STRING,
+        allowNull: false,
       },
       numMembers: {
         type: Sequelize.INTEGER,

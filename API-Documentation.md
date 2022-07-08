@@ -43,14 +43,14 @@ correct role(s) or permission(s).
     }
     ```
 
-## Get the Current User
+## Get the Current User √
 
 Returns the information about the current user that is logged in.
 
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: /users/current
+  * URL: /api/users/current
   * Body: none
 
 * Successful Response
@@ -68,7 +68,7 @@ Returns the information about the current user that is logged in.
     }
     ```
 
-## Log In a User
+## Log In a User √
 
 Logs in a current user with valid credentials and returns the current user's
 information.
@@ -76,14 +76,14 @@ information.
 * Require Authentication: false
 * Request
   * Method: POST
-  * URL: /sessions
+  * URL: /api/sessions
   * Headers:
     * Content-Type: application/json
   * Body:
 
     ```json
     {
-      "email": "john.smith@gmail.com",
+      "credential": "john.smith@gmail.com",
       "password": "secret password"
     }
     ```
@@ -134,7 +134,7 @@ information.
     }
     ```
 
-## Sign Up a User
+## Sign Up a User √
 
 Creates a new user, logs them in as the current user, and returns the current
 user's information.
@@ -142,16 +142,17 @@ user's information.
 * Require Authentication: false
 * Request
   * Method: POST
-  * URL: /users/signup
+  * URL: /api/users/join
   * Headers:
     * Content-Type: application/json
   * Body:
 
     ```json
     {
-      "firstName": "John",
-      "lastName": "Smith",
-      "email": "john.smith@gmail.com",
+      "firstName": "HG",
+      "lastName": "HGGG",
+      "username": "abcd",
+      "email": "john1.smith@gmail.com",
       "password": "secret password"
     }
     ```
@@ -206,14 +207,14 @@ user's information.
     }
     ```
 
-## Get all Groups
+## Get all Groups √
 
 Returns all the groups.
 
 * Require Authentication: false
 * Request
   * Method: GET
-  * URL: /groups
+  * URL: /api/groups
   * Body: none
 
 * Successful Response
@@ -243,7 +244,7 @@ Returns all the groups.
     }
     ```
 
-## Get all Groups joined or organized by the Current User
+## Get all Groups joined or organized by the Current User √
 
 Returns all the groups.
 
@@ -280,14 +281,14 @@ Returns all the groups.
     }
     ```
 
-## Get details of a Group from an id
+## Get details of a Group from an id √
 
 Returns the details of a group specified by its id.
 
 * Require Authentication: false
 * Request
   * Method: GET
-  * URL: /groups/:groupId
+  * URL: /api/groups/:groupId
   * Body: none
 
 * Successful Response
@@ -333,14 +334,14 @@ Returns the details of a group specified by its id.
     }
     ```
 
-## Create a Group
+## Create a Group √
 
 Creates and returns a new group.
 
 * Require Authentication: true
 * Request
   * Method: POST
-  * URL: /groups/new
+  * URL: /api/groups/new
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -352,7 +353,7 @@ Creates and returns a new group.
       "type": "In person",
       "private": true,
       "city": "New York",
-      "state": "NY",
+      "state": "NY"
     }
     ```
 
@@ -406,19 +407,19 @@ Updates and returns an existing group.
 * Require proper authorization: Group must belong to the current user
 * Request
   * Method: PUT
-  * URL: /groups/:groupId
+  * URL: /api/groups/:groupId
   * Headers:
     * Content-Type: application/json
   * Body:
 
     ```json
     {
-      "name": "Evening Tennis on the Water",
+      "name": "Name to be Changed",
       "about": "Enjoy rounds of tennis with a tight-nit group of people on the water facing the Brooklyn Bridge. Singles or doubles.",
       "type": "In person",
       "private": true,
       "city": "New York",
-      "state": "NY",
+      "state": "NY"
     }
     ```
 
@@ -526,7 +527,7 @@ Deletes an existing group.
 * Require proper authorization: Group must belong to the current user
 * Request
   * Method: DELETE
-  * URL: /groups/:groupId
+  * URL: /api/groups/:groupId
   * Body: none
 
 * Successful Response
@@ -562,7 +563,7 @@ Returns the members of a group specified by its id.
 * Require Authentication: false
 * Request
   * Method: GET
-  * URL: /groups/:groupId/members
+  * URL: /api/groups/:groupId/members
   * Body: none
 
 * Successful Response: If you ARE the organizer of the group. Shows all
@@ -653,7 +654,7 @@ Request a new membership for a group specified by id.
 * Require Authentication: true
 * Request
   * Method: POST
-  * URL: /groups/:groupId/join
+  * URL: /api/groups/:groupId/join
   * Headers:
     * Content-Type: application/json
   * Body: none
@@ -729,7 +730,7 @@ Change the status of a membership for a group specified by id.
   have a membership to the group with the status of "co-host"
 * Request
   * Method: PUT
-  * URL: /groups/:groupId/members/:memberId
+  * URL: /api/groups/:groupId/members/change
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -847,7 +848,7 @@ Delete a membership to a group specified by id.
   the user whose membership is being deleted
 * Request
   * Method: DELETE
-  * URL: /groups/:groupId/members/:memberId
+  * URL: /api/groups/:groupId/members/:memberId
   * Headers:
     * Content-Type: application/json
   * Body: none
@@ -884,7 +885,7 @@ Returns all the events.
 * Require Authentication: false
 * Request
   * Method: GET
-  * URL: /events
+  * URL: /api/events
   * Body: none
 
 * Successful Response
@@ -945,7 +946,7 @@ Returns all the events of a group specified by its id
 * Require Authentication: false
 * Request
   * Method: GET
-  * URL: /events/groups/:groupId
+  * URL: /api/events/groups/:groupId
   * Body: none
 
 * Successful Response
@@ -1019,7 +1020,7 @@ Returns the details of an event specified by its id.
 * Require Authentication: false
 * Request
   * Method: GET
-  * URL: /events/:eventId
+  * URL: /api/events/:eventId
   * Body: none
 
 * Successful Response
@@ -1095,7 +1096,7 @@ Creates and returns a new venue for a group specified by its id
     "city": "New York",
     "state": "NY",
     "lat": 37.7645358,
-    "lng": -122.4730327,
+    "lng": -122.4730327
   }
   ```
 
@@ -1159,7 +1160,7 @@ Edit a new venue specified by its id
   the group with a status of "co-host"
 * Request
   * Method: PUT
-  * URL: /venues/:venueId
+  * URL: /api/venues/:venueId
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -1170,7 +1171,7 @@ Edit a new venue specified by its id
     "city": "New York",
     "state": "NY",
     "lat": 37.7645358,
-    "lng": -122.4730327,
+    "lng": -122.4730327
   }
   ```
 
@@ -1234,7 +1235,7 @@ Creates and returns a new event for a group specified by its id
   the group with a status of "co-host"
 * Request
   * Method: POST
-  * URL: /events/new/groups/:groupId
+  * URL: /api/events/new/groups/:groupId
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -1247,8 +1248,8 @@ Creates and returns a new event for a group specified by its id
       "capacity": 10,
       "price": 18.50,
       "description": "The first meet and greet for our group! Come say hello!",
-      "startDate": "2021-11-19 20:00:00",
-      "endDate": "2021-11-19 21:00:00",
+      "startDate": "2023-11-19 20:00:00",
+      "endDate": "2023-11-19 21:00:00",
     }
     ```
 
@@ -1318,7 +1319,7 @@ Edit and returns an event specified by its id
   the group with a status of "co-host"
 * Request
   * Method: PUT
-  * URL: /events/:eventId
+  * URL: /api/events/:eventId
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -1331,8 +1332,8 @@ Edit and returns an event specified by its id
       "capacity": 10,
       "price": 18.50,
       "description": "The first meet and greet for our group! Come say hello!",
-      "startDate": "2021-11-19 20:00:00",
-      "endDate": "2021-11-19 21:00:00",
+      "startDate": "2024-11-19 20:00:00",
+      "endDate": "2024-11-19 21:00:00"
     }
     ```
 
@@ -1415,7 +1416,7 @@ Delete an event specified by its id
   the group with a status of "co-host"
 * Request
   * Method: DELETE
-  * URL: /events/:eventId
+  * URL: /api/events/:eventId
   * Body: none
 
 * Successful Response
@@ -1450,7 +1451,7 @@ Returns the attendees of an event specified by its id.
 * Require Authentication: false
 * Request
   * Method: GET
-  * URL: /events/:eventId/attendees
+  * URL: /api/events/:eventId/attendees
   * Body: none
 
 * Successful Response: If you ARE the organizer of the group or a member of the
@@ -1544,7 +1545,7 @@ Request attendance for an event specified by id.
 * Require Authorization: Current User must be a member of the group
 * Request
   * Method: POST
-  * URL: /events/:eventId/join
+  * URL: /api/events/:eventId/join
   * Headers:
     * Content-Type: application/json
   * Body: none
@@ -1612,7 +1613,7 @@ Change the status of an attendance for an event specified by id.
   have a membership to the group with the status of "co-host"
 * Request
   * Method: PUT
-  * URL: /events/:eventId/attendees
+  * URL: /api/events/:eventId/attendees
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -1687,7 +1688,7 @@ Delete an attendance to an event specified by id.
   the user whose attendance is being deleted
 * Request
   * Method: DELETE
-  * URL: /events/:eventId/users/:userId
+  * URL: /api/events/:eventId/attendees/:userId
   * Headers:
     * Content-Type: application/json
   * Body: none
@@ -1725,7 +1726,7 @@ Create and return a new image for a group specified by id.
 * Require proper authorization: Current User must be the organizer for the group
 * Request
   * Method: POST
-  * URL: /groups/:groupId/new/image
+  * URL: /api/groups/:groupId/new/image
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -1772,7 +1773,7 @@ Create and return a new image for an event specified by id.
 * Require proper authorization: Current User must be an attendee of the event
 * Request
   * Method: POST
-  * URL: /events/:eventId/new/image
+  * URL: /api/events/:eventId/new/image
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -1820,7 +1821,7 @@ Delete an existing image.
   the image's imageableId and imageableType
 * Request
   * Method: DELETE
-  * URL: /images/:imageId
+  * URL: /api/images/:imageId
   * Body: none
 
 * Successful Response

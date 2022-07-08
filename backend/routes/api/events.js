@@ -41,6 +41,12 @@ router.post('/:eventId/new/image', checkAuth, async (req, res, next) => {
             eventId: eventId,
         }
     })
+    if (!statusOfCurrentUser){
+        return res.status(403).json({
+            "message": "Current User must be an attendee of the event",
+            "statusCode": 403
+        })
+    }
 
     if (statusOfCurrentUser.attendeeStatus !== 'member') {
         return res.status(403).json({

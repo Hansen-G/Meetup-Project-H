@@ -63,9 +63,11 @@ module.exports = (sequelize, DataTypes) => {
     },
     city: {
       type: DataTypes.STRING,
+      allowNull: false,
     },
     state: {
       type: DataTypes.STRING,
+      allowNull: false,
     },   
     numMembers: {
       type: DataTypes.INTEGER,
