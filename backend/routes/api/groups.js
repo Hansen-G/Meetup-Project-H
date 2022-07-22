@@ -383,6 +383,11 @@ router.post('/new', checkAuth, async (req, res, next) => {
         const newGroup = await Group.create({
             organizerId, name, about, type, private, city, state
         });
+        const newGroupMember = await GroupMember.create({
+            userId: organizerId,
+            groupId: newGroup.id,
+            memberStatus: 'member',
+        })
         
         res.json({ newGroup })
     } catch (err) {
