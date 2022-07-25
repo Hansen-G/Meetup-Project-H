@@ -225,7 +225,7 @@ router.post('/:eventId/join', checkAuth, async (req, res, next) => {
         attendeeArr.push([element.dataValues.userId, element.dataValues.attendeeStatus])
     })
 
-    console.log('!!!!!!!', attendeeArr)
+    
     for (let i = 0; i < attendeeArr.length; i++) {
         if (userId === attendeeArr[i][0]) {
             if (attendeeArr[i][1] === 'pending') {
@@ -304,13 +304,7 @@ router.get('/:eventId/attendees', async (req, res, next) => {
                         },
                         attributes: ['attendeeStatus']
                     },
-                    // {
-                    //     model: GroupMember,
-                    //     where: {
-                    //         groupId: groupId
-                    //     },
-                    //     attributes: ['memberStatus']
-                    // }
+
                 ],
                 attributes: ['id', 'firstName', 'lastName']
             })
@@ -319,7 +313,7 @@ router.get('/:eventId/attendees', async (req, res, next) => {
     }
 
     let groupId = event.groupId;
-    console.log('!!!!!!!!!!!', groupId)
+   
     const allEventAttendee = await User.findAll({
         include: [{
                 model: EventAttendee,
@@ -521,7 +515,7 @@ router.post('/new/groups/:groupId', checkAuth, async (req, res, next) => {
         })
     }
     try {
-        console.log(groupId, venueId, name, type, capacity, price, description, startDate, endDate)
+       
         const newEvent = await Event.create({
             groupId, venueId, name, type, capacity, price, description, startDate, endDate
         });

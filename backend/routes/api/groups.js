@@ -451,7 +451,7 @@ router.get('/:groupId', async (req, res, next) => {
         imageArr.push(element.dataValues.url)
     });
     const result = group.toJSON()
-    console.log(result)
+   
     result.Organizer = organizer.toJSON()
     result.image = imageArr
     res.json(result)
