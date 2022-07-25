@@ -34,14 +34,17 @@ function SignupForm() {
 
     return (
         <form onSubmit={handleSubmit} className='signUpForm'>
+            <img src="https://res.cloudinary.com/hansenguo/image/upload/v1658770529/WeMeet/logo-round_yxfzs4.png"></img>
+            <h1 className="title">
+                Finish signing up
+            </h1>
             <ul>
                 {errors.map((error, idx) => <li key={idx}>{error}</li>)}
             </ul>
-            <h1 className="title">
-                Sign Up
-            </h1>
+
+
             <label>
-                Email
+                Your name
                 <input
                     type="text"
                     value={email}
@@ -50,7 +53,7 @@ function SignupForm() {
                 />
             </label>
             <label>
-                Username
+                Your username
                 <input
                     type="text"
                     value={username}
@@ -59,7 +62,7 @@ function SignupForm() {
                 />
             </label>
             <label>
-                First Name
+                Your First Name
                 <input
                     type="text"
                     value={firstName}
@@ -68,7 +71,7 @@ function SignupForm() {
                 />
             </label>
             <label>
-                Last Name
+                Your Last Name
                 <input
                     type="text"
                     value={lastName}

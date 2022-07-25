@@ -1,0 +1,14 @@
+.nav {
+    display: flex;
+    justify-content: space-between;
+    margin: 1% 5% 1% 5%;
+}
+
+.navuser {
+    display: block;
+}
+
+.sessionLinks {
+    display: inline;
+    width: 10%;
+}

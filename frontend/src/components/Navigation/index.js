@@ -17,21 +17,30 @@ function Navigation({ isLoaded }) {
         );
     } else {
         sessionLinks = (
-            <>
+            <div className='sessionLinks'>
                 <Demo />
                 <LoginFormModal />
                 <SignupFormModal />
-            </>
+            </div>
         );
     }
 
     return (
-        <ul>
-            <li>
-                <NavLink exact to="/">Home</NavLink>
-                {isLoaded && sessionLinks}
-            </li>
-        </ul>
+ 
+            <div className='nav'>
+                <div>
+                    <NavLink exact to="/">
+                        <img src='https://res.cloudinary.com/hansenguo/image/upload/v1658764084/WeMeet/logo_xdfq3d.png'></img>
+                    </NavLink>
+                </div>
+                
+                <div className='navuser'>
+                    {isLoaded && sessionLinks}
+                </div>
+                
+            </div>
+               
+  
     );
 }
 
