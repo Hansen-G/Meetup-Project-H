@@ -6,6 +6,8 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import HomePage from "./components/HomePage";
 import HomePage2 from "./components/HomePage2";
+import ButtomBar from "./components/ButtomBar";
+
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -22,6 +24,7 @@ function App() {
           <Route exact path='/'>
             <HomePage />
             <HomePage2 />
+            <ButtomBar />
           </Route>
           <Route path="/signup">
             <SignupFormPage />
