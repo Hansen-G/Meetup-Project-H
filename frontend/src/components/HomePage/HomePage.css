@@ -1,0 +1,75 @@
+.home1 {
+   
+}
+
+#bg1 {
+    position: absolute;
+    top: 0px;
+    right: 00px;
+}
+
+#bg2 {
+    position: absolute;
+    top: 200px;
+    right: 10%;
+}
+
+#bg3 {
+    position: absolute;
+    top: 600px;
+    left: 30px;
+    z-index: -1;
+}
+
+.flex {
+    display: flex;
+}
+
+.part1Left {
+    width: 40%;
+}
+
+.part1Right{
+    width: 60%;
+}
+
+.part1 {
+    justify-content: space-around;
+    align-items: center;
+    margin: 10% 10%;
+}
+
+.part1Left h1 {
+    font-weight:900;
+}
+
+.part2{
+    margin: 5%;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.part2Card {
+    width: 30%;
+}
+
+.part2Card img {
+    width: 100%;
+    border-radius: 15px;
+}
+
+.part2CardLink {
+    color: #008294;
+    font-weight: bolder;
+    text-decoration: none;
+    line-height: 200%;
+}
+
+.part2CardLink:hover{
+    text-decoration: underline;
+}
+
+
+.part3 {
+    margin: 5% 9%;
+}

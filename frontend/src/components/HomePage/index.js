@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useDispatch } from "react-redux";
-
+import './HomePage.css'
 
 function HomePage() {
     const dispatch = useDispatch();
@@ -13,8 +13,13 @@ function HomePage() {
     };
 
     return (
-       <main>
-        <div className='part1'>
+       <main className='home1'>
+        <div className='bg'>
+            <img src='https://secure.meetupstatic.com/next/images/blobs/green-blob.svg' id='bg1'></img>
+            <img src='https://secure.meetupstatic.com/next/images/blobs/yellow-blob.svg' id='bg2'></img>
+            <img src='https://secure.meetupstatic.com/next/images/blobs/red-blob.svg' id='bg3'></img>
+        </div>
+        <div className='part1 flex'>
             <div className='part1Left'>
                 <h1>
                     Celebrating 0 years of real connections on WeMeet
@@ -28,12 +33,12 @@ function HomePage() {
             </div>
         </div>
 
-        <div className='part2'>
+        <div className='part2 flex'>
             <div className='part2Card'>
                     <img src='https://res.cloudinary.com/hansenguo/image/upload/v1658772522/WeMeet/category1_bjhr11.webp'></img>
                 
                 {/* TOBEDONE */}
-                <NavLink exact to="/">
+                    <NavLink exact to="/" className='part2CardLink'>
                         Make new friends →
                 </NavLink>
 
@@ -43,7 +48,7 @@ function HomePage() {
                     <img src='https://res.cloudinary.com/hansenguo/image/upload/v1658772522/WeMeet/category2_xd8uzp.webp'></img>
 
                     {/* TOBEDONE */}
-                    <NavLink exact to="/">
+                    <NavLink exact to="/" className='part2CardLink'>
                         Explore the outdoors →
                     </NavLink>
 
@@ -53,89 +58,87 @@ function HomePage() {
                     <img src='https://res.cloudinary.com/hansenguo/image/upload/v1658772522/WeMeet/category3_c412cr.webp'></img>
 
                 {/* TOBEDONE */}
-                <NavLink exact to="/">
+                    <NavLink exact to="/groups" className='part2CardLink'>
                     Connect over tech →
                 </NavLink>
 
             </div>
+        </div>
 
-            <div className='part3'>
-                <div className='part3Left'>
-                    <h2>
-                        What do you want to do?
-                    </h2>
-                    <div className='search'>
-                        <form onSubmit={handleSubmit}> 
-                            <label>
-                                <input 
-                                    type="text"
-                                    value={search}
-                                    onChange={(e) => setSearch(e.target.value)}
-                                    
-                                />
-                            </label>
-                            <button type="submit">Search</button>
-                        </form>
-                    </div>
-
-                </div>
-            </div>
-
-            <div className='part4'>
+        <div className='part3'>
+            <div className='part3Left'>
                 <h2>
-                    How WeMeet works
+                    What do you want to do?
                 </h2>
-                <p>
-                    Meet new people who share your interests through online and in-person events. It’s free to create an account.
-                </p>
-
-                <div>
-                    <div className='part4sub'>
-                            <img src='https://res.cloudinary.com/hansenguo/image/upload/v1658778861/WeMeet/handsUp_nwbipy.svg'></img>
-                            <h3>
-                                <NavLink exact to="/">
-                                    Join a group
-                                </NavLink>
-                            </h3>
-                            <p className='part4P'>
-                                Do what you love, meet others who love it, find your community. The rest is history!
-                            </p>
-                    </div>
-                    <div className='part4sub'>
-                            <img src='https://res.cloudinary.com/hansenguo/image/upload/v1658778861/WeMeet/ticket_ibghag.svg'></img>
-                        <h3>
-                            <NavLink exact to="/">
-                                Find an event
-                            </NavLink>
-                        </h3>
-                        <p className='part4P'>
-                                Events are happening on just about any topic you can think of, from online gaming and photography to yoga and hiking.
-                        </p>
-                    </div>
-                    <div className='part4sub'>
-                            <img src='https://res.cloudinary.com/hansenguo/image/upload/v1658778861/WeMeet/joinGroup_xp0nfa.svg'></img>
-                        <h3>
-                            <NavLink exact to="/">
-                                Start a group
-                            </NavLink>
-                        </h3>
-                        <p className='part4P'>
-                                You don't have to be an expert to gather people together and explore shared interests.
-                        </p>
-                    </div>
-
+                <div className='search'>
+                    <form onSubmit={handleSubmit}> 
+                        <label>
+                            <input 
+                                type="text"
+                                value={search}
+                                onChange={(e) => setSearch(e.target.value)}
+                                
+                            />
+                        </label>
+                        <button type="submit" className='searchmain'>Search</button>
+                    </form>
                 </div>
 
             </div>
+        </div>
 
-             <div className='part5'>
-                <NavLink exact to="/signup">
-                    <button>Join WeMeet</button>
-                </NavLink>
-             </div>
+        <div className='part4'>
+            <h2>
+                How WeMeet works
+            </h2>
+            <p>
+                Meet new people who share your interests through online and in-person events. It’s free to create an account.
+            </p>
+
+            <div>
+                <div className='part4sub'>
+                        <img src='https://res.cloudinary.com/hansenguo/image/upload/v1658778861/WeMeet/handsUp_nwbipy.svg'></img>
+                        <h3>
+                            <NavLink exact to="/groups">
+                                Join a group
+                            </NavLink>
+                        </h3>
+                        <p className='part4P'>
+                            Do what you love, meet others who love it, find your community. The rest is history!
+                        </p>
+                </div>
+                <div className='part4sub'>
+                        <img src='https://res.cloudinary.com/hansenguo/image/upload/v1658778861/WeMeet/ticket_ibghag.svg'></img>
+                    <h3>
+                        <NavLink exact to="/">
+                            Find an event
+                        </NavLink>
+                    </h3>
+                    <p className='part4P'>
+                            Events are happening on just about any topic you can think of, from online gaming and photography to yoga and hiking.
+                    </p>
+                </div>
+                <div className='part4sub'>
+                        <img src='https://res.cloudinary.com/hansenguo/image/upload/v1658778861/WeMeet/joinGroup_xp0nfa.svg'></img>
+                    <h3>
+                        <NavLink exact to="/">
+                            Start a group
+                        </NavLink>
+                    </h3>
+                    <p className='part4P'>
+                            You don't have to be an expert to gather people together and explore shared interests.
+                    </p>
+                </div>
+
+            </div>
 
         </div>
 
+            <div className='part5'>
+            <NavLink exact to="/signup">
+                <button>Join WeMeet</button>
+            </NavLink>
+            </div>
 
        </main>
     );

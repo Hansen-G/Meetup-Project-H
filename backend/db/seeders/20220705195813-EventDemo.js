@@ -14,7 +14,7 @@ module.exports = {
         price: 10,
         capacity: 10,
         numAttending: 9,
-        previewImage: 'url1'
+        previewImage: 'https://res.cloudinary.com/hansenguo/image/upload/v1658793269/WeMeet/event1_tpi7bo.webp'
       },
       {
         groupId: 2,
@@ -27,7 +27,7 @@ module.exports = {
         price: 10,
         capacity: 10,
         numAttending: 100,
-        previewImage: 'url2'
+        previewImage: 'https://res.cloudinary.com/hansenguo/image/upload/v1658793269/WeMeet/event2_j1dhaz.webp'
       },
       {
         groupId: 3,
@@ -40,7 +40,20 @@ module.exports = {
         price: 10,
         capacity: 10,
         numAttending: 9,
-        previewImage: 'url3'
+        previewImage: 'https://res.cloudinary.com/hansenguo/image/upload/v1658793269/WeMeet/event3_ro8fuj.webp'
+      },
+      {
+        groupId: 4,
+        venueId: 1,
+        name: 'Event4',
+        type: 'Online',
+        description: 'HIIIhhi',
+        startDate: '2022-07-06 20:00:00',
+        endDate: '2022-07-01 20:00:00',
+        price: 10,
+        capacity: 10,
+        numAttending: 9,
+        previewImage: 'https://res.cloudinary.com/hansenguo/image/upload/v1658793269/WeMeet/event4_ainztp.webp'
       },
     ], {});
   },

@@ -7,6 +7,7 @@ import Navigation from "./components/Navigation";
 import HomePage from "./components/HomePage";
 import HomePage2 from "./components/HomePage2";
 import ButtomBar from "./components/ButtomBar";
+import GroupList from './components/GroupsList'
 
 function App() {
   const dispatch = useDispatch();
@@ -28,6 +29,9 @@ function App() {
           </Route>
           <Route path="/signup">
             <SignupFormPage />
+          </Route>
+          <Route path='/groups'>
+            <GroupList />
           </Route>
         </Switch>
       )}

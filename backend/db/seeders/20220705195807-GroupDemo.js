@@ -13,7 +13,7 @@ module.exports = {
           city: 'Baltimore',
           state: 'MD',
           numMembers: 10,
-          previewImage: 'url1'
+          previewImage: 'https://res.cloudinary.com/hansenguo/image/upload/v1658793142/WeMeet/group1_o344yu.jpg'
         },
         {
           organizerId: 2,
@@ -24,7 +24,7 @@ module.exports = {
           city: 'Baltimore',
           state: 'MD',
           numMembers: 90,
-          previewImage: 'url2'
+          previewImage: 'https://res.cloudinary.com/hansenguo/image/upload/v1658793142/WeMeet/group2_bzbjcl.jpg'
         },
         {
           organizerId: 3,
@@ -35,7 +35,7 @@ module.exports = {
           city: 'Baltimore',
           state: 'MD',
           numMembers: 100,
-          previewImage: 'url3'
+          previewImage: 'https://res.cloudinary.com/hansenguo/image/upload/v1658793142/WeMeet/group3_isboka.jpg'
         },
         {
           organizerId: 3,
@@ -46,7 +46,7 @@ module.exports = {
           city: 'Baltimore',
           state: 'MD',
           numMembers: 100,
-          previewImage: 'url4'
+          previewImage: 'https://res.cloudinary.com/hansenguo/image/upload/v1658793142/WeMeet/group4_h9xjyt.jpg'
         }
       ], {});
 
