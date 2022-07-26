@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 
 import { getGroupListThunk } from '../../store/groups'
 
@@ -12,12 +12,13 @@ function GroupList() {
     const groups = useSelector(
         state => state.groups
     )
-    console.log('Groups', groups)
+    
 
     useEffect(() => {
         dispatch(getGroupListThunk());
     }, [dispatch])
-    console.log('Groups', groups)
+    
+   
     if (!groups || Object.keys(groups).length === 0) {
         return null;
     }
@@ -43,7 +44,7 @@ function GroupList() {
                                 </div>
                                 <div className='groupInfo'>
                                     {`Group ${group.name}: `}
-                                    <NavLink to={`/api/groups/${group.id}`}>{`Group ${group.id}`}</NavLink>
+                                    <Link to={`/api/groups/${group.id}`}>{`Group ${group.id}`}</Link>
                                     {group.city};
                                     {group.state}
                                     {group.about}

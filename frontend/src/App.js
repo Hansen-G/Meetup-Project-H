@@ -8,6 +8,7 @@ import HomePage from "./components/HomePage";
 import HomePage2 from "./components/HomePage2";
 import ButtomBar from "./components/ButtomBar";
 import GroupList from './components/GroupsList'
+import GroupDetails from './components/GroupDetails'
 
 function App() {
   const dispatch = useDispatch();
@@ -32,6 +33,10 @@ function App() {
           </Route>
           <Route path='/groups'>
             <GroupList />
+          </Route>
+          <Route path='/api/groups/:groupId'>
+            <GroupDetails />
+            <ButtomBar />
           </Route>
         </Switch>
       )}

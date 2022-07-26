@@ -11,3 +11,8 @@ html * {
 p {
     line-height: 150%;
 }
+
+#login {
+    background-color: white;
+    color: white;
+}

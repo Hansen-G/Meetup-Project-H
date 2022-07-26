@@ -242,7 +242,7 @@ router.post('/:groupId/join', checkAuth, async (req, res, next) => {
 
 // Get all Members of a Group specified by its id
 router.get('/:groupId/members', async (req, res, next) => {
-    const userId = req.user.id;
+    
     const { groupId } = req.params;
     const group = await Group.findByPk(groupId);
     if (!group){
@@ -252,19 +252,39 @@ router.get('/:groupId/members', async (req, res, next) => {
         })
     }
 
-    if ( userId === group.organizerId ){
-        const groupMembers = await User.scope('generalInfoForGroups').findAll(
-            {
-                include: [{
-                    model: GroupMember,
-                    where: {
-                        groupId: groupId
-                    },
-                    attributes: ['memberStatus'],
-                }],
-            }
-        )
-        return res.json(groupMembers)
+    if (req.user){
+        const userId = req.user.id;
+        if (userId === group.organizerId) {
+            const groupMembers = await User.scope('generalInfoForGroups').findAll(
+                {
+                    include: [{
+                        model: GroupMember,
+                        where: {
+                            groupId: groupId
+                        },
+                        attributes: ['memberStatus'],
+                    }],
+                }
+            )
+            return res.json(groupMembers)
+        } else {
+            const groupMembers = await User.scope('generalInfoForGroups').findAll(
+                {
+                    include: [{
+                        model: GroupMember,
+                        where: {
+                            groupId: groupId,
+                            memberStatus: {
+                                [Op.in]: ['member', 'co-host'],
+                            }
+                        },
+                        attributes: ['memberStatus'],
+                    }],
+
+                }
+            )
+            return res.json(groupMembers)
+        } 
     } else {
         const groupMembers = await User.scope('generalInfoForGroups').findAll(
             {
@@ -272,8 +292,8 @@ router.get('/:groupId/members', async (req, res, next) => {
                     model: GroupMember,
                     where: {
                         groupId: groupId,
-                        memberStatus:{
-                            [Op.in]: ['member', 'co-host'],    
+                        memberStatus: {
+                            [Op.in]: ['member', 'co-host'],
                         }
                     },
                     attributes: ['memberStatus'],
