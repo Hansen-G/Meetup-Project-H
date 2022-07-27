@@ -2,17 +2,22 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink, useParams, Route, Switch, Link } from 'react-router-dom';
 import { getGroupByIdThunk, getGroupEventThunk, getGroupMembersThunk } from '../../store/groups'
+
+import EditGroupFrom from '../EditGroupForm';
 import './GroupDetails.css'
 
 function GroupDetails () {
     const dispatch = useDispatch();
     const { groupId } = useParams();
+    const [showEditGroupForm, setShowEditGroupForm] = useState(false);
 
     const group = useSelector(
         state => state.groups[groupId]
     )
 
-    console.log('group',group)
+    const user = useSelector(state => state.session.user);
+
+    
 
     const helper = async (groupId) => {
         const groupWait = await dispatch(getGroupByIdThunk(groupId));
@@ -48,6 +53,13 @@ function GroupDetails () {
         state = 'Public Group'
     }
 
+    let showEditButton = false
+    if (user && group) {
+        if (user.id && group.organizerId && user.id === group.organizerId) {
+            showEditButton = true;
+        }
+    }
+
     return (
         <div>
             <div className='group1 flex'>
@@ -74,6 +86,15 @@ function GroupDetails () {
                 
                 </div>
             </div>
+            
+            <div className='group3'>
+                {showEditButton && <button onClick={() => setShowEditGroupForm(true)}>Edit Group</button>}
+                {showEditGroupForm && (
+                    <EditGroupFrom hiddenForm={() => setShowEditGroupForm(false)} group={group} />
+                )}
+            </div>
+
+
             <div className='group2 flex'>
                 <div className='group2Left'>
                     <h2>
@@ -121,7 +142,7 @@ function GroupDetails () {
                     </p>
 
                     <h2>
-                        Members
+                        Members ({memberArr.length})
                     </h2>
                     <div>
                         {(memberArr.length > 0) && memberArr.map(member => (
