@@ -1,6 +1,12 @@
 .buttomBar {
     background-color: #353e48;
     color: white;
+    margin: 0;
+    position: relative;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 3% 10%;
 }
 
 .buttomBar  p {

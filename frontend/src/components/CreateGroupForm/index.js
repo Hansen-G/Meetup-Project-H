@@ -60,9 +60,9 @@ function CreateGroupFrom () {
 
     };
     return (
-        <div>
+        <div className="createGroup">
             Create New Group:
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} >
                 <label>Name:<input type={'text'} value={name} onChange={e => setName(e.target.value)}></input></label>
                 <label>About:<input type={'text'} value={about} onChange={e => setAbout(e.target.value)}></input></label>
                 <label>Type:
