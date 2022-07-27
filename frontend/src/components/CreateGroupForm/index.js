@@ -6,9 +6,15 @@ import { postNewGroupThunk } from '../../store/groups'
 
 function CreateGroupFrom () {
     const dispatch = useDispatch()
-    const sessionUser = useSelector(state => state.session.user);
-
     const history = useHistory();
+    const sessionUser = useSelector(state => state.session.user);
+    
+    if (!sessionUser) {
+        window.alert('You need login to create a group')
+        history.push(`/login`);   
+    }
+
+   
     const [name, setName] = useState('');
     const [about, setAbout] = useState('');
     const [type, setType] = useState('In person');
@@ -36,6 +42,7 @@ function CreateGroupFrom () {
         }
 
         const group = {
+            organizerId: sessionUser.id,
             name,
             about,
             type,

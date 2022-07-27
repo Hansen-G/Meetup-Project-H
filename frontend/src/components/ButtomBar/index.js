@@ -9,7 +9,7 @@ function ButtomBar() {
             <p className='buttomTitle'>
                 Create your own Meetup group.
                 {/* TBD */}
-                <NavLink to="/signup">
+                <NavLink to="/createNewGroup">
                     <button>
                         Get Started
                     </button>
@@ -23,15 +23,25 @@ function ButtomBar() {
                         Your Account
                     </p>
            
-                    <NavLink to="/signup" className='toobarLink'>
-                        Sign up
-                    </NavLink>
-                    <NavLink to="/login" className='toobarLink'>
-                        Log in
-                    </NavLink>
-                    <a href='https://help.meetup.com/hc/en-us' className='toobarLink'>
-                        Help
-                    </a>
+                    <p>
+                        <NavLink to="/signup" className='toobarLink'>
+                            Sign up
+                        </NavLink>
+                    </p>
+                    <p>
+                        <NavLink to="/login" className='toobarLink'>
+                            Log in
+                        </NavLink>
+                    </p>
+                    <p>
+                        <a href='https://help.meetup.com/hc/en-us' className='toobarLink'>
+                            Help
+                        </a>
+
+                    </p>
+               
+                    
+                  
                 </div>
             </div>
 
