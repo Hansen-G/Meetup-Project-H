@@ -1,0 +1,48 @@
+.group1 {
+    justify-content: center;
+}
+
+.groupImg {
+    width: 40%;
+}
+.icon {
+    margin: 3px;
+    width: 30px;
+    height: 20px;
+}
+
+.group2 {
+    background-color: #e5e5eb;
+    justify-content: center;
+}
+
+.group2Left {
+    width: 50%;
+    margin: 1% 3%;
+}
+
+.group2Right {
+    width: 20%;
+    margin: 1% 0;
+}
+.eventCard {
+    background-color: white;
+    border-radius: 15px;
+    padding: 2%;
+    margin: 2% 1%;
+
+}
+
+
+.groupDetailsImgContiner {
+    width: 100%;
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.groupDetailsImg {
+    width: 30%;
+    border-radius: 10px;
+    margin: 1%
+}

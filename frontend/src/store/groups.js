@@ -85,6 +85,7 @@ export const getGroupByIdThunk = (groupId) => async dispatch => {
     const response = await fetch(`/api/groups/${groupId}`)
     if (response.ok) {
         const data = await response.json();
+        
         dispatch(getGroupById(data));
         return data
     }
@@ -120,15 +121,15 @@ export const getGroupByIdThunk = (groupId) => async dispatch => {
 //     }
 // }
 
-// export const getGroupEventThunk = (groupId) => async dispatch => {
-//     const response = await fetch(`/api/events/groups/${groupId}`);
-//     if (response.ok) {
-//         const data = await response.json();
-//         console.log(data)
-//         dispatch(getGroupEvents(data, groupId));
-//         return data;
-//     }
-// }
+export const getGroupEventThunk = (groupId) => async dispatch => {
+    const response = await fetch(`/api/events/groups/${groupId}`);
+    if (response.ok) {
+        const data = await response.json();
+        console.log(data)
+        dispatch(getGroupEvents(data, groupId));
+        return data;
+    }
+}
 
 export const getGroupMembersThunk = (groupId) => async dispatch => {
     const response = await csrfFetch(`/api/groups/${groupId}/members`);
@@ -163,9 +164,8 @@ const groupsReducer = (state = initialState, action) => {
             return newState
         }
         case GET_GROUP_BY_ID: {
-            newState = { ...state };
+            newState = {};
             newState[action.group.id] = action.group
-  
             return newState;
         }
         // case POST_NEW_GROUP: {
@@ -178,16 +178,16 @@ const groupsReducer = (state = initialState, action) => {
         //     newState[action.groupId] = { ...newState[action.groupId], events: action.events };
         //     return newState
         // }
-        // case GET_GROUP_EVENTS: {
-        //     newState = { ...state };
-        //     newState[action.groupId] = { ...newState[action.groupId], events: action.events };
-        //     return newState
-        // }
+        case GET_GROUP_EVENTS: {
+            newState = { ...state };
+            newState[action.groupId] = { ...newState[action.groupId], events: action.events };
+            return newState
+        }
         case GET_GROUP_MEMBERS: {
             newState = { ...state };
-            const members = {};
+            const members = [];
             action.members.forEach(member => members[member.id] = member);
-            newState[action.groupId] = { ...newState[action.groupId], members }
+            newState[action.groupId] = { ...newState[action.groupId], events: [...state[action.groupId].events], members }
             return newState;
         }
         default: {

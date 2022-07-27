@@ -450,8 +450,7 @@ router.get('/users/current', checkAuth, async (req, res, next) => {
 
 router.get('/:groupId', async (req, res, next) => {
     const { groupId } = req.params;
-    const group = await Group.scope('defaultScope').findByPk(groupId, {
-    })
+    const group = await Group.findByPk(groupId)
     if (!group) {
         res.status(404).json({
             message: "Group couldn't be found",
@@ -476,6 +475,8 @@ router.get('/:groupId', async (req, res, next) => {
     result.image = imageArr
     res.json(result)
 })
+
+
 router.get('/', async (req, res, next) => {
     const groups = await Group.findAll();
     return res.json(groups)
