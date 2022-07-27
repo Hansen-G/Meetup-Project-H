@@ -12,7 +12,6 @@ function GroupDetails () {
         state => state.groups[groupId]
     )
 
-
     // const member = useSelector(
     //     state => state.groups[groupId].members
     // )
@@ -33,6 +32,7 @@ function GroupDetails () {
 
 
     if (!group) return null;
+    
     const member = group.members
     if (!member) return null;
     const memberArr = [...member]
