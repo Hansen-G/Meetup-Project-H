@@ -44,7 +44,7 @@ function GroupList() {
                                 </div>
                                 <div className='groupInfo'>
                                     {`Group ${group.name}: `}
-                                    <Link to={`/api/groups/${group.id}`}>{`Group ${group.id}`}</Link>
+                                    <Link to={`/groups/${group.id}`}>{`Group ${group.id}`}</Link>
                                     {group.city};
                                     {group.state}
                                     {group.about}

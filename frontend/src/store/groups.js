@@ -131,6 +131,12 @@ export const getGroupEventThunk = (groupId) => async dispatch => {
         console.log(data)
         dispatch(getGroupEvents(data, groupId));
         return data;
+    } else {
+        if (response.status == 404){
+            dispatch(getGroupEvents([], groupId));
+            return [];
+            
+        }
     }
 }
 
@@ -188,9 +194,16 @@ const groupsReducer = (state = initialState, action) => {
         }
         case GET_GROUP_MEMBERS: {
             newState = { ...state };
-            const members = [];
+            const members = {};
             action.members.forEach(member => members[member.id] = member);
-            newState[action.groupId] = { ...newState[action.groupId], events: [...state[action.groupId].events], members }
+            if (![state[action.groupId].events]){
+                console.log('!', state[action.groupId].events)
+                newState[action.groupId] = { ...newState[action.groupId], events: [...state[action.groupId].events], members }
+            } else {
+                newState[action.groupId] = { ...newState[action.groupId], members }
+            }
+            
+           
             return newState;
         }
         default: {

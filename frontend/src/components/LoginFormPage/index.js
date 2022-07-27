@@ -26,7 +26,11 @@ function LoginFormPage() {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className='loginPage'>
+            <div className="roundLogoContiner flex">
+                <img src="https://res.cloudinary.com/hansenguo/image/upload/v1658770529/WeMeet/logo-round_yxfzs4.png" className="roundLogo"></img>
+            </div>
+            
             <ul>
                 {errors.map((error, idx) => <li key={idx}>{error}</li>)}
             </ul>
@@ -48,7 +52,7 @@ function LoginFormPage() {
                     required
                 />
             </label>
-            <button type="submit">Log In</button>
+            <button type="submit" className="signUpButton">Log In</button>
         </form>
     );
 }

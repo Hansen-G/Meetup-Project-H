@@ -37,15 +37,14 @@ function App() {
             <LoginFormPage />
             <ButtomBar />
           </Route>
+          <Route path='/groups/:groupId'>
+            <GroupDetails />
+            <ButtomBar />
+          </Route>
           <Route path='/groups'>
             <GroupList />
             <ButtomBar />
           </Route>
-          <Route path='/api/groups/:groupId'>
-            <GroupDetails />
-            <ButtomBar />
-          </Route>
-
           <Route path='/createNewGroup'>
             <CreateGroupFrom />
             <ButtomBar />

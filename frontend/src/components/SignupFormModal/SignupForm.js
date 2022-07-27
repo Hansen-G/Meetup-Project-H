@@ -34,7 +34,7 @@ function SignupForm() {
 
     return (
         <form onSubmit={handleSubmit} className='signUpForm'>
-            <img src="https://res.cloudinary.com/hansenguo/image/upload/v1658770529/WeMeet/logo-round_yxfzs4.png"></img>
+            <img src="https://res.cloudinary.com/hansenguo/image/upload/v1658770529/WeMeet/logo-round_yxfzs4.png" className="roundLogo"></img>
             <h1 className="title">
                 Finish signing up
             </h1>

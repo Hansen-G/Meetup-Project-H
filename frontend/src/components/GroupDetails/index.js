@@ -12,13 +12,7 @@ function GroupDetails () {
         state => state.groups[groupId]
     )
 
-    // const member = useSelector(
-    //     state => state.groups[groupId].members
-    // )
-    // const events = useSelector(
-    //     state => state.groups[groupId].events
-    // )
-    // console.log('!!!!', events)
+    console.log('group',group)
 
     const helper = async (groupId) => {
         const groupWait = await dispatch(getGroupByIdThunk(groupId));
@@ -34,10 +28,13 @@ function GroupDetails () {
     if (!group) return null;
     
     const member = group.members
-    if (!member) return null;
-    const memberArr = [...member]
-    memberArr.shift()
+    if (!member || Object.keys(member).length === 0) return null;
+    const memberArr = Object.values(member)
+    console.log(memberArr)
+
+
     const eventArr = group.events
+    
     if (!eventArr) return null;
 
     const imageArr = group.image
@@ -45,7 +42,7 @@ function GroupDetails () {
 
 
     let state;
-    if (group.private == 'true'){
+    if (group.private === true){
         state = 'Private Group'
     } else {
         state = 'Public Group'
@@ -89,7 +86,7 @@ function GroupDetails () {
                     <h2>
                         Events ({eventArr.length})
                     </h2>
-                    {eventArr.map(event => (
+                    {(eventArr.length > 0) && eventArr.map(event => (
                         <Link to={`event/${event.id}`}>
                             <div className='eventCard'>
                                 <p>{event.startDate}</p>
@@ -126,15 +123,14 @@ function GroupDetails () {
                     <h2>
                         Members
                     </h2>
-                    <dib>
-                        {
-                            memberArr.map(member => (
-                            <p>
+                    <div>
+                        {(memberArr.length > 0) && memberArr.map(member => (
+                            <p key={member.id}>
                                 {member.firstName} {member.lastName} 
                             </p>
                             ))
                         }
-                    </dib>
+                    </div>
      
 
                 </div>

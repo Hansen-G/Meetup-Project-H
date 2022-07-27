@@ -62,7 +62,7 @@ function CreateGroupFrom () {
         }
 
         if (newGroup) {
-            history.push(`/api/groups/${newGroup.id}`);
+            history.push(`/groups/${newGroup.newGroup.id}`);
         }
 
     };
