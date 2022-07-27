@@ -88,7 +88,7 @@ function GroupDetails () {
             </div>
             
             <div className='group3'>
-                {showEditButton && <button onClick={() => setShowEditGroupForm(true)}>Edit Group</button>}
+                {showEditButton && <button onClick={() => (showEditGroupForm) ? setShowEditGroupForm(false) : setShowEditGroupForm(true)}>Edit Group</button>}
                 {showEditGroupForm && (
                     <EditGroupFrom hiddenForm={() => setShowEditGroupForm(false)} group={group} />
                 )}

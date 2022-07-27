@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { putUpdateGroupThunk } from '../../store/groups'
 
 function EditGroupFrom({hiddenForm, group}) {
-    console.log('group!!!!!!!', group.id)
+    
     const dispatch = useDispatch()
     const history = useHistory();
     const sessionUser = useSelector(state => state.session.user);
