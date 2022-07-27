@@ -186,7 +186,8 @@ const groupsReducer = (state = initialState, action) => {
         case PUT_UPDATE_GROUP: {
             newState = { ...state };
             // newState[action.groupId] = { ...newState[action.groupId], events: action.events };
-            newState[action.group.id] = action.group
+            newState[action.group.id] = { ...newState[action.group.id], ...action.group };
+            // newState[action.group.id] = action.group
             return newState
         }
         case GET_GROUP_EVENTS: {
