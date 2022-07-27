@@ -122,8 +122,6 @@ export const putUpdateGroupThunk = (newGroup, groupId) => async dispatch => {
         const data = await response.json();
         dispatch(putUpdateGroup(data));
         return data;
-    } else {
-        console.log('response!!!!!!!!', response)
     }
 }
 
@@ -187,7 +185,8 @@ const groupsReducer = (state = initialState, action) => {
         }
         case PUT_UPDATE_GROUP: {
             newState = { ...state };
-            newState[action.groupId] = { ...newState[action.groupId], events: action.events };
+            // newState[action.groupId] = { ...newState[action.groupId], events: action.events };
+            newState[action.group.id] = action.group
             return newState
         }
         case GET_GROUP_EVENTS: {

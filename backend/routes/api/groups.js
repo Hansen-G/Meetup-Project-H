@@ -352,7 +352,8 @@ router.put('/:groupId', checkAuth, async (req, res, next) => {
             })
         }
         
-        let { name, about, type, private, city, state } = req.body;
+        let { name, about, type, private, city, state, previewImage } = req.body;
+
         if (private === 'true') {
             private = true
         } else if (private === 'false') {
@@ -365,6 +366,7 @@ router.put('/:groupId', checkAuth, async (req, res, next) => {
         if (private) groupToBeEdited.private = private;
         if (city) groupToBeEdited.city = city;
         if (state) groupToBeEdited.state = state;
+        if (previewImage) groupToBeEdited.previewImage = previewImage;
         await groupToBeEdited.save();
 
         res.json(groupToBeEdited)
@@ -392,7 +394,7 @@ router.put('/:groupId', checkAuth, async (req, res, next) => {
 
 // Create a Group
 router.post('/new', checkAuth, async (req, res, next) => {
-    let { name, about, type, private, city, state } = req.body;
+    let { name, about, type, private, city, state, previewImage } = req.body;
     const organizerId = req.user.id
     try{
         if (private === 'true'){
@@ -400,8 +402,11 @@ router.post('/new', checkAuth, async (req, res, next) => {
         } else if (private === 'false'){
             private = false
         }
+        if (!previewImage){
+            previewImage = 'https://res.cloudinary.com/hansenguo/image/upload/v1658961559/samples/landscapes/sky_jcnbkl.png'
+        }
         const newGroup = await Group.create({
-            organizerId, name, about, type, private, city, state
+            organizerId, name, about, type, private, city, state, previewImage
         });
         const newGroupMember = await GroupMember.create({
             userId: organizerId,

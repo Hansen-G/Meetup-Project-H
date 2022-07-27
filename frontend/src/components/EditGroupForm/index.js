@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { putUpdateGroupThunk } from '../../store/groups'
 
 function EditGroupFrom({hiddenForm, group}) {
-    
+
     const dispatch = useDispatch()
     const history = useHistory();
     const sessionUser = useSelector(state => state.session.user);
@@ -22,6 +22,7 @@ function EditGroupFrom({hiddenForm, group}) {
     const [privateStatus, setPrivateStatus] = useState(group.private);
     const [city, setCity] = useState(group.city);
     const [state, setState] = useState(group.state);
+    const [previewImage, setPreviewImage] = useState(group.previewImage)
     const [check, setCheck] = useState(true)
 
     const checkInput = (e) => {
@@ -49,7 +50,8 @@ function EditGroupFrom({hiddenForm, group}) {
             type,
             private: privateBoolean,
             city,
-            state
+            state,
+            previewImage
         };
 
         console.log('group', newGroup)
@@ -65,7 +67,7 @@ function EditGroupFrom({hiddenForm, group}) {
         if (newGroupRes) {
             history.push(`/groups/${newGroupRes.id}`);
             hiddenForm();
-            window.location.reload(true);
+            // window.location.reload(true);
         }
 
     };
@@ -97,6 +99,7 @@ function EditGroupFrom({hiddenForm, group}) {
 
                 <label>City:<input type={'text'} value={city} onChange={e => setCity(e.target.value)}></input></label>
                 <label>State:<input type={'text'} value={state} onChange={e => setState(e.target.value)}></input></label>
+                <label>Preview Image:<input type={'text'} value={previewImage} onChange={e => setPreviewImage(e.target.value)}></input></label>
                 <button onClick={hiddenForm}>Cancle</button>
                 <button type="submit" >Submit</button>
 

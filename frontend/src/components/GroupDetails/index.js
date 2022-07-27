@@ -4,6 +4,7 @@ import { NavLink, useParams, Route, Switch, Link } from 'react-router-dom';
 import { getGroupByIdThunk, getGroupEventThunk, getGroupMembersThunk } from '../../store/groups'
 
 import EditGroupFrom from '../EditGroupForm';
+import GroupEventList from '../GroupEventList'
 import './GroupDetails.css'
 
 function GroupDetails () {
@@ -87,11 +88,22 @@ function GroupDetails () {
                 </div>
             </div>
             
+ 
             <div className='group3'>
+
+                
+                    <div>
+                    <Link to={`/events/groups/${groupId}`}>
+                            Events
+                        </Link>
+                    </div>
+             
                 {showEditButton && <button onClick={() => (showEditGroupForm) ? setShowEditGroupForm(false) : setShowEditGroupForm(true)}>Edit Group</button>}
                 {showEditGroupForm && (
                     <EditGroupFrom hiddenForm={() => setShowEditGroupForm(false)} group={group} />
                 )}
+
+
             </div>
 
 
@@ -108,7 +120,7 @@ function GroupDetails () {
                         Events ({eventArr.length})
                     </h2>
                     {(eventArr.length > 0) && eventArr.map(event => (
-                        <Link to={`event/${event.id}`}>
+                        <Link to={`/event/${event.id}`}>
                             <div className='eventCard'>
                                 <p>{event.startDate}</p>
                                 <p>{event.name}</p>

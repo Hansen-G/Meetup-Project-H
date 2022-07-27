@@ -21,13 +21,13 @@ function CreateGroupFrom () {
     const [privateStatus, setPrivateStatus] = useState('Private Group');
     const [city, setCity] = useState('');
     const [state, setState] = useState('');
+    const [previewImage, setPreviewImage] = useState('')
     const [check, setCheck] = useState(true)
 
     const checkInput = (e) => {
         if (e.length > 0) setCheck(false)
 
     }
-
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -48,7 +48,8 @@ function CreateGroupFrom () {
             type,
             private: privateBoolean,
             city,
-            state
+            state,
+            previewImage
         };
 
         console.log('group',group)
@@ -94,6 +95,7 @@ function CreateGroupFrom () {
 
                 <label>City:<input type={'text'} value={city} onChange={e => setCity(e.target.value)}></input></label>
                 <label>State:<input type={'text'} value={state} onChange={e => setState(e.target.value)}></input></label>
+                <label>Preview Image:<input type={'text'} value={previewImage} onChange={e => setPreviewImage(e.target.value)}></input></label>
                 <button type="submit" >Submit</button>
                 {/* <button onClick={hiddenForm}>Cancle</button> */}
             </form>

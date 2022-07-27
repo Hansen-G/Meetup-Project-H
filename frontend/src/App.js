@@ -11,6 +11,7 @@ import GroupList from './components/GroupsList'
 import GroupDetails from './components/GroupDetails'
 import CreateGroupFrom from "./components/CreateGroupForm";
 import LoginFormPage from "./components/LoginFormPage";
+import GroupEventList from './components/GroupEventList'
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -37,6 +38,12 @@ function App() {
             <LoginFormPage />
             <ButtomBar />
           </Route>
+          <Route path='/events/groups/:groupId'>
+            <GroupEventList />
+            <ButtomBar />
+          </Route>
+
+
           <Route path='/groups/:groupId'>
             <GroupDetails />
             <ButtomBar />
