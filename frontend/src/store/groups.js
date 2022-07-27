@@ -91,20 +91,23 @@ export const getGroupByIdThunk = (groupId) => async dispatch => {
     }
 }
 
-// export const postNewGroupThunk = (group) => async dispatch => {
-//     const response = await csrfFetch(`/api/groups`, {
-//         method: 'POST',
-//         headers: {
-//             'Content-Type': 'application/json'
-//         },
-//         body: JSON.stringify(group)
-//     });
-//     if (response.ok) {
-//         const data = await response.json();
-//         dispatch(postNewGroup(data));
-//         return data;
-//     }
-// }
+export const postNewGroupThunk = (group) => async dispatch => {
+    const response = await csrfFetch('/api/groups/new', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(group)
+    });
+
+    console.log(response)
+    if (response.ok) {
+        
+        const data = await response.json();
+        dispatch(postNewGroup(data));
+        return data;
+    }
+}
 
 // export const putUpdateGroupThunk = (newGroup, groupId) => async dispatch => {
 //     const response = await csrfFetch(`/api/groups/${groupId}`, {
@@ -168,11 +171,11 @@ const groupsReducer = (state = initialState, action) => {
             newState[action.group.id] = action.group
             return newState;
         }
-        // case POST_NEW_GROUP: {
-        //     newState = { ...state };
-        //     newState[action.group.id] = action.group;
-        //     return newState;
-        // }
+        case POST_NEW_GROUP: {
+            newState = { ...state };
+            newState[action.group.id] = action.group;
+            return newState;
+        }
         // case PUT_UPDATE_GROUP: {
         //     newState = { ...state };
         //     newState[action.groupId] = { ...newState[action.groupId], events: action.events };
