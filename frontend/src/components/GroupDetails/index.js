@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { NavLink, useParams, Route, Switch, Link } from 'react-router-dom';
-import { getGroupByIdThunk, getGroupEventThunk, getGroupMembersThunk } from '../../store/groups'
+import { NavLink, useParams, Route, Switch, Link, useHistory } from 'react-router-dom';
+import { getGroupByIdThunk, getGroupEventThunk, getGroupMembersThunk, deleteGroupThunk } from '../../store/groups'
 
 import EditGroupFrom from '../EditGroupForm';
 import GroupEventList from '../GroupEventList'
@@ -9,6 +9,8 @@ import './GroupDetails.css'
 
 function GroupDetails () {
     const dispatch = useDispatch();
+    const history = useHistory();
+
     const { groupId } = useParams();
     const [showEditGroupForm, setShowEditGroupForm] = useState(false);
 
@@ -29,6 +31,17 @@ function GroupDetails () {
     useEffect(() => {
         helper(groupId)
     }, [dispatch]);
+
+    const deleteListener = async (groupId) => {
+
+        if (window.confirm('Do you really want to delete this Group? This action can not be undone!')){
+            const response = await dispatch(deleteGroupThunk(groupId));
+            if (response) {
+                window.alert('Successfully deleted the Group, Click OK to bring you back to Groups List')
+                history.push('/groups');
+            }
+        }
+    };
 
 
     if (!group) return null;
@@ -89,21 +102,35 @@ function GroupDetails () {
             </div>
             
  
-            <div className='group3'>
+            <div className='group3 flex'>
 
                 
-                    <div>
+                <div>
                     <Link to={`/events/groups/${groupId}`}>
                             Events
-                        </Link>
+                    </Link>
+                </div>
+
+                <div className='group3ButtonContiner flex'>
+                    <div className='group3Buttondiv'>
+                        {showEditButton && (
+                            <button className='group3Button' onClick={() => deleteListener(groupId) }>Delete</button>
+                        )}
+
                     </div>
-             
-                {showEditButton && <button onClick={() => (showEditGroupForm) ? setShowEditGroupForm(false) : setShowEditGroupForm(true)}>Edit Group</button>}
+
+                    <div className='group3Buttondiv'>
+                        {showEditButton && <button className='group3Button' onClick={() => (showEditGroupForm) ? setShowEditGroupForm(false) : setShowEditGroupForm(true)}>Edit Group</button>}
+         
+                    </div>
+                </div>
+                
+            </div>
+
+            <div>
                 {showEditGroupForm && (
                     <EditGroupFrom hiddenForm={() => setShowEditGroupForm(false)} group={group} />
                 )}
-
-
             </div>
 
 

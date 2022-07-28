@@ -1,23 +1,22 @@
-// import { csrfFetch } from './csrf';
+import { csrfFetch } from './csrf';
 
-// const GET_EVENTLIST = 'events/GET_EVENTLIST';
-// const GET_EVENT_BY_ID = 'events/GET_EVENT_BY_ID';
-// const GET_EVENT_MEMBERS = 'events/GET_EVENT_MEMBERS';
-// const GET_EVENT_IMAGES = 'events/GET_EVENT_IMAGE'
+const GET_EVENTLIST = 'events/GET_EVENTLIST';
+const GET_EVENT_BY_ID = 'events/GET_EVENT_BY_ID';
+const GET_EVENT_MEMBERS = 'events/GET_EVENT_MEMBERS';
 
-// const POST_NEW_EVENT = 'events/ POST_NEW_EVENT';
-// const PUT_UPDATE_EVENT = 'events/PUT_UPDATE_EVENT'
+const POST_NEW_EVENT = 'events/ POST_NEW_EVENT';
+const PUT_UPDATE_EVENT = 'events/PUT_UPDATE_EVENT'
 
 // // const POST_GROUP_NEW_EVENT = 'groups/POST_GROUP_NEW_EVENT';
 
 
 
-// const getGroupList = (groups) => {
-//     return {
-//         type: GET_EVENTLIST,
-//         groups
-//     }
-// }
+const getEventList = (events) => {
+    return {
+        type: GET_EVENTLIST,
+        events
+    }
+}
 
 // const getGroupById = (group) => {
 //     return {
@@ -123,51 +122,51 @@
 
 
 
-// const initialState = {};
+const initialState = {};
 
-// const groupsReducer = (state = initialState, action) => {
-//     let newState;
-//     switch (action.type) {
-//         case GET_GROUPLIST: {
-//             newState = { ...state };
-//             action.groups.map(group => newState[group.id] = group)
-//             newState = { ...newState }
-//             return newState
-//         }
-//         case GET_GROUP_BY_ID: {
-//             newState = { ...state };
-//             newState[action.group.id] = action.group
+const eventsReducer = (state = initialState, action) => {
+    let newState;
+    switch (action.type) {
+        case GET_EVENTLIST: {
+            newState = { ...state };
+            action.groups.map(group => newState[group.id] = group)
+            newState = { ...newState }
+            return newState
+        }
+        // case GET_GROUP_BY_ID: {
+        //     newState = { ...state };
+        //     newState[action.group.id] = action.group
 
-//             return newState;
-//         }
-//         // case POST_NEW_GROUP: {
-//         //     newState = { ...state };
-//         //     newState[action.group.id] = action.group;
-//         //     return newState;
-//         // }
-//         // case PUT_UPDATE_GROUP: {
-//         //     newState = { ...state };
-//         //     newState[action.groupId] = { ...newState[action.groupId], events: action.events };
-//         //     return newState
-//         // }
-//         // case GET_GROUP_EVENTS: {
-//         //     newState = { ...state };
-//         //     newState[action.groupId] = { ...newState[action.groupId], events: action.events };
-//         //     return newState
-//         // }
-//         case GET_GROUP_MEMBERS: {
-//             newState = { ...state };
-//             const members = {};
-//             action.members.forEach(member => members[member.id] = member);
-//             newState[action.groupId] = { ...newState[action.groupId], members }
-//             return newState;
-//         }
-//         default: {
-//             return state
-//         }
+        //     return newState;
+        // }
+        // case POST_NEW_GROUP: {
+        //     newState = { ...state };
+        //     newState[action.group.id] = action.group;
+        //     return newState;
+        // }
+        // case PUT_UPDATE_GROUP: {
+        //     newState = { ...state };
+        //     newState[action.groupId] = { ...newState[action.groupId], events: action.events };
+        //     return newState
+        // }
+        // case GET_GROUP_EVENTS: {
+        //     newState = { ...state };
+        //     newState[action.groupId] = { ...newState[action.groupId], events: action.events };
+        //     return newState
+        // }
+        // case GET_GROUP_MEMBERS: {
+        //     newState = { ...state };
+        //     const members = {};
+        //     action.members.forEach(member => members[member.id] = member);
+        //     newState[action.groupId] = { ...newState[action.groupId], members }
+        //     return newState;
+        // }
+        default: {
+            return state
+        }
 
-//     }
-// };
+    }
+};
 
-// export default groupsReducer;
+export default eventsReducer;
 

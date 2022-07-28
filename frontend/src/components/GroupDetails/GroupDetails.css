@@ -2,6 +2,8 @@
     justify-content: center;
 }
 
+
+
 .groupImg {
     width: 40%;
 }
@@ -45,4 +47,24 @@
     width: 30%;
     border-radius: 10px;
     margin: 1%
+}
+
+.group3 {
+    justify-content: space-around;
+    align-items: center;
+    padding: 1% 20%;
+}
+
+.group3Buttondiv {
+    margin: 0 5%;
+}
+
+.group3Button {
+    height: 35px;
+    width: 120px;
+    font-size: 15px;
+    color: white;
+    background-color: #f65858;
+    border: 0px;
+    border-radius: 10px;
 }

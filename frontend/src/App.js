@@ -56,6 +56,9 @@ function App() {
             <CreateGroupFrom />
             <ButtomBar />
           </Route>
+          <Route>
+            Page not found
+          </Route>
         </Switch>
       )}
     </>

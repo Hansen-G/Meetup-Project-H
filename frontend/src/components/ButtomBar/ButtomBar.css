@@ -1,3 +1,7 @@
+.toolBarContiner{
+
+}
+
 .buttomBar {
     background-color: #353e48;
     color: white;
@@ -5,8 +9,12 @@
     position: static;
     bottom: 0;
     left: 0;
-    width: 100%;
+    width: 80%;
     padding: 3% 10%;
+}
+
+.tooBar {
+    margin: 0 20% 0 0;
 }
 
 .buttomBar  p {
@@ -15,4 +23,12 @@
 
 .toobarLink {
     color: white;
+}
+
+.followMeIcon {
+    size: 20px;
+    height: 40px;
+    width: 40px;
+    color: white;
+    padding: 1% 3% 1% 0;
 }

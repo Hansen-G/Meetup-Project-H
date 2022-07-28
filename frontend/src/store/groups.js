@@ -8,6 +8,7 @@ const GET_GROUP_IMAGES = 'groups/GET_GROUP_IMAGE'
 
 const POST_NEW_GROUP = 'groups/ POST_NEW_GROUP';
 const PUT_UPDATE_GROUP = 'groups/PUT_UPDATE_GROUP'
+const DELETE_GROUP = 'groups/DELETE_GROUP'
 
 const POST_GROUP_NEW_EVENT = 'groups/POST_GROUP_NEW_EVENT';
 
@@ -64,10 +65,9 @@ const getGroupMembers = (members, groupId) => {
     }
 }
 
-const getGroupImages = (images, groupId) => {
+const deleteGroup = (groupId) => {
     return {
-        type: GET_GROUP_IMAGES,
-        images,
+        type: DELETE_GROUP,
         groupId
     }
 }
@@ -151,14 +151,16 @@ export const getGroupMembersThunk = (groupId) => async dispatch => {
     }
 }
 
-// export const getGroupImagesThunk = (groupId) => async dispatch => {
-//     const response = await fetch(`/api/groups/${groupId}/members`);
-//     if (response.ok) {
-//         const data = await response.json();
-//         dispatch(getGroupImages(data.Members, groupId));
-//         return data;
-//     }
-// }
+export const deleteGroupThunk = (groupId) => async dispatch => {
+    const response = await csrfFetch(`/api/groups/${groupId}`, {
+        method: 'DELETE'
+    });
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(deleteGroup(groupId));
+        return response.ok;
+    }
+}
 
 
 
@@ -205,8 +207,11 @@ const groupsReducer = (state = initialState, action) => {
             } else {
                 newState[action.groupId] = { ...newState[action.groupId], members }
             }
-            
-           
+            return newState;
+        }
+        case DELETE_GROUP: {
+            newState = { ...state };
+            delete newState[action.groupId];
             return newState;
         }
         default: {

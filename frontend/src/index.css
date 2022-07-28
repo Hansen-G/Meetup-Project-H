@@ -3,13 +3,14 @@ form {
     flex: 0 0 400px;
 }
 
-html * {
+html {
     color: #000;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 p {
     line-height: 150%;
+    color: #212121;
 }
 
 #login {
