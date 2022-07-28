@@ -9,7 +9,7 @@ module.exports = {
           name: 'HansenS Group1',
           about: 'Hansen first group',
           type: 'Game',
-          private: true,
+          private: false,
           city: 'Baltimore',
           state: 'MD',
           numMembers: 10,

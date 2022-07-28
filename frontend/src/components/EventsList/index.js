@@ -1,10 +1,7 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink, Link } from 'react-router-dom';
-
 import { getEventListThunk } from '../../store/events'
-
-
 
 function EventList() {
     const dispatch = useDispatch();

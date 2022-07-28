@@ -18,12 +18,12 @@ const getEventList = (events) => {
     }
 }
 
-// const getGroupById = (group) => {
-//     return {
-//         type: GET_EVENT_BY_ID,
-//         group
-//     }
-// }
+const getEventById = (event) => {
+    return {
+        type: GET_EVENT_BY_ID,
+        event
+    }
+}
 
 // // const postNewGroup = (group) => {
 // //     return {
@@ -53,14 +53,14 @@ export const getEventListThunk = () => async dispatch => {
     }
 }
 
-// export const getGroupByIdThunk = (groupId) => async dispatch => {
-//     const response = await fetch(`/api/groups/${groupId}`)
-//     if (response.ok) {
-//         const data = await response.json();
-//         dispatch(getGroupById(data));
-//         return data
-//     }
-// }
+export const getEventByIdThunk = (eventId) => async dispatch => {
+    const response = await fetch(`/api/events/${eventId}`)
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(getEventById(data));
+        return data
+    }
+}
 
 // // export const postNewGroupThunk = (group) => async dispatch => {
 // //     const response = await csrfFetch(`/api/groups`, {
@@ -134,12 +134,11 @@ const eventsReducer = (state = initialState, action) => {
             newState = { ...newState }
             return newState
         }
-        // case GET_GROUP_BY_ID: {
-        //     newState = { ...state };
-        //     newState[action.group.id] = action.group
-
-        //     return newState;
-        // }
+        case GET_EVENT_BY_ID: {
+            newState = { ...state };
+            newState[action.event.id] = action.event
+            return newState;
+        }
         // case POST_NEW_GROUP: {
         //     newState = { ...state };
         //     newState[action.group.id] = action.group;

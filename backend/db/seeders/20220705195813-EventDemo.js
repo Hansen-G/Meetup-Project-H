@@ -81,6 +81,32 @@ module.exports = {
         numAttending: 9,
         previewImage: 'https://res.cloudinary.com/hansenguo/image/upload/v1658793269/WeMeet/event1_tpi7bo.webp'
       },
+      {
+        groupId: 2,
+        venueId: 1,
+        name: 'AIII Roundtable: MAGIC, Digital Twins & Tech Ecosystems with guest Graham Dodge',
+        type: 'Online',
+        description: 'Our June 30 TEDCO AI Roundtable session features Larry Brown from NVIDIA for a discussion machine learning and modeling with training on GPUs',
+        startDate: '2022-07-06 20:00:00',
+        endDate: '2022-07-10 20:00:00',
+        price: 10,
+        capacity: 10,
+        numAttending: 9,
+        previewImage: 'https://res.cloudinary.com/hansenguo/image/upload/v1658793269/WeMeet/event1_tpi7bo.webp'
+      },
+      {
+        groupId: 2,
+        venueId: 2,
+        name: 'AP Roundtable: MAGIC, Digital Twins & Tech Ecosystems with guest Graham Dodge',
+        type: 'Online',
+        description: 'Our June 30 TEDCO AI Roundtable session features Larry Brown from NVIDIA for a discussion machine learning and modeling with training on GPUs',
+        startDate: '2022-07-06 20:00:00',
+        endDate: '2022-07-10 20:00:00',
+        price: 10,
+        capacity: 10,
+        numAttending: 9,
+        previewImage: 'https://res.cloudinary.com/hansenguo/image/upload/v1658793269/WeMeet/event1_tpi7bo.webp'
+      },
     ], {});
   },
 
