@@ -125,20 +125,45 @@ function EventDetails() {
                         </div>
                     </div>
                     <div className='event2Right'>
-                        <div className='eventGroupCard2 flex'>
+                        <Link>
+                            <div className='eventGroupCard2 flex'>                           
+                                <div>
+                                    <img src={event.Group.previewImage}></img>
+                                </div>
+                                <div>
+                                    <p>
+                                        {event.Group.name}
+                                    </p>
+                                    <p>
+                                        {state}
+                                    </p>
+                                </div>
+                                                        
+                             </div>
+                        </Link>
+
+                        <div>
                             <div>
-                                <img src={event.Group.previewImage}></img>
+                                <div>
+                                    <i className="fa-solid fa-clock"></i>
+                                </div>
+                                <div>
+                                    {event.startDate} to {event.endDate}
+                                </div>
+                                
                             </div>
                             <div>
-                                <p>
-                                    {event.Group.name}
-                                </p>
-                                <p>
-                                    {state}
-                                </p>
+                                <div>
+                                    <i className="fa-solid fa-location-dot"></i>
+                                </div>
+                                <div>
+                                    {event.Venue.city}, {event.Venue.state}
+                                </div>
                             </div>
-                        </div>
+                        </div>   
                     </div>
+
+              
               
 
                     

@@ -147,7 +147,7 @@ function GroupDetails() {
                         Events ({eventArr.length})
                     </h2>
                     {(eventArr.length > 0) && eventArr.map(event => (
-                        <Link to={`/event/${event.id}`}>
+                        <Link to={`/events/${event.id}`}>
                             <div className='eventCard'>
                                 <p>{event.startDate}</p>
                                 <p>{event.name}</p>

@@ -4,7 +4,7 @@ const GET_GROUPLIST = 'groups/GET_GROUPLIST';
 const GET_GROUP_BY_ID = 'groups/GET_GROUP_BY_ID';
 const GET_GROUP_MEMBERS = 'groups/GET_GROUP_MEMBERS';
 const GET_GROUP_EVENTS = 'groups/GET_GROUP_EVENTS';
-const GET_GROUP_IMAGES = 'groups/GET_GROUP_IMAGE'
+
 
 const POST_NEW_GROUP = 'groups/ POST_NEW_GROUP';
 const PUT_UPDATE_GROUP = 'groups/PUT_UPDATE_GROUP'

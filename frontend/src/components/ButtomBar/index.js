@@ -19,7 +19,7 @@ function ButtomBar() {
 
             <div className='toolBarContiner flex'>
                 <div className='tooBar'>
-                    <p>
+                    <p className='barTitle'>
                         Your Account
                     </p>
            
@@ -40,7 +40,7 @@ function ButtomBar() {
                     </p>
                 </div>
                 <div className='tooBar'>
-                    <p>
+                    <p className='barTitle'>
                         Discover
                     </p>
 
@@ -50,14 +50,14 @@ function ButtomBar() {
                         </NavLink>
                     </p>
                     <p>
-                        <NavLink to="/login" className='toobarLink'>
+                        <NavLink to="/events" className='toobarLink'>
                             Events
                         </NavLink>
                     </p>
                 </div>
 
                 <div className='tooBar'>
-                    <p>
+                    <p className='barTitle'>
                         WeMeet
                     </p>
 
@@ -79,25 +79,38 @@ function ButtomBar() {
                 </div>
             </div>
 
+            <div className='bar3 flex'>
 
-            <div className='followMe'>
-                <p>
-                    Follow me
-                </p>
+
                 <div className='followMe'>
-                    <a href='https://www.facebook.com/profile.php?id=100012690077303' className='toobarLink'>
-                        <i className="fa-brands fa-facebook fa-2x followMeIcon"></i>
-                    </a>
-                    <a href='https://www.instagram.com/hansen.guo/' className='toobarLink'>
-                        <i className="fa-brands fa-instagram fa-2x followMeIcon"></i>
-                    </a>
+                    <p className='barTitle'>
+                        Follow me
+                    </p>
+                    <div className='followMe'>
+                        <a href='https://www.facebook.com/profile.php?id=100012690077303' className='toobarLink'>
+                            <i className="fa-brands fa-facebook fa-2x followMeIcon"></i>
+                        </a>
+                        <a href='https://www.instagram.com/hansen.guo/' className='toobarLink'>
+                            <i className="fa-brands fa-instagram fa-2x followMeIcon"></i>
+                        </a>
 
-                    <a href='https://www.linkedin.com/in/hansen-guo/' className='toobarLink'>
-                        <i className="fa-brands fa-linkedin fa-2x followMeIcon"></i>
+                        <a href='https://www.linkedin.com/in/hansen-guo/' className='toobarLink'>
+                            <i className="fa-brands fa-linkedin fa-2x followMeIcon"></i>
+                        </a>
+
+                    </div>
+                    
+                </div>
+
+                <div className='download'>
+                    <a target="_blank" href='https://apps.apple.com/us/app/meetup/id375990038'>
+                        <img src='https://res.cloudinary.com/hansenguo/image/upload/v1658780015/WeMeet/download_en-US_wqm4tx.svg'></img>
+                    </a>
+                    <a target="_blank" href='https://play.google.com/store/apps/details?id=com.meetup&hl=en-US'>
+                        <img src='https://res.cloudinary.com/hansenguo/image/upload/v1658780015/WeMeet/download_en-US_1_ggkmvj.svg'></img>
                     </a>
 
                 </div>
-                
             </div>
             
         </div>

@@ -110,7 +110,7 @@ function HomePage() {
                 <div className='part4sub'>
                         <img src='https://res.cloudinary.com/hansenguo/image/upload/v1658778861/WeMeet/ticket_ibghag.svg'></img>
                     <h3>
-                        <NavLink exact to="/">
+                        <NavLink exact to="/events">
                             Find an event
                         </NavLink>
                     </h3>
@@ -121,7 +121,7 @@ function HomePage() {
                 <div className='part4sub'>
                         <img src='https://res.cloudinary.com/hansenguo/image/upload/v1658778861/WeMeet/joinGroup_xp0nfa.svg'></img>
                     <h3>
-                        <NavLink exact to="/">
+                        <NavLink exact to="/createNewGroup">
                             Start a group
                         </NavLink>
                     </h3>
