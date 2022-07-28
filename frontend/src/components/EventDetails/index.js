@@ -29,9 +29,15 @@ function EventDetails() {
     let attendees = event.attendees
 
     if (!attendees || Object.keys(attendees).length === 0) return null;
-    const attendeesArr = Object.values(attendees)
-    
 
+    let attendeesArr;
+
+    if (attendees['Auth']) {
+        let attendeesObj = {...attendees}
+        delete attendeesObj['Auth']
+        attendeesArr = Object.values(attendeesObj)
+    }
+    
     console.log('attendeesArr', attendeesArr)
 
     let state;
@@ -55,12 +61,114 @@ function EventDetails() {
 
                 </div>
 
-                <div className='event2'>
+                <div className='event2 flex'>
                     <div className='event2Left'>
 
+                        <div className='eventDetails'>
+                            <h3>
+                                Details
+                            </h3>
+                            
+                            {(attendees['Auth']) && (
+                            <p>
+                                { event.description }
+                            </p>)
+                            }
+                            {!(attendees['Auth']) && (
+                                <p>
+                                    <i className="fa-solid fa-lock"></i>
+                                    This content is available only to members
+                                </p>
+                                )
+                            }
+                            
+                        </div>
 
+                        <div className='eventAttendees'>
+                            <h3>
+                                Attendees
+                            </h3>
+                            {(attendees['Auth']) && (
+                                <p>
+                                    {(attendeesArr.length > 0) && attendeesArr.map(attendee => (
+                                        <p key={attendee.id}>
+                                            {attendee.firstName} {attendee.lastName} - {attendee.EventAttendees[0].attendeeStatus}
+                                        </p>
+                                    ))
+                                    }
+                                </p>)}
+                            {!(attendees['Auth']) && (
+                                <p>
+                                    <i className="fa-solid fa-lock"></i>
+                                    This content is available only to members
+                                </p>
+                            )}
+                        </div>
+
+                        <div className='eventGroupCard flex'>
+                            <div>
+                                <Link to={`/events/groups/${event.Group.id}`}>
+                                    <div className='eventGroupCardLeft'>
+                                        <p>
+                                            {event.Group.name}
+                                        </p>
+
+                                        <p>
+                                            See more events
+                                        </p>
+
+                                    </div>
+
+
+                                </Link>
+                            </div>
+                            <div className='eventGroupCardRight'>
+                                <Link to={`/events/groups/${event.Group.id}`}>
+                                    {`>`}
+                                </Link>
+                            </div>
+
+                        </div>
                     </div>
+                    <div className='event2Right'>
+                        <Link>
+                            <div className='eventGroupCard2 flex'>
+                                <div>
+                                    <img src={event.Group.previewImage}></img>
+                                </div>
+                                <div>
+                                    <p>
+                                        {event.Group.name}
+                                    </p>
+                                    <p>
+                                        {state}
+                                    </p>
+                                </div>
 
+                            </div>
+                        </Link>
+
+                        <div>
+                            <div>
+                                <div>
+                                    <i className="fa-solid fa-clock"></i>
+                                </div>
+                                <div>
+                                    {event.startDate} to {event.endDate}
+                                </div>
+
+                            </div>
+                            <div>
+                                <div>
+                                    <i className="fa-solid fa-location-dot"></i>
+                                </div>
+                                <div>
+                                    {event.Venue.address}, {event.Venue.city}, {event.Venue.state}
+                                </div>
+                                <div id="map"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         )
@@ -99,8 +207,9 @@ function EventDetails() {
 
                         <div className='eventAttendees'>
                             <h3>
-                                Attendees ({attendeesArr.length})
+                                Attendees
                             </h3>
+                            {(attendees['Auth']) && (
                             <p>
                                 {(attendeesArr.length > 0) && attendeesArr.map(attendee => (
                                     <p key={attendee.id}>
@@ -108,7 +217,23 @@ function EventDetails() {
                                     </p>
                                 ))
                                 }
-                            </p>
+                            </p>)}
+                            {(attendees['Auth']) && (
+                                <p>
+                                    {(attendeesArr.length == 0) && (
+                                        <div>
+                                            No attendee yet
+                                        </div>
+                                    )
+                                    }
+                                </p>)}
+
+                            {!(attendees['Auth']) && (
+                                <p>
+                                    <i className="fa-solid fa-lock"></i>
+                                    This content is available only to members
+                                </p>
+                            )}
                         </div>
 
                         <div className='eventGroupCard flex'>

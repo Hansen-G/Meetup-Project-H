@@ -4,6 +4,7 @@ import { NavLink, useParams, Route, Switch, Link, useHistory } from 'react-route
 import { getGroupByIdThunk, getGroupEventThunk, getGroupMembersThunk, deleteGroupThunk } from '../../store/groups'
 
 import EditGroupFrom from '../EditGroupForm';
+import CreateEventFrom from '../CreateEventForm'
 import GroupEventList from '../GroupEventList'
 import './GroupDetails.css'
 
@@ -13,6 +14,7 @@ function GroupDetails() {
 
     const { groupId } = useParams();
     const [showEditGroupForm, setShowEditGroupForm] = useState(false);
+    const [showCreateEventForm, setShowCreateEventForm] = useState(false);
 
     const group = useSelector( state => state.groups[groupId])
 

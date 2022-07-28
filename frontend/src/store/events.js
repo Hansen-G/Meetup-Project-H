@@ -111,7 +111,7 @@ export const getEventByIdThunk = (eventId) => async dispatch => {
 // // }
 
 export const getEventAttendeeThunk = (eventId) => async dispatch => {
-    const response = await csrfFetch(`/api/events/${eventId}/attendees`);
+    const response = await fetch(`/api/events/${eventId}/attendees`);
    
     if (response.ok) {
         const data = await response.json();
@@ -119,11 +119,9 @@ export const getEventAttendeeThunk = (eventId) => async dispatch => {
         dispatch(getEventAttendee(data, eventId));
         return data;
     } else {
-        console.log('HERE')
-
-            dispatch(getEventAttendee([], eventId));
-            return []
-        
+        console.log('Here')
+        dispatch(getEventAttendee(['No auth'], eventId));
+        return ['No auth']
     }
 }
 
@@ -172,11 +170,18 @@ const eventsReducer = (state = initialState, action) => {
         case GET_EVENT_ATTENDEE: {
             newState = { ...state };
             const attendees = {};
-            action.attendees.forEach(attendee => attendees[attendee.id] = attendee);
-           
-            newState[action.eventId] = { ...newState[action.eventId], attendees }
- 
-            return newState;
+            if (action.attendees && action.attendees[0] == 'No auth'){
+                attendees['Auth'] = false
+                newState[action.eventId] = { ...newState[action.eventId], attendees }
+                return newState;
+
+            } else {
+                attendees['Auth'] = true
+                action.attendees.forEach(attendee => attendees[attendee.id] = attendee);
+                newState[action.eventId] = { ...newState[action.eventId], attendees }
+                return newState;
+            }
+            
         }
         default: {
             return state
