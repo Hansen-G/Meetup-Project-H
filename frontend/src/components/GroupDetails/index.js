@@ -7,7 +7,7 @@ import EditGroupFrom from '../EditGroupForm';
 import GroupEventList from '../GroupEventList'
 import './GroupDetails.css'
 
-function GroupDetails () {
+function GroupDetails() {
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -20,13 +20,13 @@ function GroupDetails () {
 
     const user = useSelector(state => state.session.user);
 
-    
+
 
     const helper = async (groupId) => {
         const groupWait = await dispatch(getGroupByIdThunk(groupId));
-        const eventWait= await dispatch(getGroupEventThunk(groupId));
+        const eventWait = await dispatch(getGroupEventThunk(groupId));
         const memberWait = await dispatch(getGroupMembersThunk(groupId));
-    
+
     }
     useEffect(() => {
         helper(groupId)
@@ -34,7 +34,7 @@ function GroupDetails () {
 
     const deleteListener = async (groupId) => {
 
-        if (window.confirm('Do you really want to delete this Group? This action can not be undone!')){
+        if (window.confirm('Do you really want to delete this Group? This action can not be undone!')) {
             const response = await dispatch(deleteGroupThunk(groupId));
             if (response) {
                 window.alert('Successfully deleted the Group, Click OK to bring you back to Groups List')
@@ -45,7 +45,7 @@ function GroupDetails () {
 
 
     if (!group) return null;
-    
+
     const member = group.members
     if (!member || Object.keys(member).length === 0) return null;
     const memberArr = Object.values(member)
@@ -53,7 +53,7 @@ function GroupDetails () {
 
 
     const eventArr = group.events
-    
+
     if (!eventArr) return null;
 
     const imageArr = group.image
@@ -61,7 +61,7 @@ function GroupDetails () {
 
 
     let state;
-    if (group.private === true){
+    if (group.private === true) {
         state = 'Private Group'
     } else {
         state = 'Public Group'
@@ -77,7 +77,7 @@ function GroupDetails () {
     return (
         <div>
             <div className='group1 flex'>
-                 <div className='groupImg'>
+                <div className='groupImg'>
                     <img src={group.previewImage}>
                     </img>
                 </div>
@@ -97,34 +97,34 @@ function GroupDetails () {
                         <i className="fa-solid fa-user icon"></i>
                         Organized by {group.Organizer.firstName} {group.Organizer.lastName}
                     </div>
-                
+
                 </div>
             </div>
-            
- 
+
+
             <div className='group3 flex'>
 
-                
+
                 <div>
                     <Link to={`/events/groups/${groupId}`}>
-                            Events
+                        Events
                     </Link>
                 </div>
 
                 <div className='group3ButtonContiner flex'>
                     <div className='group3Buttondiv'>
                         {showEditButton && (
-                            <button className='group3Button' onClick={() => deleteListener(groupId) }>Delete</button>
+                            <button className='group3Button' onClick={() => deleteListener(groupId)}>Delete</button>
                         )}
 
                     </div>
 
                     <div className='group3Buttondiv'>
                         {showEditButton && <button className='group3Button' onClick={() => (showEditGroupForm) ? setShowEditGroupForm(false) : setShowEditGroupForm(true)}>Edit Group</button>}
-         
+
                     </div>
                 </div>
-                
+
             </div>
 
             <div>
@@ -155,19 +155,19 @@ function GroupDetails () {
                                 <p>{event.numAttending} attendees</p>
                             </div>
                         </Link>
-                        
+
                     ))}
 
                     <h2>
                         Photos
                     </h2>
                     <div className='groupDetailsImgContiner'>
-                    {imageArr.map(img => (
-                
-                       
+                        {imageArr.map(img => (
+
+
                             <img src={img} className='groupDetailsImg'></img>
-            
-                    ))}
+
+                        ))}
                     </div>
 
                 </div>
@@ -186,17 +186,17 @@ function GroupDetails () {
                     <div>
                         {(memberArr.length > 0) && memberArr.map(member => (
                             <p key={member.id}>
-                                {member.firstName} {member.lastName} 
+                                {member.firstName} {member.lastName}
                             </p>
-                            ))
+                        ))
                         }
                     </div>
-     
+
 
                 </div>
 
             </div>
-            
+
         </div>
     )
 }

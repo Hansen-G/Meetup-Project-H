@@ -12,6 +12,8 @@ import GroupDetails from './components/GroupDetails'
 import CreateGroupFrom from "./components/CreateGroupForm";
 import LoginFormPage from "./components/LoginFormPage";
 import GroupEventList from './components/GroupEventList'
+import EventList from './components/EventsList'
+
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -30,6 +32,11 @@ function App() {
             <HomePage2 />
             <ButtomBar />
           </Route>
+          <Route path='/events'>
+            <EventList />
+            <ButtomBar />
+          </Route>
+          
           <Route path="/signup">
             <SignupFormPage />
             <ButtomBar />
@@ -42,8 +49,6 @@ function App() {
             <GroupEventList />
             <ButtomBar />
           </Route>
-
-
           <Route path='/groups/:groupId'>
             <GroupDetails />
             <ButtomBar />
@@ -56,6 +61,10 @@ function App() {
             <CreateGroupFrom />
             <ButtomBar />
           </Route>
+
+
+
+
           <Route>
             Page not found
           </Route>

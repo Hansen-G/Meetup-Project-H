@@ -43,14 +43,15 @@ const getEventList = (events) => {
 
 
 
-// export const getGroupListThunk = () => async dispatch => {
-//     const response = await fetch('/api/groups')
-//     if (response.ok) {
-//         const data = await response.json();
-//         dispatch(getGroupList(data));
-//         return data
-//     }
-// }
+export const getEventListThunk = () => async dispatch => {
+    const response = await fetch('/api/events')
+    if (response.ok) {
+        const data = await response.json();
+        console.log('data', data);
+        dispatch(getEventList(data));
+        return data
+    }
+}
 
 // export const getGroupByIdThunk = (groupId) => async dispatch => {
 //     const response = await fetch(`/api/groups/${groupId}`)
@@ -129,7 +130,7 @@ const eventsReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_EVENTLIST: {
             newState = { ...state };
-            action.groups.map(group => newState[group.id] = group)
+            action.events.map(action => newState[action.id] = action)
             newState = { ...newState }
             return newState
         }
