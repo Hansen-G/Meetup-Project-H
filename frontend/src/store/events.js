@@ -33,12 +33,12 @@ const getEventAttendee = (attendees, eventId) => {
     }
 }
 
-// // const postNewGroup = (group) => {
-// //     return {
-// //         type: POST_NEW_GROUP,
-// //         group
-// //     }
-// // }
+const postNewEvent = (event) => {
+    return {
+        type: POST_NEW_EVENT,
+        event
+    }
+}
 
 // const putUpdateGroup = (group) => {
 //     return {
@@ -70,20 +70,21 @@ export const getEventByIdThunk = (eventId) => async dispatch => {
     }
 }
 
-// // export const postNewGroupThunk = (group) => async dispatch => {
-// //     const response = await csrfFetch(`/api/groups`, {
-// //         method: 'POST',
-// //         headers: {
-// //             'Content-Type': 'application/json'
-// //         },
-// //         body: JSON.stringify(group)
-// //     });
-// //     if (response.ok) {
-// //         const data = await response.json();
-// //         dispatch(postNewGroup(data));
-// //         return data;
-// //     }
-// // }
+export const postNewEventThunk = (event, groupId) => async dispatch => {
+    const response = await csrfFetch(`/api/events/new/groups/${groupId}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(event)
+    });
+    if (response.ok) {
+        const data = await response.json();
+        console.log('!!!!!!!', data)
+        dispatch(postNewEvent(data));
+        return data;
+    }
+}
 
 // // export const putUpdateGroupThunk = (newGroup, groupId) => async dispatch => {
 // //     const response = await csrfFetch(`/api/groups/${groupId}`, {
@@ -152,11 +153,12 @@ const eventsReducer = (state = initialState, action) => {
             newState[action.event.id] = action.event
             return newState;
         }
-        // case POST_NEW_GROUP: {
-        //     newState = { ...state };
-        //     newState[action.group.id] = action.group;
-        //     return newState;
-        // }
+        case POST_NEW_EVENT: {
+            newState = { ...state };
+            console.log('action.event', action.event)
+            newState[action.event.id] = action.event;
+            return newState;
+        }
         // case PUT_UPDATE_GROUP: {
         //     newState = { ...state };
         //     newState[action.groupId] = { ...newState[action.groupId], events: action.events };

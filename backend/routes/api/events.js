@@ -72,7 +72,6 @@ router.post('/:eventId/new/image', checkAuth, async (req, res, next) => {
 })
 
 
-
 // Delete attendance to an event specified by id
 router.delete('/:eventId/attendees/:userId', checkAuth, async (req, res, next) => {
     let { eventId, userId } = req.params;
@@ -271,10 +270,11 @@ router.get('/:eventId/attendees', async (req, res, next) => {
             }
         )
     }
-    if (req.user){
+    let groupId = event.groupId;
+    const group = await Group.findByPk(groupId);
+    if (req.user && group.private){
         const userId = req.user.id;
-        let groupId = event.groupId;
-        const group = await Group.findByPk(groupId);
+
         if (!group) {
             res.status(404).json({
                 "message": "Group couldn't be found",
@@ -287,13 +287,13 @@ router.get('/:eventId/attendees', async (req, res, next) => {
                 groupId: groupId,
             }
         })
+
         if (!statuesOfCurrentUser) {
             return res.status(403).json({
                 "message": "Current User must be the organizer or a co-host to view the member for a private group",
                 "statusCode": 403
             })
         }
-
         if ((statuesOfCurrentUser.memberStatus === 'co-host' || group.organizerId === userId)) {
             const allEventAttendee = await User.findAll({
                 include: [
@@ -312,10 +312,9 @@ router.get('/:eventId/attendees', async (req, res, next) => {
         }
     }
 
-    let groupId = event.groupId;
-   
-    const allEventAttendee = await User.findAll({
-        include: [{
+    if (req.user && !group.private ) {
+        const allEventAttendee = await User.findAll({
+            include: [{
                 model: EventAttendee,
                 where: {
                     eventId: eventId,
@@ -325,14 +324,47 @@ router.get('/:eventId/attendees', async (req, res, next) => {
                 },
                 attributes: ['attendeeStatus']
             },
-        ],
-        attributes: ['id', 'firstName', 'lastName']
-    })
+            ],
+            attributes: ['id', 'firstName', 'lastName']
+        })
 
-    return res.json(allEventAttendee)
+        return res.json(allEventAttendee)
+    }
+
+    if (!req.user && group.private) {
+        return res.status(403).json({
+            "message": "Current User must be the organizer or a co-host to view the member for a private group",
+            "statusCode": 403
+        })
+    }
+
+
+    if (!req.user && !group.private) {
+        let groupId = event.groupId;
+
+        const allEventAttendee = await User.findAll({
+            include: [{
+                model: EventAttendee,
+                where: {
+                    eventId: eventId,
+                    attendeeStatus: {
+                        [Op.notIn]: ['pending']
+                    }
+                },
+                attributes: ['attendeeStatus']
+            },
+            ],
+            attributes: ['id', 'firstName', 'lastName']
+        })
+
+        return res.json(allEventAttendee)
+    } else {
+        return res.status(403).json({
+            "message": "Current User must be the organizer or a co-host to view the member for a private group",
+            "statusCode": 403
+        })
+    }
 })
-
-
 
 // Delete an Event specified by its id
 router.delete('/:eventId', checkAuth, async (req, res, next) => {
@@ -468,13 +500,13 @@ router.put('/:eventId', checkAuth, async (req, res, next) => {
     }
 })
 
-
 // Create an Event for a Group specified by its id
 router.post('/new/groups/:groupId', checkAuth, async (req, res, next) => {
     let { groupId } = req.params;
     let { venueId, name, type, capacity, price, description, startDate, endDate } = req.body;
     groupId = parseInt(groupId);
     venueId = parseInt(venueId);
+    price = parseInt(price);
     capacity = parseInt(capacity)
     const group = await Group.findByPk(groupId);
     if (!group) {
@@ -492,16 +524,16 @@ router.post('/new/groups/:groupId', checkAuth, async (req, res, next) => {
         }
     })
     if (!statuesOfCurrentUser) {
-        return res.status(400).json({
+        return res.status(403).json({
             "message": "Current User must be the organizer or a co-host to add a venue",
-            "statusCode": 400
+            "statusCode": 403
         })
     }
 
     if (!(statuesOfCurrentUser.memberStatus === 'co-host' || group.organizerId === userId)) {
-        return res.status(400).json({
+        return res.status(403).json({
             "message": "Current User must be the organizer or a co-host to to add a venue",
-            "statusCode": 400
+            "statusCode": 403
         })
     }
     try {
@@ -516,6 +548,7 @@ router.post('/new/groups/:groupId', checkAuth, async (req, res, next) => {
         res.json(newEventJson)
 
     } catch (err){
+        console.log(err)
         res.status(400).json({
             "message": "Validation error",
             "statusCode": 400,
@@ -533,7 +566,6 @@ router.post('/new/groups/:groupId', checkAuth, async (req, res, next) => {
     }
 
 })
-
 
 //Get details of an Event specified by its id
 router.get('/:eventId', async (req, res, next) => {
@@ -560,8 +592,6 @@ router.get('/:eventId', async (req, res, next) => {
     return res.json(targetEvent)
     
 })
-
-
 
 // Get all Events of a Group specified by its id
 router.get('/groups/:groupId', async (req, res, next) => {

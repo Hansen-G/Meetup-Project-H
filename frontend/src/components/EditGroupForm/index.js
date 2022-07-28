@@ -73,7 +73,7 @@ function EditGroupFrom({hiddenForm, group}) {
     };
     return (
         <div className="createGroup">
-            Create New Group:
+            Edit Your Group:
             <form onSubmit={handleSubmit} >
                 <label>Name:<input type={'text'} value={name} onChange={e => setName(e.target.value)}></input></label>
                 <label>About:<input type={'text'} value={about} onChange={e => setAbout(e.target.value)}></input></label>

@@ -17,7 +17,6 @@ function GroupDetails() {
     const [showCreateEventForm, setShowCreateEventForm] = useState(false);
 
     const group = useSelector( state => state.groups[groupId])
-
     const user = useSelector(state => state.session.user);
 
     const helper = async (groupId) => {
@@ -121,6 +120,11 @@ function GroupDetails() {
                         {showEditButton && <button className='group3Button' onClick={() => (showEditGroupForm) ? setShowEditGroupForm(false) : setShowEditGroupForm(true)}>Edit Group</button>}
 
                     </div>
+
+                    <div className='group3Buttondiv'>
+                        {showEditButton && <button className='group3Button' onClick={() => (showCreateEventForm) ? setShowCreateEventForm(false) : setShowCreateEventForm(true)}>Create Event</button>}
+
+                    </div>
                 </div>
 
             </div>
@@ -128,6 +132,12 @@ function GroupDetails() {
             <div>
                 {showEditGroupForm && (
                     <EditGroupFrom hiddenForm={() => setShowEditGroupForm(false)} group={group} />
+                )}
+            </div>
+
+            <div>
+                {showCreateEventForm && (
+                    <CreateEventFrom hiddenForm={() => setShowCreateEventForm(false)} group={group} />
                 )}
             </div>
 
