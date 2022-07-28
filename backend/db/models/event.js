@@ -52,9 +52,9 @@ module.exports = (sequelize, DataTypes) => {
     type: {
       type: DataTypes.STRING,
       allowNull: false,
-      // validate:{
-      //   isIn: [['Online', 'In Person']]
-      // }
+      validate:{
+        isIn: [['Online', 'In Person']]
+      }
     },
     description: {
       type: DataTypes.STRING,
@@ -62,20 +62,20 @@ module.exports = (sequelize, DataTypes) => {
     startDate: {
       type: DataTypes.DATE,
       allowNull: false,
-      // validate: {
-      //   isAfter: sequelize.fn('NOW') 
-      // }
+      validate: {
+        isAfter: sequelize.fn('NOW') 
+      }
     },
     endDate: {
       type: DataTypes.DATE,
       allowNull: false,
-      // validate:{
-      //   endDateAfterStartDate(value) {
-      //     if (value < this.startDate) {
-      //       throw new Error('Must be after start date');
-      //     }
-      //   }
-      // }
+      validate:{
+        endDateAfterStartDate(value) {
+          if (value < this.startDate) {
+            throw new Error('Must be after start date');
+          }
+        }
+      }
     },
     price:{
       type: DataTypes.FLOAT,
