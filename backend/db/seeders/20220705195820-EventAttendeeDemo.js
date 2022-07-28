@@ -19,6 +19,26 @@ module.exports = {
         attendeeStatus: 'waiting list'
       },
       {
+        eventId: 1,
+        userId: 4,
+        attendeeStatus: 'member'
+      },
+      {
+        eventId: 1,
+        userId: 5,
+        attendeeStatus: 'member'
+      },
+      {
+        eventId: 1,
+        userId: 6,
+        attendeeStatus: 'member'
+      },
+      {
+        eventId: 1,
+        userId: 7,
+        attendeeStatus: 'member'
+      },
+      {
         eventId: 2,
         userId: 1,
         attendeeStatus: 'member'
@@ -34,9 +54,59 @@ module.exports = {
         attendeeStatus: 'pending'
       },
       {
+        eventId: 2,
+        userId: 4,
+        attendeeStatus: 'member'
+      },
+      {
+        eventId: 2,
+        userId: 5,
+        attendeeStatus: 'member'
+      },
+      {
+        eventId: 2,
+        userId: 6,
+        attendeeStatus: 'member'
+      },
+      {
+        eventId: 2,
+        userId: 7,
+        attendeeStatus: 'member'
+      },
+      {
+        eventId: 2,
+        userId: 8,
+        attendeeStatus: 'member'
+      },
+      {
         eventId: 3,
         userId: 3,
         attendeeStatus: 'waiting list'
+      },
+      {
+        eventId: 3,
+        userId: 4,
+        attendeeStatus: 'member'
+      },
+      {
+        eventId: 3,
+        userId: 5,
+        attendeeStatus: 'member'
+      },
+      {
+        eventId: 3,
+        userId: 6,
+        attendeeStatus: 'member'
+      },
+      {
+        eventId: 3,
+        userId: 7,
+        attendeeStatus: 'member'
+      },
+      {
+        eventId: 3,
+        userId: 8,
+        attendeeStatus: 'member'
       },
     ], {});
 

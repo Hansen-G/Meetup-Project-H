@@ -288,9 +288,9 @@ router.get('/:eventId/attendees', async (req, res, next) => {
             }
         })
         if (!statuesOfCurrentUser) {
-            return res.status(400).json({
-                "message": "Current User must be the organizer or a co-host to add a venue",
-                "statusCode": 400
+            return res.status(403).json({
+                "message": "Current User must be the organizer or a co-host to view the member for a private group",
+                "statusCode": 403
             })
         }
 
@@ -325,16 +325,6 @@ router.get('/:eventId/attendees', async (req, res, next) => {
                 },
                 attributes: ['attendeeStatus']
             },
-            // {
-            //     model: GroupMember,
-            //     where: {
-            //         groupId: groupId,
-            //         memberStatus: {
-            //             [Op.notIn]: ['pending']
-            //         }
-            //     },
-            //     attributes: ['memberStatus']
-            // }
         ],
         attributes: ['id', 'firstName', 'lastName']
     })

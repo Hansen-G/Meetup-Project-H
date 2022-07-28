@@ -2,7 +2,7 @@ import { csrfFetch } from './csrf';
 
 const GET_EVENTLIST = 'events/GET_EVENTLIST';
 const GET_EVENT_BY_ID = 'events/GET_EVENT_BY_ID';
-const GET_EVENT_MEMBERS = 'events/GET_EVENT_MEMBERS';
+const GET_EVENT_ATTENDEE = 'events/GET_EVENT_ATTENDEE';
 
 const POST_NEW_EVENT = 'events/ POST_NEW_EVENT';
 const PUT_UPDATE_EVENT = 'events/PUT_UPDATE_EVENT'
@@ -22,6 +22,14 @@ const getEventById = (event) => {
     return {
         type: GET_EVENT_BY_ID,
         event
+    }
+}
+
+const getEventAttendee = (attendees, eventId) => {
+    return {
+        type: GET_EVENT_ATTENDEE,
+        attendees,
+        eventId
     }
 }
 
@@ -102,15 +110,22 @@ export const getEventByIdThunk = (eventId) => async dispatch => {
 // //     }
 // // }
 
-// export const getGroupMembersThunk = (groupId) => async dispatch => {
-//     const response = await csrfFetch(`/api/groups/${groupId}/members`);
-//     if (response.ok) {
-//         const data = await response.json();
-//         console.log('data', data)
-//         dispatch(getGroupMembers(data, groupId));
-//         return data;
-//     }
-// }
+export const getEventAttendeeThunk = (eventId) => async dispatch => {
+    const response = await csrfFetch(`/api/events/${eventId}/attendees`);
+   
+    if (response.ok) {
+        const data = await response.json();
+        console.log('data', data)
+        dispatch(getEventAttendee(data, eventId));
+        return data;
+    } else {
+        console.log('HERE')
+
+            dispatch(getEventAttendee([], eventId));
+            return []
+        
+    }
+}
 
 // // export const getGroupImagesThunk = (groupId) => async dispatch => {
 // //     const response = await fetch(`/api/groups/${groupId}/members`);
@@ -154,13 +169,15 @@ const eventsReducer = (state = initialState, action) => {
         //     newState[action.groupId] = { ...newState[action.groupId], events: action.events };
         //     return newState
         // }
-        // case GET_GROUP_MEMBERS: {
-        //     newState = { ...state };
-        //     const members = {};
-        //     action.members.forEach(member => members[member.id] = member);
-        //     newState[action.groupId] = { ...newState[action.groupId], members }
-        //     return newState;
-        // }
+        case GET_EVENT_ATTENDEE: {
+            newState = { ...state };
+            const attendees = {};
+            action.attendees.forEach(attendee => attendees[attendee.id] = attendee);
+           
+            newState[action.eventId] = { ...newState[action.eventId], attendees }
+ 
+            return newState;
+        }
         default: {
             return state
         }

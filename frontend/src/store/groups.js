@@ -202,7 +202,7 @@ const groupsReducer = (state = initialState, action) => {
             const members = {};
             action.members.forEach(member => members[member.id] = member);
             if (![state[action.groupId].events]){
-                console.log('!', state[action.groupId].events)
+                // console.log('!', state[action.groupId].events)
                 newState[action.groupId] = { ...newState[action.groupId], events: [...state[action.groupId].events], members }
             } else {
                 newState[action.groupId] = { ...newState[action.groupId], members }

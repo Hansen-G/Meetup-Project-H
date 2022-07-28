@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink, useParams, Route, Switch, Link, useHistory } from 'react-router-dom';
-import { getEventByIdThunk } from '../../store/events'
+import { getEventByIdThunk, getEventAttendeeThunk } from '../../store/events'
 
 function EventDetails() { 
 
@@ -17,6 +17,7 @@ function EventDetails() {
 
     const helper = async (eventId) => {
         const eventWait = await dispatch(getEventByIdThunk(eventId));
+        const attendeeWait = await dispatch(getEventAttendeeThunk(eventId));
     }
 
     useEffect(() => {
@@ -25,7 +26,13 @@ function EventDetails() {
 
     if(!event) return null;
 
-    console.log(event)
+    let attendees = event.attendees
+
+    if (!attendees || Object.keys(attendees).length === 0) return null;
+    const attendeesArr = Object.values(attendees)
+    
+
+    console.log('attendeesArr', attendeesArr)
 
     let state;
     if (event.Group.private === true) {
@@ -92,10 +99,15 @@ function EventDetails() {
 
                         <div className='eventAttendees'>
                             <h3>
-                                Attendees
+                                Attendees ({attendeesArr.length})
                             </h3>
                             <p>
-                               TBD
+                                {(attendeesArr.length > 0) && attendeesArr.map(attendee => (
+                                    <p key={attendee.id}>
+                                        {attendee.firstName} {attendee.lastName} - {attendee.EventAttendees[0].attendeeStatus}
+                                    </p>
+                                ))
+                                }
                             </p>
                         </div>
 
@@ -157,8 +169,9 @@ function EventDetails() {
                                     <i className="fa-solid fa-location-dot"></i>
                                 </div>
                                 <div>
-                                    {event.Venue.city}, {event.Venue.state}
+                                    {event.Venue.address}, {event.Venue.city}, {event.Venue.state}
                                 </div>
+                                <div id="map"></div>
                             </div>
                         </div>   
                     </div>

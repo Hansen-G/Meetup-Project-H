@@ -14,13 +14,9 @@ function GroupDetails() {
     const { groupId } = useParams();
     const [showEditGroupForm, setShowEditGroupForm] = useState(false);
 
-    const group = useSelector(
-        state => state.groups[groupId]
-    )
+    const group = useSelector( state => state.groups[groupId])
 
     const user = useSelector(state => state.session.user);
-
-
 
     const helper = async (groupId) => {
         const groupWait = await dispatch(getGroupByIdThunk(groupId));
