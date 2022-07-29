@@ -17,15 +17,15 @@ module.exports = {
         onDelete: 'cascade'
       },
       name: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(1000),
         allowNull: false,
         unique:true,
       },
       about: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(1000)
       },
       type: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(1000),
         allowNull: false,
       },
       private: {
@@ -33,18 +33,18 @@ module.exports = {
         allowNull: false,
       },
       city: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(1000),
         allowNull: false,
       },
       state: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(1000),
         allowNull: false,
       },
       numMembers: {
         type: Sequelize.INTEGER,
       },
       previewImage: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(1000),
       },
       createdAt: {
         allowNull: false,

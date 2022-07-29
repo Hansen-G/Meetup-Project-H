@@ -26,16 +26,16 @@ module.exports = {
         
       },
       name: {
-        type: Sequelize.STRING, 
+        type: Sequelize.STRING(1000), 
         allowNull: false,
         unique: true,
       },
       type: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(1000),
         allowNull: false,
       },
       description: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(1000),
       },
       startDate: {
         type: Sequelize.DATE,
@@ -57,7 +57,7 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       previewImage: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(1000),
         
       },
       createdAt: {
