@@ -41,7 +41,6 @@ function CreateEventFrom({ hiddenForm, group }) {
 
         e.preventDefault();
         let start = timeChanger(startDate)
-       
         let end = timeChanger(endDate)
         console.log('Here')
         let event;

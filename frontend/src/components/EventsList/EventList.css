@@ -1,0 +1,21 @@
+.eventList {
+    margin-left:9%;
+    width: 60%;
+}
+
+.eventCard {  
+    width: 100%;
+}
+
+.groupImgDiv {
+    width: 30%;
+    height: 10rem;
+    margin: 0 20px 0 0;
+}
+
+.groupImgPre {
+    width: 100%;
+    position: relative;
+    top: 20px;
+    border-radius: 10px;
+}

@@ -39,14 +39,14 @@ function GroupList() {
             <div>
                 <div className='navTab'>
                     <NavLink to="/events">
-                        <div className='tab'>
+                        <div className='tab notSelected'>
                             Events
                         </div>
                        
                     </NavLink>
 
                     <NavLink to="/groups" className='tab'>
-                        <div className='tab'>
+                        <div className='tab selected'>
                             Groups
                         </div>
                     </NavLink>
@@ -63,18 +63,17 @@ function GroupList() {
                                     </div>
                                     <div className='groupInfo'>
                                         <p className='groupName'>
-                                            {`Group ${group.name} `}
+                                            {group.name}
                                         </p>
-                                        <p className='grouLocation'> 
+                                        <p className='groupLocation'> 
                                             {group.city}, {group.state}
                                         </p>
+                                        <p className='groupAbout aboutLong'>
+                                            {group.about.slice(0,200)}...
+                                        </p>
                                         <p className='groupAbout'>
-                                            {group.about}
+                                            {group.numMembers} members · {groupP(group)}
                                         </p>
-                                        <p>
-                                            {group.numMembers}·{groupP(group)}
-                                        </p>
-                                      
                                     </div>
                                 </div>
                             </Link>
