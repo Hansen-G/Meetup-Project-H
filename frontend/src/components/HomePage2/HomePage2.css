@@ -1,0 +1,48 @@
+.part8 {
+    width: 100%;
+    margin: 0 auto;
+    justify-content: space-around;
+}
+
+.part8Left {
+    width: 30%;
+}
+
+.part8Left img {
+    width: 100%;
+}
+
+.part8Right {
+    width: 30%;
+}
+
+.part8Right img {
+    width: 100%;
+}
+
+.part8Middle {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.appIcon {
+    margin: 0 0 30px 0;
+}
+.part8Title {
+    font-weight: bolder;
+    margin: 5px 0 5px 0;
+}
+
+.part9 {
+    margin: 0 5%;
+    
+}
+
+.part9CardContiner {
+    justify-content: space-around;
+}
+
+.part9Card {
+    width: 30%;
+}

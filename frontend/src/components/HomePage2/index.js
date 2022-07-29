@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { NavLink, Redirect } from 'react-router-dom';
 import { useDispatch } from "react-redux";
-
+import './HomePage2.css'
 
 function HomePage2() {
     return(
         <main>
-          <div className='part7'>
+          {/* <div className='part7'>
             <h2>
                 Popular groups
             </h2>
@@ -28,15 +28,15 @@ function HomePage2() {
                     </div>
                 </div>
             </div>
-          </div>
+          </div> */}
 
-        <div className='part8'>
+        <div className='part8 flex'>
             <div className='part8Left'>
                     <img src='https://res.cloudinary.com/hansenguo/image/upload/v1658780015/WeMeet/ScreenIos_fqphd6.webp'></img>
 
             </div>
-            <div className='part8Middle'>
-                    <img src='https://res.cloudinary.com/hansenguo/image/upload/v1658780015/WeMeet/applogo_v6ct3h.png'></img>
+            <div className='part8Middle flex'>
+                    <img className='appIcon' src='https://res.cloudinary.com/hansenguo/image/upload/v1658780015/WeMeet/applogo_v6ct3h.png'></img>
                     <p className='part8Title'>
                         Stay connected.
                     </p>
@@ -63,7 +63,7 @@ function HomePage2() {
             </div>
 
             <div className='part9'>
-                <div className='part9Title'>
+                <div className='part9Title centerText'>
                     <h2>
                         Stories from Meetup
                     </h2>
@@ -71,7 +71,7 @@ function HomePage2() {
                         People on Meetup have fostered community, learned new skills, started businesses, and made life-long friends. Learn how.
                     </p>
                 </div>
-                <div className='part9CardContiner'>
+                <div className='part9CardContiner flex'>
                     <div className='part9Card'>
                         
                         <img src='https://res.cloudinary.com/hansenguo/image/upload/v1658783083/WeMeet/first_article_ag4rap.webp'></img>
