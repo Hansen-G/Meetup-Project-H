@@ -1,3 +1,29 @@
 .createGroup {
     margin: 10%;
 }
+
+.disabled {
+    background-color: rgb(143, 143, 143);
+    width: 100%;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 10px;
+    font-size: 17px;
+}
+
+.enabled {
+    background-color: rgb(242, 48, 86);
+    width: 100%;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 10px;
+    font-size: 17px;
+}

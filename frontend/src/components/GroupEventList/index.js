@@ -3,7 +3,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { NavLink, useParams, Route, Switch, Link } from 'react-router-dom';
 import { getGroupByIdThunk, getGroupEventThunk, getGroupMembersThunk } from '../../store/groups'
 
-
+function timeHelper(date) {
+    let time = new Date(date)
+    return time.toString().slice(0, 21)
+}
 
 function GroupEventList() {
     const dispatch = useDispatch();
@@ -67,19 +70,21 @@ function GroupEventList() {
                 </div>
             </div>
 
-            <div className='groupEventContiner'>
+            <div className='eventList'>
                 {(eventArr.length > 0) && eventArr.map(event => (
                     <Link to={`/events/${event.id}`}>
-                        <div className='eventCard'>
-                            <img src={event.previewImage}></img>
+                        <div className='eventCard flex'>
+                            <div className='eventImgDiv'>
+                                <img className='eventImgPre' src={event.previewImage}></img>
+                            </div>
+                            <div className='eventInfo'>
+                                <div className='eventTime'> {timeHelper(event.startDate)} EST</div>
+                                <div className='eventName'>{event.name} </div>
+                                <div className='eventGroup'> {event.Group.name} · {event.Venue.city}, {event.Venue.state}</div>
+                                <div className='eventAttendee'> {event.numAttending} attendees</div>
+                            </div>
 
-                            <p>{event.startDate}</p>
-                            <p>{event.name}</p>
-                            <p>{event.type}</p>
-                            <p>Caoacity: {event.capacity}</p>
-                            <p>{event.numAttending} attendees</p>
-                            <p>Description</p>
-                            <p>{event.description}</p>
+                            
                         </div>
                     </Link>
                 ))}

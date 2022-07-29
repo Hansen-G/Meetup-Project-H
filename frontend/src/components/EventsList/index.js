@@ -6,7 +6,7 @@ import './EventList.css'
 
 function timeHelper (date){
     let time = new Date(date)
-    return time.toString()
+    return time.toString().slice(0,21)
 }
 
 function EventList() {
@@ -31,7 +31,7 @@ function EventList() {
         <main>
             <div className='navTab'>
                 <NavLink to="/events">
-                    <div className='tab selected'>
+                    <div className='tab selected' id='eventTab'>
                         Events
                     </div>
 
@@ -55,15 +55,11 @@ function EventList() {
                                         <div className='eventImgDiv'>
                                             <img className='eventImgPre'src={event.previewImage}></img>
                                         </div>
-                                        <div className='eventInfo'>
-                                            {`Event ${event.name}: `}
-                                            
-                                            {event.Group.name}
-
-                                            {timeHelper(event.startDate)}
-
-                                            Venue: {event.Venue.city}, {event.Venue.state}
-                                            {event.numAttending} attendees             
+                                        <div className='eventInfo'>    
+                                            <div className='eventTime'> {timeHelper(event.startDate)} EST</div>
+                                            <div className='eventName'>{event.name} </div>    
+                                            <div className='eventGroup'> {event.Group.name} · {event.Venue.city}, {event.Venue.state}</div>
+                                            <div className='eventAttendee'> {event.numAttending} attendees</div>             
                                         </div>
                                 
                                 </div>

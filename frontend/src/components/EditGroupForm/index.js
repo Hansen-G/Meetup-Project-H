@@ -19,11 +19,13 @@ function EditGroupFrom({hiddenForm, group}) {
     const [name, setName] = useState(group.name);
     const [about, setAbout] = useState(group.about);
     const [type, setType] = useState(group.type);
-    const [privateStatus, setPrivateStatus] = useState(group.private);
+    const [privateStatus, setPrivateStatus] = useState('Private Group');
     const [city, setCity] = useState(group.city);
     const [state, setState] = useState(group.state);
     const [previewImage, setPreviewImage] = useState(group.previewImage)
     const [check, setCheck] = useState(true)
+
+    console.log('??????', privateStatus)
 
     const checkInput = (e) => {
         if (e.length > 0) setCheck(false)
@@ -36,14 +38,17 @@ function EditGroupFrom({hiddenForm, group}) {
 
         let privateBoolean;
 
-        if (privateStatus === 'Private Group') {
+        console.log('!!!!!!',privateStatus)
+
+        if (privateStatus == 'Private Group') {
             privateBoolean = true
 
-        } else if (privateStatus === 'Public Group') {
+        } else if (privateStatus == 'Public Group') {
             privateBoolean = false
         }
-        
 
+        console.log(privateBoolean)
+        
         const newGroup = {
             name,
             about,
@@ -79,20 +84,15 @@ function EditGroupFrom({hiddenForm, group}) {
                 <label>About:<input type={'text'} value={about} onChange={e => setAbout(e.target.value)}></input></label>
                 <label>Type:
                     <select onChange={e => setType(e.target.value)} value={type}>
-
                         <option key={'In person'}>In person</option>
                         <option key={'Online'}>Online</option>
-
                     </select>
-
 
                 </label>
                 <label>Private:
                     <select onChange={e => setPrivateStatus(e.target.value)} value={privateStatus}>
-
-                        <option key={'Private Group'}>Private Group</option>
-                        <option key={'Public Group'}>Public Group</option>
-
+                        <option key={'Private Group'} value={'Private Group'}>Private Group</option>
+                        <option key={'Public Group'} value={'Public Group'}>Public Group</option>
                     </select>
 
                 </label>

@@ -17,3 +17,42 @@ p {
     background-color: white;
     color: white;
 }
+
+
+.title {
+    font-style: italic;
+}
+
+.signUpForm {
+    padding: 5%;
+    /* width: 50%; */
+}
+
+input[type=text],
+input[type=password],
+textarea,
+select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    height: 50px;
+    box-sizing: border-box;
+    font-size: 17px;
+}
+
+#about {
+    height: 200px;
+}
+
+
+.signUpButton {
+    background-color: rgb(242, 48, 86);
+    width: 100%;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+

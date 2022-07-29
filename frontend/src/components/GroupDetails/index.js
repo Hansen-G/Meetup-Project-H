@@ -8,6 +8,12 @@ import CreateEventFrom from '../CreateEventForm'
 import GroupEventList from '../GroupEventList'
 import './GroupDetails.css'
 
+function timeHelper(date) {
+    let time = new Date(date)
+    return time.toString().slice(0, 21)
+}
+
+
 function GroupDetails() {
     const dispatch = useDispatch();
     const history = useHistory();
@@ -74,8 +80,8 @@ function GroupDetails() {
     return (
         <div>
             <div className='group1 flex'>
-                <div className='groupImg'>
-                    <img src={group.previewImage}>
+                <div className='groupImgDiv'>
+                    <img className='groupImg' src={group.previewImage}>
                     </img>
                 </div>
                 <div>
@@ -155,12 +161,22 @@ function GroupDetails() {
                         Events ({eventArr.length})
                     </h2>
                     {(eventArr.length > 0) && eventArr.map(event => (
-                        <Link to={`/events/${event.id}`}>
-                            <div className='eventCard'>
-                                <p>{event.startDate}</p>
-                                <p>{event.name}</p>
-                                <p>{event.type}</p>
-                                <p>{event.numAttending} attendees</p>
+                        <Link to={`/events/${event.id}` }>
+                            <div key={event.id} className='eventCard flex card' id=''>
+
+                                <div className='eventImgDiv'>
+                                    <img className='eventImgPre' src={event.previewImage}></img>
+                                </div>
+                                <div className='eventInfo'>
+                                    <div className='eventTime'> {timeHelper(event.startDate)} EST</div>
+                                    <div className='eventName'>{event.name} </div>
+                                    <div className='eventGroup'>  
+                                        <i className="fa-solid fa-location-dot"></i>
+                                        {' '}{event.Venue.city}, {event.Venue.state}
+                                     </div>
+                                    <div className='eventAttendee'> {event.numAttending} attendees</div>
+                                </div>
+
                             </div>
                         </Link>
 

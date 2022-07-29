@@ -39,7 +39,7 @@ function GroupList() {
             <div>
                 <div className='navTab'>
                     <NavLink to="/events">
-                        <div className='tab notSelected'>
+                        <div className='tab notSelected' id='eventTab'>
                             Events
                         </div>
                        
