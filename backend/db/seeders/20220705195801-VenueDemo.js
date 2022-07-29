@@ -28,13 +28,21 @@ module.exports = {
       lng: -87.6298,
     },
     {
-      address: 'DDD',
+      address: '6000 Santa Monica Blvd, Los Angeles, CA 90038',
       groupId: 1,
       city: 'LA',
       state: 'CA',
       lat: 34.0522,
       lng: -118.2437,
-    }
+    },
+    {
+      address: 'Johns Hopkins University',
+      groupId: 1,
+      city: 'Balitmore',
+      state: 'MD',
+      lat: 39.2904,
+      lng: -76.6122,
+    },
     ], {});
   },
 

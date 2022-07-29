@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-//TBC
 import { postNewEventThunk } from '../../store/events'
+
 
 
 function timeChanger (time) {
@@ -18,7 +18,7 @@ function CreateEventFrom({ hiddenForm, group }) {
     const history = useHistory();
     const sessionUser = useSelector(state => state.session.user);
 
-    const [venueId, setVenueId] = useState('');
+    const [venueId, setVenueId] = useState(2);
     const [name, setName] = useState('');
     const [type, setType] = useState('In Person');
     const [capacity, setCapacity] = useState('');
@@ -27,17 +27,47 @@ function CreateEventFrom({ hiddenForm, group }) {
     const [startDate, setStartDate] = useState('')
     const [endDate, setEndDate] = useState('')
     const [eventPreviewImage, setEventPreviewImage] = useState('')
+    const [check, setCheck] = useState(true);
+    const [errors, setErrors] = useState([]);
 
-    const [check, setCheck] = useState(true)
+    useEffect(() => {
+        console.log(price)
+        console.log('!!!', venueId)
+        const newError = [];
+        if (!name) newError.push("Name name is required");
+        if (name.length < 5) newError.push("Name must be at least 5 characters");
+        
+        if (description.length < 1) newError.push("Description is required");
+        if (description.length > 1000) newError.push("Description must be less than 1000 characters");
+        if (type !== 'Online' && type !== 'In Person') newError.push("Type must be Online or In Person");
+        if (!price) newError.push("Price is required")
+        if (!capacity) newError.push("Capacity is required")
+       
+        if (Number.isNaN(Number(price))) newError.push('Price must be a number')
+        if (price < 0) newError.push("Price is invalid")
+        if (capacity < 0) newError.push("Capacity is invalid")
 
-    const checkInput = (e) => {
-        if (e.length > 0) setCheck(false)
+        if (!Number.isInteger(Number(capacity))) newError.push('Capacity is invalid')
+        if (eventPreviewImage.length > 1000) newError.push("Image URL must be less than 1000 characters");
 
-    }
+        if (!startDate) newError.push("Start date is required")
+        if (!endDate) newError.push("End date is required")
+        if (Date.parse(startDate) < Date.now()) newError.push('The event must start in the future');
+        if (Date.parse(endDate) < Date.parse(startDate)) newError.push('The event must not end before it starts');
+        
+        setErrors(newError)
+        if (errors.length > 0) setCheck(true)
+        if (errors.length === 0) setCheck(false)
+
+    }, [venueId, name, type, capacity, price, description, startDate, endDate, eventPreviewImage])
+
+
+
 
 
 
     const handleSubmit = async (e) => {
+       
 
         e.preventDefault();
         let start = timeChanger(startDate)
@@ -48,8 +78,8 @@ function CreateEventFrom({ hiddenForm, group }) {
             event = {         
                 name,
                 type,
-                capacity,
-                price,
+                capacity: parseInt(capacity),
+                price: parseInt(price),
                 description,
                 startDate: start,
                 endDate: end,
@@ -59,8 +89,8 @@ function CreateEventFrom({ hiddenForm, group }) {
             event = {
                 name,
                 type,
-                capacity,
-                price,
+                capacity: parseInt(capacity),
+                price: parseInt(price),
                 description,
                 startDate: start,
                 endDate: end,
@@ -73,7 +103,8 @@ function CreateEventFrom({ hiddenForm, group }) {
         let newEvent;
         try {
             newEvent = await dispatch(postNewEventThunk(event, group.id));
-            console.log('newGroup', newEvent)
+            setErrors([])
+          
 
         } catch (error) {
             console.log(error);
@@ -102,16 +133,59 @@ function CreateEventFrom({ hiddenForm, group }) {
                     (type === 'In Person') && (
                     <label>
                         Venue ID:
-                            <input type={'number'} value={venueId} onChange={e => setVenueId(e.target.value)}></input>
+                            <select onChange={e => setVenueId(e.target.value)} value={venueId}>
+                                <option value='2' key={'2'}>2</option>
+                                <option value='3' key={'3'}>3</option>
+                                <option value='4' key={'4'}>4</option>
+                                <option value='5' key={'5'}>5</option>
+                            </select>
+
                     </label>)
                 }
-                <label>Capacity:<input type={'number'} value={capacity} onChange={e => setCapacity(e.target.value)}></input></label>
-                <label>Price:<input type={'number'} value={price} onChange={e => setPrice(e.target.value)}></input></label>
-                <label>Start Date:<input type={'datetime-local'} value={startDate} onChange={e => setStartDate(e.target.value)}></input></label>
-                <label>End Date:<input type={'datetime-local'} value={endDate} onChange={e => setEndDate(e.target.value)}></input></label>
+                <label>Capacity:
+                    <input type={'number'} 
+                    value={capacity} 
+                    onChange={e => setCapacity(e.target.value)}
+                    min='0'
+                    step='1'
+                    ></input></label>
+                <label>Price:
+                    <input type={'number'} 
+                    value={price} 
+                    onChange={e => setPrice(e.target.value)}
+                    min='0'
+                    step='0.01'
+                    ></input></label>
+                <label>Start Date:
+                    <input type={'datetime-local'} 
+                    value={startDate} 
+                    onChange={e => setStartDate(e.target.value)}
+                    min={new Date(new Date().toString().split('GMT')[0] + ' UTC').toISOString().split('.')[0]}
+                    step='any'
+                    ></input>
+                </label>
+                <label>End Date:
+                    <input type={'datetime-local'} 
+                    value={endDate} 
+                    onChange={e => setEndDate(e.target.value)}
+                    min={startDate}
+                    step='any'
+                    ></input></label>
                 <label>Preview Image:<input type={'text'} value={eventPreviewImage} onChange={e => setEventPreviewImage(e.target.value)}></input></label>
-                <button onClick={hiddenForm}>Cancle</button>
-                <button type="submit" >Submit</button>
+                {errors.length > 0 && (
+                    <p>
+                        Please correct the following error(s) before submit:
+                    </p>
+                )}
+                <ol>
+                    {errors.map((error, idx) => (
+                        <li key={idx} className='create-group-error'>{error}</li>
+                    ))}
+                </ol>
+
+                <button onClick={hiddenForm} className='enabled' id='editgroup'>Cancle</button>
+                <button type="submit" disabled={errors.length} className={errors.length > 0 ? 'disabled' : 'enabled'} id='editgroup'>Submit</button>
+
                
             </form>
 

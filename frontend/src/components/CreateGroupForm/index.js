@@ -25,11 +25,6 @@ function CreateGroupFrom () {
     const [check, setCheck] = useState(true)
     const [errors, setErrors] = useState([])
     const [hasSubmitted, setHasSubmitted] = useState(false)
-    
-    const checkInput = (e) => {
-        if (e.length > 0) setCheck(false)
-
-    }
 
     useEffect(() => {
         const newError = [];
@@ -73,11 +68,9 @@ function CreateGroupFrom () {
             previewImage
         };
 
-        console.log('group',group)
         let newGroup;
         try {
             newGroup = await dispatch(postNewGroupThunk(group));
-            console.log('newGroup', newGroup)
 
         } catch (error) {
             console.log(error);
@@ -93,9 +86,6 @@ function CreateGroupFrom () {
                 Create New Group:
             </h1>
             
-
-
-
             <form onSubmit={handleSubmit} >
                 <h2>
                     First, set your group’s location.
@@ -225,7 +215,7 @@ function CreateGroupFrom () {
                 </ol>
                 
                 
-                <button type="submit" disabled={check} className={check? 'disabled' : 'enabled'}>Submit</button>
+                <button type="submit" disabled={errors.length} className={errors.length > 0 ? 'disabled' : 'enabled'}>Submit</button>
                 
             </form>
 
