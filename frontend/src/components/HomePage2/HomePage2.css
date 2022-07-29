@@ -46,3 +46,14 @@
 .part9Card {
     width: 30%;
 }
+
+.part9CardLink {
+    color: black;
+    font-weight: bolder;
+    text-decoration: none;
+    line-height: 150%;
+}
+
+.part9CardLink:hover {
+    text-decoration: underline;
+}

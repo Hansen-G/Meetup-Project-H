@@ -16,7 +16,10 @@ function SignupFormPage() {
     const [confirmPassword, setConfirmPassword] = useState("");
     const [errors, setErrors] = useState([]);
 
-    if (sessionUser) return <Redirect to="/" />;
+    if (sessionUser) {
+        window.alert('You already a WeMeet user. If you want to sign up a new account, please log out first.')
+        return <Redirect to="/" />
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();

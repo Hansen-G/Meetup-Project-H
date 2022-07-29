@@ -11,9 +11,9 @@ function LoginFormPage() {
     const [password, setPassword] = useState('');
     const [errors, setErrors] = useState([]);
 
-    if (sessionUser) return (
-        <Redirect to="/" />
-    );
+    if (sessionUser) {
+        window.alert('You are logged in')
+        return (<Redirect to="/" />)};
 
     const handleSubmit = (e) => {
         e.preventDefault();

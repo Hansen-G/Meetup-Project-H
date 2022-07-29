@@ -10,7 +10,7 @@ function ButtomBar() {
                 Create your own Meetup group.
                 {/* TBD */}
                 <NavLink to="/createNewGroup">
-                    <button>
+                    <button className='barButton'>
                         Get Started
                     </button>
                 </NavLink>

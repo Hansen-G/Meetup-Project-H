@@ -403,7 +403,7 @@ router.post('/new', checkAuth, async (req, res, next) => {
             private = false
         }
         if (!previewImage){
-            previewImage = 'https://res.cloudinary.com/hansenguo/image/upload/v1658961559/samples/landscapes/sky_jcnbkl.png'
+            previewImage = 'https://res.cloudinary.com/hansenguo/image/upload/v1658793269/WeMeet/event1_tpi7bo.webp'
         }
         const newGroup = await Group.create({
             organizerId, name, about, type, private, city, state, previewImage

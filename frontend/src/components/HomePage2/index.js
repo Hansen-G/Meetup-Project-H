@@ -75,7 +75,7 @@ function HomePage2() {
                     <div className='part9Card'>
                         
                         <img src='https://res.cloudinary.com/hansenguo/image/upload/v1658783083/WeMeet/first_article_ag4rap.webp'></img>
-                        <a target="_blank" href="https://www.meetup.com/blog/three-ways-to-make-coworker-friendships-while-working-from-home/">
+                        <a className='part9CardLink'  target="_blank" href="https://www.meetup.com/blog/three-ways-to-make-coworker-friendships-while-working-from-home/">
                             <h4>
                                 Three Ways To Make Coworker Friendships While Working From Home
                             </h4>
@@ -87,7 +87,7 @@ function HomePage2() {
                     <div className='part9Card'>
 
                         <img src='https://res.cloudinary.com/hansenguo/image/upload/v1658783083/WeMeet/second_article_m38aub.webp'></img>
-                        <a target="_blank" href="https://www.meetup.com/blog/three-ways-to-make-coworker-friendships-while-working-from-home/">
+                        <a className='part9CardLink'  target="_blank" href="https://www.meetup.com/blog/three-ways-to-make-coworker-friendships-while-working-from-home/">
                             <h4>
                                 Three Ways To Make Coworker Friendships While Working From Home
                             </h4>
@@ -99,7 +99,7 @@ function HomePage2() {
                     <div className='part9Card'>
 
                         <img src='https://res.cloudinary.com/hansenguo/image/upload/v1658783083/WeMeet/third_article_ujo9yu.webp'></img>
-                        <a target="_blank" href="https://www.meetup.com/blog/how-to-live-your-best-social-life/">
+                        <a className='part9CardLink'  target="_blank" href="https://www.meetup.com/blog/how-to-live-your-best-social-life/">
                             <h4>
                                 How To Live Your Best Social Life
                             </h4>

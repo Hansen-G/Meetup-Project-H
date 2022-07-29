@@ -2,8 +2,25 @@
 
 }
 
+.buttomTitle {
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.barButton {
+    background-color: rgb(33 33 33);
+    margin-left: 20px;
+    color: white;
+    font-size: 20px;
+    font-weight: 800;
+    padding: 10px 10px;
+    border: 1px white solid;
+    border-radius: 7px;
+
+}
+
 .buttomBar {
-    background-color: #353e48;
+    background-color: rgb(33 33 33);
     color: white;
     margin: 0;
     position: static;

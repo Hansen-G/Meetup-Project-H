@@ -5,7 +5,7 @@ module.exports = {
     return queryInterface.bulkInsert('Events', [
       {
         groupId: 1,
-        venueId: 1,
+        venueId: 2,
         name: 'Event1 AI Roundtable: Quantum Computing',
         type: 'Online',
         description: 'Our July 20 TEDCO AI Roundtable session features expert guest Piotr Kulczakowicz',
@@ -18,10 +18,10 @@ module.exports = {
       },
       {
         groupId: 2,
-        venueId: 2,
-        name: 'Event2',
+        venueId: 3,
+        name: 'Event2 Social Anxiety & Grounding',
         type: 'In Person',
-        description: 'HIII',
+        description: 'I want to share a tool that has helped me a bunch on this journey - GROUNDING. Some of you may already be familiar with this concept, others totally new to it. Either way, I want to share what works for me so far, and how grounding has brought tremendous support to my life while dealing with social anxiety.',
         startDate: '2022-07-06 20:00:00',
         endDate: '2022-07-10 20:00:00',
         price: 10,
@@ -31,10 +31,10 @@ module.exports = {
       },
       {
         groupId: 3,
-        venueId: 3,
-        name: 'Event3',
+        venueId: 4,
+        name: 'Event3 The Cartographers Book Discussion',
         type: 'Online',
-        description: 'HIII',
+        description: 'The votes are in… our August Book will be The Cartographers by Peng Shepherd. We will meet again by the tables near Burger Bar in Cross Street Market. I’ll be the one with the Cartographers on the table in front of her :p',
         startDate: '2022-07-06 20:00:00',
         endDate: '2022-07-01 20:00:00',
         price: 10,
@@ -45,9 +45,9 @@ module.exports = {
       {
         groupId: 4,
         venueId: 1,
-        name: 'Event4',
+        name: 'Event4 The Memory Librarian by Janelle Monae',
         type: 'Online',
-        description: 'HIIIhhi',
+        description: 'Hello, moms, dads, and caregivers living in Catonsville, Ellicott City and Columbia. Are you new to the area? Just had a baby? Need pint-sized playmates for your preschoolers? ',
         startDate: '2022-07-06 20:00:00',
         endDate: '2022-07-01 20:00:00',
         price: 10,

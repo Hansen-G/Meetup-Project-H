@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { useDispatch } from "react-redux";
 import './HomePage.css'
 
 function HomePage() {
     const dispatch = useDispatch();
 
+    const history = useHistory();
+
     const [search, setSearch] = useState(`Search for "tennis"`);
 
     const handleSubmit = (e) => {
-
+        e.preventDefault();
+        history.push(`/groups`);
     };
 
     return (
@@ -78,7 +81,7 @@ function HomePage() {
                                     <label>
                                         <input
                                             type="text"
-                                            value={search}
+                                            placeholder={search}
                                             className='input'
                                             onChange={(e) => setSearch(e.target.value)}
                                         />

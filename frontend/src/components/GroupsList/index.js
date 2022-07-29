@@ -4,7 +4,7 @@ import { NavLink, Link } from 'react-router-dom';
 
 import { getGroupListThunk } from '../../store/groups'
 
-
+import './GroupList.css'
 
 function GroupList() {
     const dispatch = useDispatch();
@@ -24,33 +24,60 @@ function GroupList() {
     }
     const groupArr = Object.values(groups)
 
+    function groupP (group) {
+        let state;
+        if (group.private === true) {
+            state = 'Private Group'
+        } else {
+            state = 'Public Group'
+        }
+        return state
+    }
+
     return (
         <main>
             <div>
-                <NavLink to="/events" className='tab'>
-                    Events
-                </NavLink>
+                <div className='navTab'>
+                    <NavLink to="/events">
+                        <div className='tab'>
+                            Events
+                        </div>
+                       
+                    </NavLink>
 
-                <NavLink to="/groups" className='tab'>
-                    Groups
-                </NavLink>
+                    <NavLink to="/groups" className='tab'>
+                        <div className='tab'>
+                            Groups
+                        </div>
+                    </NavLink>
+                </div>
+                
 
-                <div>
+                <div className='groupList'>
                     {
                         groupArr.map(group => (
-                            <div key={group.id}>
-                                <div className='groupImg'>
-                                    <img src={group.previewImage}></img>
+                            <Link to={`/groups/${group.id}`}>
+                                <div key={group.id} className='groupCard flex'>
+                                    <div className='groupImgDiv'>
+                                        <img className='groupImgPre' src={group.previewImage}></img>
+                                    </div>
+                                    <div className='groupInfo'>
+                                        <p className='groupName'>
+                                            {`Group ${group.name} `}
+                                        </p>
+                                        <p className='grouLocation'> 
+                                            {group.city}, {group.state}
+                                        </p>
+                                        <p className='groupAbout'>
+                                            {group.about}
+                                        </p>
+                                        <p>
+                                            {group.numMembers}·{groupP(group)}
+                                        </p>
+                                      
+                                    </div>
                                 </div>
-                                <div className='groupInfo'>
-                                    {`Group ${group.name}: `}
-                                    <Link to={`/groups/${group.id}`}>{`Group ${group.id}`}</Link>
-                                    {group.city};
-                                    {group.state}
-                                    {group.about}
-                                    {group.numMembers}·{group.private}
-                                </div>
-                            </div>
+                            </Link>
                         ))
                     }
                 </div>
