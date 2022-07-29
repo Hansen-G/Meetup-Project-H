@@ -28,7 +28,7 @@ module.exports = {
         },
         {
           organizerId: 3,
-          name: '3 Chicago Hiking, Outdoor & Adventures for Young Professionals',
+          name: '3 Chicago Hiking, Outdoor & Adventures',
           about: '"The best things in life are the people we love, the places we\'ve been, and the memories we\'ve made along the way." Hello Chicago! Welcome to the Chicago Hiking, Outdoor, & Adventures for Young Professionals Group. This is a group for any young professionals interested in hiking, camping, backpacking, running, exploring outdoors, challenging new things, etc. The main purpose to start this group is to meet good people and make friends as well as explore the nature together and build a better community. We\'re looking forward to exploring the outdoors with \'YOU\' who are nice, kind, respectful, generous, and honest people.Get up and join with us.Stay positive and enjoy your life!',
           type: 'Sport',
           private: false,
