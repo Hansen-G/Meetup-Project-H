@@ -164,7 +164,7 @@ function EventDetails() {
                         </div>
                     </div>
                     <div className='event2Right'>
-                        <Link>
+                        <Link to={`/groups/${event.Group.id}`}>
                             <div className='eventGroupCard2 flex'>
                                 <div>
                                     <img src={event.Group.previewImage}></img>
@@ -295,7 +295,7 @@ function EventDetails() {
                         </div>
                     </div>
                     <div className='event2Right'>
-                        <Link>
+                        <Link to={`/groups/${event.Group.id}`}>
                             <div className='eventGroupCard2 flex'>                           
                                 <div>
                                     <img src={event.Group.previewImage}></img>
