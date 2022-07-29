@@ -99,8 +99,6 @@ export const postNewGroupThunk = (group) => async dispatch => {
         },
         body: JSON.stringify(group)
     });
-
-    console.log(response)
     if (response.ok) {
         
         const data = await response.json();
@@ -156,7 +154,6 @@ export const deleteGroupThunk = (groupId) => async dispatch => {
         method: 'DELETE'
     });
     if (response.ok) {
-        const data = await response.json();
         dispatch(deleteGroup(groupId));
         return response.ok;
     }

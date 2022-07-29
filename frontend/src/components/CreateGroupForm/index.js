@@ -65,7 +65,6 @@ function CreateGroupFrom () {
         if (newGroup) {
             history.push(`/groups/${newGroup.newGroup.id}`);
         }
-
     };
     return (
         <div className="createGroup">

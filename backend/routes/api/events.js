@@ -574,7 +574,7 @@ router.get('/:eventId', async (req, res, next) => {
         include: [{
             model: Group,
             attributes: [
-                'id', 'name', 'private', 'city', 'state', 'previewImage'
+                'id', 'name', 'private', 'city', 'state', 'previewImage', 'organizerId'
             ]
         }, {
             model: Venue,

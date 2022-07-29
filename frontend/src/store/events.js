@@ -5,7 +5,8 @@ const GET_EVENT_BY_ID = 'events/GET_EVENT_BY_ID';
 const GET_EVENT_ATTENDEE = 'events/GET_EVENT_ATTENDEE';
 
 const POST_NEW_EVENT = 'events/ POST_NEW_EVENT';
-const PUT_UPDATE_EVENT = 'events/PUT_UPDATE_EVENT'
+const PUT_UPDATE_EVENT = 'events/PUT_UPDATE_EVENT';
+const DELETE_EVENT = 'groups/DELETE_EVENT'
 
 // // const POST_GROUP_NEW_EVENT = 'groups/POST_GROUP_NEW_EVENT';
 
@@ -40,16 +41,12 @@ const postNewEvent = (event) => {
     }
 }
 
-// const putUpdateGroup = (group) => {
-//     return {
-//         type: PUT_UPDATE_EVENT,
-//         group
-//     }
-// }
-
-
-
-
+const deleteEvent = (eventId) => {
+    return {
+        type: DELETE_EVENT,
+        eventId
+    }
+}
 
 export const getEventListThunk = () => async dispatch => {
     const response = await fetch('/api/events')
@@ -101,15 +98,7 @@ export const postNewEventThunk = (event, groupId) => async dispatch => {
 // //     }
 // // }
 
-// // export const getGroupEventThunk = (groupId) => async dispatch => {
-// //     const response = await fetch(`/api/events/groups/${groupId}`);
-// //     if (response.ok) {
-// //         const data = await response.json();
-// //         console.log(data)
-// //         dispatch(getGroupEvents(data, groupId));
-// //         return data;
-// //     }
-// // }
+
 
 export const getEventAttendeeThunk = (eventId) => async dispatch => {
     const response = await fetch(`/api/events/${eventId}/attendees`);
@@ -126,14 +115,16 @@ export const getEventAttendeeThunk = (eventId) => async dispatch => {
     }
 }
 
-// // export const getGroupImagesThunk = (groupId) => async dispatch => {
-// //     const response = await fetch(`/api/groups/${groupId}/members`);
-// //     if (response.ok) {
-// //         const data = await response.json();
-// //         dispatch(getGroupImages(data.Members, groupId));
-// //         return data;
-// //     }
-// // }
+
+export const deleteEventThunk = (eventId) => async dispatch => {
+    const response = await csrfFetch(`/api/events/${eventId}`, {
+        method: 'DELETE'
+    });
+    if (response.ok) {
+        dispatch(deleteEvent(eventId));
+        return response.ok;
+    }
+}
 
 
 
@@ -176,14 +167,17 @@ const eventsReducer = (state = initialState, action) => {
                 attendees['Auth'] = false
                 newState[action.eventId] = { ...newState[action.eventId], attendees }
                 return newState;
-
             } else {
                 attendees['Auth'] = true
                 action.attendees.forEach(attendee => attendees[attendee.id] = attendee);
                 newState[action.eventId] = { ...newState[action.eventId], attendees }
                 return newState;
             }
-            
+        }
+        case DELETE_EVENT:{
+            newState = { ...state };
+            delete newState[action.eventId];
+            return newState;
         }
         default: {
             return state

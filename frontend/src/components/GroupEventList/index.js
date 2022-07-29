@@ -69,7 +69,7 @@ function GroupEventList() {
 
             <div className='groupEventContiner'>
                 {(eventArr.length > 0) && eventArr.map(event => (
-                    <Link to={`/event/${event.id}`}>
+                    <Link to={`/events/${event.id}`}>
                         <div className='eventCard'>
                             <img src={event.previewImage}></img>
 
@@ -82,8 +82,13 @@ function GroupEventList() {
                             <p>{event.description}</p>
                         </div>
                     </Link>
-
                 ))}
+
+                {(eventArr.length == 0) && (
+                    <div>
+                        This group has no event now. Please see more events on the Event page.
+                    </div>
+                )}
 
             </div>
 

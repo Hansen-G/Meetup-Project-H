@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink, useParams, Route, Switch, Link, useHistory } from 'react-router-dom';
-import { getEventByIdThunk, getEventAttendeeThunk } from '../../store/events'
+import { getEventByIdThunk, getEventAttendeeThunk, deleteEventThunk } from '../../store/events'
 
 function EventDetails() { 
 
@@ -24,6 +24,7 @@ function EventDetails() {
         helper(eventId)
     }, [dispatch]);
 
+
     if(!event) return null;
 
     let attendees = event.attendees
@@ -39,6 +40,31 @@ function EventDetails() {
     }
     
     console.log('attendeesArr', attendeesArr)
+
+
+  
+    let group = event.Group;
+    console.log(group)
+
+    let showEditButton = false
+    if (user && group) {
+        if (user.id && group.organizerId && user.id === group.organizerId) {
+            showEditButton = true;
+        }
+    }
+
+
+    const deleteListener = async (eventId) => {
+
+        if (window.confirm('Do you really want to delete this Event? This action can not be undone!')) {
+            const response = await dispatch(deleteEventThunk(eventId));
+            if (response) {
+                window.alert('Successfully deleted the Event, Click OK to bring you back to Events List')
+                history.push(`/events/groups/${group.id}`);
+            }
+        }
+    };
+
 
     let state;
     if (event.Group.private === true) {
@@ -58,6 +84,13 @@ function EventDetails() {
                     <p>
                         {state}
                     </p>
+
+                </div>
+
+                <div className='group3Buttondiv'>
+                    {showEditButton && (
+                        <button className='group3Button' onClick={() => deleteListener(eventId)}>Delete</button>
+                    )}
 
                 </div>
 

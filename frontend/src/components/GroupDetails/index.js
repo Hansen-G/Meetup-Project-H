@@ -17,7 +17,7 @@ function GroupDetails() {
     const [showCreateEventForm, setShowCreateEventForm] = useState(false);
 
     const group = useSelector( state => state.groups[groupId])
-    const user = useSelector(state => state.session.user);
+    const user = useSelector( state => state.session.user );
 
     const helper = async (groupId) => {
         const groupWait = await dispatch(getGroupByIdThunk(groupId));
@@ -46,7 +46,7 @@ function GroupDetails() {
     const member = group.members
     if (!member || Object.keys(member).length === 0) return null;
     const memberArr = Object.values(member)
-    console.log(memberArr)
+
 
 
     const eventArr = group.events
