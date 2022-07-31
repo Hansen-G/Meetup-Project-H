@@ -50,7 +50,7 @@ function EventList() {
                     {
                         eventArr.map(event => (
                             <Link to={`/events/${event.id}`}>
-                                <div key={event.id} className='eventCard flex'>
+                                <div key={event.id} className='eventCard flex card'>
                                     
                                         <div className='eventImgDiv'>
                                             <img className='eventImgPre'src={event.previewImage}></img>

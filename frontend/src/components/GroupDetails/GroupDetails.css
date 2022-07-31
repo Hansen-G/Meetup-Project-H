@@ -6,11 +6,13 @@
     height: 300px;
 }
 
-.groupImgDiv {
+.groupDetialImgDiv {
+    max-width: 30%;
     width: 50%;
     height: 100%;
     display: flex;
     align-items: center;
+    margin-right: 10%;
 
     
 }
@@ -26,6 +28,17 @@
     height: 20px;
 }
 
+
+.group3 {
+    border-top: 1px solid rgb(221, 221, 221);
+    height: 30px;
+    justify-content: space-around;
+}
+
+#groupDetialTab {
+    color: #0098ab;;
+}
+
 .group2 {
     background-color: rgb(245,246,247);
     justify-content: center;
@@ -33,7 +46,8 @@
 
 .group2Left {
     width: 50%;
-    margin: 1% 3%;
+    margin-right: 4%;
+    
 }
 
 .group2Right {
@@ -44,10 +58,12 @@
     background-color: white;
     border-radius: 15px;
     padding: 2%;
-    margin: 2% 1%;
-
+    margin: 2% 1% 2% 0;
+    
 }
-
+#eventCard {
+    width: 93%;
+}
 .groupDetailsImgContiner {
     width: 100%;
     display:flex;

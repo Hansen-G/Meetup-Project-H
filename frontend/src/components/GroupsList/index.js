@@ -57,7 +57,7 @@ function GroupList() {
                     {
                         groupArr.map(group => (
                             <Link to={`/groups/${group.id}`}>
-                                <div key={group.id} className='groupCard flex'>
+                                <div key={group.id} className='groupCard flex card'>
                                     <div className='groupImgDiv'>
                                         <img className='groupImgPre' src={group.previewImage}></img>
                                     </div>

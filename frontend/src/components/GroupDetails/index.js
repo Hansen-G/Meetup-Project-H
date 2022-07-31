@@ -80,7 +80,7 @@ function GroupDetails() {
     return (
         <div>
             <div className='group1 flex'>
-                <div className='groupImgDiv'>
+                <div className='groupDetialImgDiv'>
                     <img className='groupImg' src={group.previewImage}>
                     </img>
                 </div>
@@ -108,8 +108,8 @@ function GroupDetails() {
             <div className='group3 flex'>
 
 
-                <div>
-                    <Link to={`/events/groups/${groupId}`}>
+                <div className='groupDetialTab'>
+                    <Link to={`/events/groups/${groupId}`} id='groupDetialTab'>
                         Events
                     </Link>
                 </div>
@@ -123,12 +123,25 @@ function GroupDetails() {
                     </div>
 
                     <div className='group3Buttondiv'>
-                        {showEditButton && <button className='group3Button' onClick={() => (showEditGroupForm) ? setShowEditGroupForm(false) : setShowEditGroupForm(true)}>Edit Group</button>}
+                        {showEditButton && 
+                        <button className='group3Button' 
+                        onClick={() => {
+                            (showEditGroupForm) ? setShowEditGroupForm(false) : setShowEditGroupForm(true);
+                            (showCreateEventForm) ? setShowCreateEventForm(false) : setShowCreateEventForm(false)}}>
+                            Edit Group
+                        </button>}
 
                     </div>
 
                     <div className='group3Buttondiv'>
-                        {showEditButton && <button className='group3Button' onClick={() => (showCreateEventForm) ? setShowCreateEventForm(false) : setShowCreateEventForm(true)}>Create Event</button>}
+                        {showEditButton && 
+                        <button className='group3Button' 
+                        onClick={() => {
+                            (showCreateEventForm) ? setShowCreateEventForm(false) : setShowCreateEventForm(true);
+                            (showEditGroupForm) ? setShowEditGroupForm(false) : setShowEditGroupForm(false);
+                        }} >
+                            Create Event
+                        </button>}
 
                     </div>
                 </div>
@@ -162,7 +175,7 @@ function GroupDetails() {
                     </h2>
                     {(eventArr.length > 0) && eventArr.map(event => (
                         <Link to={`/events/${event.id}` }>
-                            <div key={event.id} className='eventCard flex card' id=''>
+                            <div key={event.id} className='eventCard flex card' id='eventCard'>
 
                                 <div className='eventImgDiv'>
                                     <img className='eventImgPre' src={event.previewImage}></img>
