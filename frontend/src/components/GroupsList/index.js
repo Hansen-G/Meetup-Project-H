@@ -68,9 +68,9 @@ function GroupList() {
                                         <p className='groupLocation'> 
                                             {group.city}, {group.state}
                                         </p>
-                                        <p className='groupAbout aboutLong'>
+                                        <div className='groupAbout aboutLong'>
                                             {group.about.slice(0,200)}...
-                                        </p>
+                                        </div>
                                         <p className='groupAbout'>
                                             {group.numMembers} members · {groupP(group)}
                                         </p>

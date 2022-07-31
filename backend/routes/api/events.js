@@ -503,7 +503,10 @@ router.put('/:eventId', checkAuth, async (req, res, next) => {
 // Create an Event for a Group specified by its id
 router.post('/new/groups/:groupId', checkAuth, async (req, res, next) => {
     let { groupId } = req.params;
-    let { venueId, name, type, capacity, price, description, startDate, endDate } = req.body;
+    let { venueId, name, type, capacity, price, description, startDate, endDate, previewImage } = req.body;
+    if (!previewImage) {
+        previewImage = 'https://res.cloudinary.com/hansenguo/image/upload/v1658793269/WeMeet/event1_tpi7bo.webp'
+    }
     groupId = parseInt(groupId);
     venueId = parseInt(venueId);
     price = parseInt(price);

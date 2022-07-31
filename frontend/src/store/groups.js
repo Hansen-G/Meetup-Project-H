@@ -105,6 +105,7 @@ export const postNewGroupThunk = (group) => async dispatch => {
         dispatch(postNewGroup(data));
         return data;
     }
+    return response
 }
 
 export const putUpdateGroupThunk = (newGroup, groupId) => async dispatch => {

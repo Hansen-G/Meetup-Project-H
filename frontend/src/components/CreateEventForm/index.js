@@ -62,13 +62,7 @@ function CreateEventFrom({ hiddenForm, group }) {
     }, [venueId, name, type, capacity, price, description, startDate, endDate, eventPreviewImage])
 
 
-
-
-
-
     const handleSubmit = async (e) => {
-       
-
         e.preventDefault();
         let start = timeChanger(startDate)
         let end = timeChanger(endDate)
@@ -99,11 +93,12 @@ function CreateEventFrom({ hiddenForm, group }) {
         }
 
 
-        console.log('Event', event)
+        setErrors([])
+        
         let newEvent;
         try {
             newEvent = await dispatch(postNewEventThunk(event, group.id));
-            setErrors([])
+            
           
 
         } catch (error) {

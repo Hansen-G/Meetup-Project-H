@@ -5,9 +5,7 @@ import './HomePage.css'
 
 function HomePage() {
     const dispatch = useDispatch();
-
     const history = useHistory();
-
     const [search, setSearch] = useState(`Search for "tennis"`);
 
     const handleSubmit = (e) => {
