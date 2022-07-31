@@ -18,9 +18,10 @@ function Navigation({ isLoaded }) {
     } else {
         sessionLinks = (
             <div className='sessionLinks'>
-                <Demo />
+              
                 <LoginFormModal />
                 <SignupFormModal />
+                <Demo />
             </div>
         );
     }
@@ -29,8 +30,8 @@ function Navigation({ isLoaded }) {
  
             <div className='nav'>
                 <div>
-                    <NavLink exact to="/">
-                        <img src='https://res.cloudinary.com/hansenguo/image/upload/v1658764084/WeMeet/logo_xdfq3d.png'></img>
+                    <NavLink exact to="/" id='logo'>
+                        WeMeet
                     </NavLink>
                 </div>
                 

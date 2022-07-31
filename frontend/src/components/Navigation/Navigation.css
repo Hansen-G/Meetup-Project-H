@@ -1,6 +1,8 @@
 .nav {
     display: flex;
     justify-content: space-between;
+    
+
     margin: 1% 5% 1% 5%;
 }
 
@@ -9,6 +11,40 @@
 }
 
 .sessionLinks {
-    display: inline;
+    display: flex;
     width: 10%;
 }
+
+#logo {
+    color: rgb(246 88 88);
+    font-size: 30px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: 600;
+}
+
+.demoForm {
+    width: 10px;
+    flex: 0 0 0;
+}
+
+
+.navuser {
+    width: 180px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sessionLinks {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navButton {
+    background-color: rgba(0, 0, 0, 0);
+    border: 0px;
+    font-size: 17px;
+}
+

@@ -582,7 +582,7 @@ router.get('/:eventId', async (req, res, next) => {
         }, {
             model: Venue,
             attributes: [
-                'id', 'address', 'city', 'state', 'lat', 'lng'
+                'id', 'address', 'city', 'state', 'lat', 'lng', 'html'
             ]
         }]
     });

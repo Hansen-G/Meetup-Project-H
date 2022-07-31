@@ -53,7 +53,7 @@ function EventList() {
                                 <div key={event.id} className='eventCard flex card'>
                                     
                                         <div className='eventImgDiv'>
-                                            <img className='eventImgPre'src={event.previewImage}></img>
+                                            <img className='eventImgPre' src={event.previewImage}></img>
                                         </div>
                                         <div className='eventInfo'>    
                                             <div className='eventTime'> {timeHelper(event.startDate)} EST</div>

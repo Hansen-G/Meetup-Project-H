@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink, useParams, Route, Switch, Link } from 'react-router-dom';
 import { getGroupByIdThunk, getGroupEventThunk, getGroupMembersThunk } from '../../store/groups'
-
+import './GroupEventList.css'
 function timeHelper(date) {
     let time = new Date(date)
     return time.toString().slice(0, 21)
@@ -45,9 +45,9 @@ function GroupEventList() {
 
     return (
         <div>
-            <div className='group1 flex'>
-                <div className='groupImg'>
-                    <img src={group.previewImage}>
+            <div className='group1 flex' id='group1div'>
+                <div className='groupDetialImgDiv'>
+                    <img className='groupImg' src={group.previewImage}>
                     </img>
                 </div>
                 <div>
@@ -70,10 +70,10 @@ function GroupEventList() {
                 </div>
             </div>
 
-            <div className='eventList'>
+            <div className='eventList' id='group2div'>
                 {(eventArr.length > 0) && eventArr.map(event => (
                     <Link to={`/events/${event.id}`}>
-                        <div className='eventCard flex'>
+                        <div className='eventCard flex card'>
                             <div className='eventImgDiv'>
                                 <img className='eventImgPre' src={event.previewImage}></img>
                             </div>

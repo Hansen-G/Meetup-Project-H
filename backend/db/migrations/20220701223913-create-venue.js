@@ -30,6 +30,9 @@ module.exports = {
       lng: {
         type: Sequelize.FLOAT
       },
+      html: {
+        type: Sequelize.STRING(1000),  
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

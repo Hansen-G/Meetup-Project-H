@@ -62,7 +62,10 @@ module.exports = (sequelize, DataTypes) => {
         min: -180,
         max: 180,
       }
-    }
+    },
+    html: {
+      type: DataTypes.STRING,
+    },
   }, {
     sequelize,
     modelName: 'Venue',

@@ -2,6 +2,12 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink, useParams, Route, Switch, Link, useHistory } from 'react-router-dom';
 import { getEventByIdThunk, getEventAttendeeThunk, deleteEventThunk } from '../../store/events'
+import './EventDetails.css'
+
+function timeHelper(date) {
+    let time = new Date(date)
+    return time.toString().slice(0, 21)
+}
 
 function EventDetails() { 
 
@@ -73,7 +79,7 @@ function EventDetails() {
             <div className='event'>
                 <div className='event1'>
                     <p>
-                        {event.startDate}
+                        {timeHelper(event.startDate)}
                     </p>
                     <h1>
                         {event.name}
@@ -85,17 +91,21 @@ function EventDetails() {
                         {state}
                     </p>
 
-                </div>
-
-                <div className='group3Buttondiv'>
                     {showEditButton && (
                         <button className='group3Button' onClick={() => deleteListener(eventId)}>Delete</button>
                     )}
 
                 </div>
 
+                <div className='event3Buttondiv'>
+                   
+                </div>
+
                 <div className='event2 flex'>
                     <div className='event2Left'>
+                        <div className='event2Img'>
+                            <img src={event.previewImage}></img>
+                        </div>
 
                         <div className='eventDetails'>
                             <h3>
@@ -108,10 +118,14 @@ function EventDetails() {
                             </p>)
                             }
                             {!(attendees['Auth']) && (
-                                <p>
-                                    <i className="fa-solid fa-lock"></i>
-                                    This content is available only to members
-                                </p>
+                                <div className='noAuthCard flex'>
+                                    <i className="fa-solid fa-lock noAuth"></i>
+                                    <p>
+                                        This content is available only to members
+                                    </p>
+                                    
+                                </div>
+
                                 )
                             }
                             
@@ -130,72 +144,62 @@ function EventDetails() {
                                     ))
                                     }
                                 </p>)}
-                            {!(attendees['Auth']) && (
+                            {(attendees['Auth']) && (
                                 <p>
-                                    <i className="fa-solid fa-lock"></i>
-                                    This content is available only to members
-                                </p>
+                                    {(attendeesArr.length == 0) && (
+                                        <div>
+                                            No attendee yet
+                                        </div>
+                                    )
+                                    }
+                                </p>)}
+
+                            {!(attendees['Auth']) && (
+                                <div className='noAuthCard flex'>
+                                    <i className="fa-solid fa-lock noAuth"></i>
+                                    <p>
+                                        This content is available only to members
+                                    </p>
+
+                                </div>
                             )}
                         </div>
 
-                        <div className='eventGroupCard flex'>
-                            <div>
-                                <Link to={`/events/groups/${event.Group.id}`}>
-                                    <div className='eventGroupCardLeft'>
-                                        <p>
-                                            {event.Group.name}
-                                        </p>
-
-                                        <p>
-                                            See more events
-                                        </p>
-
-                                    </div>
-
-
-                                </Link>
-                            </div>
-                            <div className='eventGroupCardRight'>
-                                <Link to={`/events/groups/${event.Group.id}`}>
-                                    {`>`}
-                                </Link>
-                            </div>
-
-                        </div>
+                     
                     </div>
                     <div className='event2Right'>
                         <Link to={`/groups/${event.Group.id}`}>
                             <div className='eventGroupCard2 flex'>
-                                <div>
-                                    <img src={event.Group.previewImage}></img>
+                                <div className='eventGroupCard2Img'>
+                                    <img id='eventGroupCard2Img' src={event.Group.previewImage}></img>
                                 </div>
-                                <div>
-                                    <p>
+                                <div className='groupInfoCard flex'>
+                                    <div className='groupInfoCardName'>
                                         {event.Group.name}
-                                    </p>
-                                    <p>
+                                    </div>
+                                    <div>
                                         {state}
-                                    </p>
+                                    </div>
                                 </div>
 
                             </div>
                         </Link>
 
-                        <div>
-                            <div>
-                                <div>
+                        <div className='eventInfoDetial'>
+                            <div className='eventInfoDetialTime flex'>
+                                <div className='eventInfoDetialIcon'>
                                     <i className="fa-solid fa-clock"></i>
                                 </div>
-                                <div>
-                                    {event.startDate} to {event.endDate}
+                                <div className='eventInfoText'>
+                                    {timeHelper(event.startDate)} to {timeHelper(event.endDate)}
                                 </div>
 
                             </div>
-                            <div>
-                                <div>
+                            <div className='eventInfoDetialLocation flex'>
+                                <div className='eventInfoDetialIcon'>
                                     <i className="fa-solid fa-location-dot"></i>
                                 </div>
-                                <div>
+                                <div className='eventInfoText'>
                                     {event.Venue.address}, {event.Venue.city}, {event.Venue.state}
                                 </div>
                                 <div id="map"></div>
@@ -207,12 +211,11 @@ function EventDetails() {
         )
     } else {
         state = 'Public Group'
-
         return (
             <div className='event'>
                 <div className='event1'>
                     <p>
-                        {event.startDate}
+                        {timeHelper(event.startDate)}
                     </p>
                     <h1>
                         {event.name}
@@ -230,6 +233,10 @@ function EventDetails() {
                     <div className='event2Left'>
                         
                         <div className='eventDetails'>
+                            <div className='event2Img'>
+                                <img src={event.previewImage}></img>
+                            </div>
+
                             <h3>
                                 Details
                             </h3>
@@ -268,70 +275,52 @@ function EventDetails() {
                                 </p>
                             )}
                         </div>
-
-                        <div className='eventGroupCard flex'>
-                            <div>
-                                <Link to={`/events/groups/${event.Group.id}`}>
-                                    <div className='eventGroupCardLeft'>
-                                        <p>
-                                            {event.Group.name}
-                                        </p>
-
-                                        <p>
-                                            See more events
-                                        </p>
-
-                                    </div>
-
-                                   
-                                </Link> 
-                            </div>
-                            <div className='eventGroupCardRight'>
-                                <Link to={`/events/groups/${event.Group.id}`}>
-                                    {`>`}
-                                </Link> 
-                            </div>
-         
-                        </div>
                     </div>
                     <div className='event2Right'>
                         <Link to={`/groups/${event.Group.id}`}>
-                            <div className='eventGroupCard2 flex'>                           
-                                <div>
-                                    <img src={event.Group.previewImage}></img>
+                            <div className='eventGroupCard2 flex'>
+                                <div className='eventGroupCard2Img'>
+                                    <img id='eventGroupCard2Img' src={event.Group.previewImage}></img>
                                 </div>
-                                <div>
-                                    <p>
+                                <div className='groupInfoCard flex'>
+                                    <div className='groupInfoCardName'>
                                         {event.Group.name}
-                                    </p>
-                                    <p>
+                                    </div>
+                                    <div>
                                         {state}
-                                    </p>
+                                    </div>
                                 </div>
-                                                        
-                             </div>
+
+                            </div>
                         </Link>
 
-                        <div>
-                            <div>
-                                <div>
+                        <div className='eventInfoDetial'>
+                            <div className='eventInfoDetialTime flex'>
+                                <div className='eventInfoDetialIcon'>
                                     <i className="fa-solid fa-clock"></i>
                                 </div>
-                                <div>
-                                    {event.startDate} to {event.endDate}
+                                <div className='eventInfoText'>
+                                    {timeHelper(event.startDate)} to {timeHelper(event.endDate)}
                                 </div>
-                                
+
                             </div>
-                            <div>
-                                <div>
+                            <div className='eventInfoDetialLocation flex'>
+                                <div className='eventInfoDetialIcon'>
                                     <i className="fa-solid fa-location-dot"></i>
                                 </div>
-                                <div>
+                                <div className='eventInfoText'>
                                     {event.Venue.address}, {event.Venue.city}, {event.Venue.state}
                                 </div>
-                                <div id="map"></div>
                             </div>
-                        </div>   
+                        </div>
+
+                        <div id="map">
+                            <div id="map">
+                                <div id="map" dangerouslySetInnerHTML={{ __html: event.Venue.html }} />
+                            </div>
+                            
+
+                        </div>
                     </div>
 
               

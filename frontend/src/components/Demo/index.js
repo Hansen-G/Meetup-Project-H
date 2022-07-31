@@ -21,8 +21,8 @@ function Demo () {
     }
 
     return(
-        <form onSubmit={handleSubmit}>
-            <button type="submit">Demo</button>
+        <form onSubmit={handleSubmit} className='demoForm'>
+            <button type="submit" className="demo navButton">Demo</button>
         </form>
     )
 }

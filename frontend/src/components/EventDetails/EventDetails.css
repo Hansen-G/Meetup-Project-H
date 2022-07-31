@@ -1,0 +1,132 @@
+.event {
+    margin: 0 auto;
+    /* width: 80%; */
+}
+
+.event1 {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.event3Buttondiv {
+    border-bottom: 1px solid rgb(221, 221, 221);
+    height: 20px;
+    justify-content: space-around;
+   
+  
+
+}
+
+
+
+.event2 {
+    background-color: rgb(245, 246, 247);
+    padding: 3% 10%;
+}
+
+.event2Left {
+    width: 60%;
+    margin-right: 5%;
+}
+.event2Img {
+    width: 100%;
+}
+
+.event2Img img {
+    width: 100%;
+    border-radius: 15px;
+}
+
+.noAuth {
+    /* width: 100%; */
+    
+   
+}
+
+.noAuthCard {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    border: 1px gray dashed;
+    border-radius: 15px;
+}
+
+.event2Right {
+  width: 40%;
+}
+
+.eventGroupCard2 {
+    background-color: white;
+    border-radius: 15px;
+    align-items: center;
+    height: 120px;
+}
+
+.groupInfoCard {
+    height: 80px;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items:flex-start;
+    margin-left: 10px;
+}
+
+.groupInfoCard div {
+    color: black;
+}
+
+.eventGroupCard2Img {
+    width: 20%;
+    margin-left: 25px;
+}
+#eventGroupCard2Img {
+    object-fit: cover;
+    width: 80px;
+    height: 80px;
+}
+
+.groupInfoCardName {
+    font-weight: bolder;;
+}
+
+.eventInfoDetial {
+    background-color: white;
+    border-radius: 15px;
+    align-items: center;
+    margin-top: 20px;
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+.eventInfoDetialIcon {
+    width: 30px;
+    text-align: center;
+}
+
+.eventInfoText {
+    margin-left: 20px;
+}
+
+.eventInfoDetialLocation {
+    margin-top: 20px;
+}
+
+#map {
+    width: 100%;
+}
+
+.mapouter {
+    position: relative;
+    text-align: right;
+    height: 500px;
+    width: 100%;
+}
+
+.gmap_canvas {
+    overflow: hidden;
+    background: none !important;
+    height: 500px;
+    width: 100%;
+    border-radius: 15px;
+    margin-top: 20px;
+}
