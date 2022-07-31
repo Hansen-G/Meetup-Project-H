@@ -43,7 +43,6 @@ function App() {
             <ButtomBar />
           </Route>
  
-
           <Route  exact path='/events'>
             <EventList />
             <ButtomBar />
@@ -70,9 +69,6 @@ function App() {
             <CreateGroupFrom />
             <ButtomBar />
           </Route>
-
-
-
 
           <Route>
             Page not found

@@ -15,7 +15,7 @@ function HomePage() {
 
     return (
         <main className='home1'>
-            <div className='bg'>
+            <div className='bg2 flex'>
                 <img src='https://secure.meetupstatic.com/next/images/blobs/green-blob.svg' id='bg1'></img>
                 <img src='https://secure.meetupstatic.com/next/images/blobs/yellow-blob.svg' id='bg2'></img>
                 <img src='https://secure.meetupstatic.com/next/images/blobs/red-blob.svg' id='bg3'></img>

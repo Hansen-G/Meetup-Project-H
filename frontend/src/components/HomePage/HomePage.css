@@ -2,6 +2,9 @@
    
 }
 
+.bg2 {
+    justify-content: space-between;
+}
 #bg1 {
     position: absolute;
     top: 0px;
@@ -12,7 +15,11 @@
 #bg2 {
     position: absolute;
     top: 200px;
-    right: 10%;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
     z-index: -1;
 }
 

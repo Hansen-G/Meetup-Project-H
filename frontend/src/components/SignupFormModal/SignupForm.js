@@ -44,7 +44,7 @@ function SignupForm() {
 
 
             <label>
-                Your name
+                Your email
                 <input
                     type="text"
                     value={email}

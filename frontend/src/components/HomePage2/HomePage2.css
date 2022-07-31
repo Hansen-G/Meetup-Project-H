@@ -47,6 +47,10 @@
     width: 30%;
 }
 
+.part9Card img {
+    width: 100%;
+}
+
 .part9CardLink {
     color: black;
     font-weight: bolder;

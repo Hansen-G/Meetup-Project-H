@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
 import { Link, useHistory } from "react-router-dom";
 import * as sessionActions from '../../store/session';
+import './ProfileButton.css'
 
 function ProfileButton({ user }) {
     const dispatch = useDispatch();
@@ -36,18 +37,37 @@ function ProfileButton({ user }) {
     
 
     return (
-        <>
-            <button onClick={openMenu}>
-                <i className="fas fa-user-circle" />
-            </button>
+        <> 
+            <div className="profileButtonDiv">
+                <button className="profileButton" onClick={openMenu}>
+                    <i className="fas fa-user-circle userIcon" />
+                </button>
+            </div>
+            
             {showMenu && (
-                <ul className="profile-dropdown">
-                    <li>{user.username}</li>
-                    <li>{user.email}</li>
-                    <li>
-                        <button onClick={logout}>Log Out</button>
-                    </li>
-                </ul>
+            <div className="menuDiv">
+              <div className="dropdownBox">
+                <div className="usernameDiv">
+                    Welcome, {user.firstName}!
+                </div>
+                <div className="usernameDiv">
+                  Username: {user.username}
+                </div>
+                <div className="emailDiv">
+                  Email: {user.email}
+                </div>
+                <div className="linkDiv">
+                            <Link to='/createNewGroup' id="menuLink">Create your group</Link>
+                </div>
+                <div className="linkDiv">
+                            <Link to='/groups' id="menuLink">Find new groups</Link>
+                </div>
+                <div className="linkDiv" id='linkDiv'>
+                            <Link to='/events' id="menuLink">Find new events</Link>
+                </div>
+                <div className="logoutDiv" onClick={logout}>Log Out</div>
+              </div>
+            </div>
             )}
         </>
     );

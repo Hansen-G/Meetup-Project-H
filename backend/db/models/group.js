@@ -71,7 +71,6 @@ module.exports = (sequelize, DataTypes) => {
     },   
     numMembers: {
       type: DataTypes.INTEGER,
-     
     },
     previewImage: {
       type: DataTypes.STRING,
