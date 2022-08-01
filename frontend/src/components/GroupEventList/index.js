@@ -52,7 +52,7 @@ function GroupEventList() {
                 </div>
                 <div>
                     <h1>
-                        {group.name}
+                        <Link to={`/groups/${group.id}`}>{group.name}</Link>
                     </h1>
                     <div>
                         <i className="fa-solid fa-location-dot icon"></i>
@@ -90,8 +90,11 @@ function GroupEventList() {
                 ))}
 
                 {(eventArr.length == 0) && (
-                    <div>
-                        This group has no event now. Please see more events on the Event page.
+                    <div className='noEvents flex'>
+                        <p>
+                            This group has no event now. Please see more events on the <Link to='/events'>Event page</Link>.
+                        </p>
+                       
                     </div>
                 )}
 

@@ -200,15 +200,26 @@ function EventDetails() {
                                     <i className="fa-solid fa-location-dot"></i>
                                 </div>
                                 <div className='eventInfoText'>
-                                    {event.Venue.address}, {event.Venue.city}, {event.Venue.state}
+                                    {event.Venue.address !== 'Online' && (
+                                        <div>
+                                             { event.Venue.address }, { event.Venue.city }, { event.Venue.state }
+                                        </div>
+                                    )}
+                                    {event.Venue.address === 'Online' && (
+                                        <div>
+                                            {event.Venue.address}
+                                        </div>
+                                    )}
                                 </div>
-                                <div id="map"></div>
                             </div>
                             
                         </div>
-                        <div id="map">
-                            <div id="map" dangerouslySetInnerHTML={{ __html: event.Venue.html }} />
-                        </div>
+                        { event.Venue.address !=='Online' && (
+                            <div id="map">
+                                <div id="map" dangerouslySetInnerHTML={{ __html: event.Venue.html }} />
+                            </div>
+                        )}
+                        
                     </div>
                 </div>
             </div>
@@ -313,18 +324,26 @@ function EventDetails() {
                                     <i className="fa-solid fa-location-dot"></i>
                                 </div>
                                 <div className='eventInfoText'>
-                                    {event.Venue.address}, {event.Venue.city}, {event.Venue.state}
+                                    {event.Venue.address !== 'Online' && (
+                                        <div>
+                                            {event.Venue.address}, {event.Venue.city}, {event.Venue.state}
+                                        </div>
+                                    )}
+                                    {event.Venue.address === 'Online' && (
+                                        <div>
+                                            {event.Venue.address}
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                         </div>
 
-                        <div id="map">
+                        {event.Venue.address !== 'Online' && (
                             <div id="map">
                                 <div id="map" dangerouslySetInnerHTML={{ __html: event.Venue.html }} />
                             </div>
-                            
+                        )}
 
-                        </div>
                     </div>
 
               

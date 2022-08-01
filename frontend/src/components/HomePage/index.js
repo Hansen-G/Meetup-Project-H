@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { NavLink, useHistory } from 'react-router-dom';
+import { NavLink, Link, useHistory } from 'react-router-dom';
 import { useDispatch } from "react-redux";
 import './HomePage.css'
 
@@ -10,7 +10,7 @@ function HomePage() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        history.push(`/groups`);
+        history.push(`/events`);
     };
 
     return (
@@ -39,7 +39,7 @@ function HomePage() {
                     <img src='https://res.cloudinary.com/hansenguo/image/upload/v1658772522/WeMeet/category1_bjhr11.webp'></img>
 
                     {/* TOBEDONE */}
-                    <NavLink exact to="/groups" className='part2CardLink'>
+                    <NavLink exact to="/events" className='part2CardLink'>
                         Make new friends →
                     </NavLink>
 
@@ -49,7 +49,7 @@ function HomePage() {
                     <img src='https://res.cloudinary.com/hansenguo/image/upload/v1658772522/WeMeet/category2_xd8uzp.webp'></img>
 
                     {/* TOBEDONE */}
-                    <NavLink exact to="/groups" className='part2CardLink'>
+                    <NavLink exact to="/events" className='part2CardLink'>
                         Explore the outdoors →
                     </NavLink>
 
@@ -143,9 +143,9 @@ function HomePage() {
             </div>
 
             <div className='part5 centerText'>
-                <NavLink exact to="/signup">
+                <Link exact to="/signup">
                     <button className='joinMain'>Join WeMeet</button>
-                </NavLink>
+                </Link>
             </div>
 
         </main>

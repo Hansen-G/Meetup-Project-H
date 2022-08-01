@@ -86,7 +86,7 @@ function GroupDetails() {
                 </div>
                 <div>
                     <h1>
-                        {group.name}
+                        <Link to={`/groups/${group.id}`}> {group.name} </Link>
                     </h1>
                     <div>
                         <i className="fa-solid fa-location-dot icon"></i>

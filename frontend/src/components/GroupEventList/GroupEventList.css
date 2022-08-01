@@ -1,3 +1,13 @@
 #group2div {
     margin: 0 auto;
 }
+
+
+.noEvents {
+    height: 500px;
+    justify-content: center;
+    align-items: center;
+}
+a {
+    color: black;
+}
