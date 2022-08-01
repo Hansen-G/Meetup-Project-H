@@ -3,30 +3,13 @@
 module.exports = {
   async up (queryInterface, Sequelize) {
     return queryInterface.bulkInsert('Images', [
-     {
-      imageableType: 'event',
-      eventId: 1,
-        url: 'https://res.cloudinary.com/hansenguo/image/upload/v1654572771/cld-sample-5.jpg',
-      userId: 1
-     },
+
     {
       imageableType: 'group',
       groupId: 1,
       url: 'https://res.cloudinary.com/hansenguo/image/upload/v1654572770/cld-sample-4.jpg',
       userId: 1
      },
-    {
-      imageableType: 'event',
-      eventId: 2,
-      url: 'https://res.cloudinary.com/hansenguo/image/upload/v1654572770/cld-sample-3.jpg',
-      userId: 1
-    },
-    {
-      imageableType: 'event',
-      eventId: 1,
-      url: 'https://res.cloudinary.com/hansenguo/image/upload/v1654572769/cld-sample-2.jpg',
-      userId: 2
-    },
     {
       imageableType: 'group',
       groupId: 1,
@@ -49,6 +32,98 @@ module.exports = {
         imageableType: 'group',
         groupId: 1,
         url: 'https://res.cloudinary.com/hansenguo/image/upload/v1654572759/samples/animals/kitten-playing.gif',
+        userId: 1
+      },
+      {
+        imageableType: 'group',
+        groupId: 2,
+        url: 'https://res.cloudinary.com/hansenguo/image/upload/v1654572771/cld-sample-5.jpg',
+        userId: 1
+      },
+      {
+        imageableType: 'group',
+        groupId: 2,
+        url: 'https://res.cloudinary.com/hansenguo/image/upload/v1654572770/cld-sample-3.jpg',
+        userId: 1
+      },
+      {
+        imageableType: 'group',
+        groupId: 2,
+        url: 'https://res.cloudinary.com/hansenguo/image/upload/v1654572770/cld-sample-3.jpg',
+        userId: 1
+      },
+      {
+        imageableType: 'group',
+        groupId: 3,
+        url: 'https://res.cloudinary.com/hansenguo/image/upload/v1654572769/cld-sample.jpg',
+        userId: 2
+      },
+      {
+        imageableType: 'group',
+        groupId: 3,
+        url: 'https://res.cloudinary.com/hansenguo/image/upload/v1654572752/samples/bike.jpg',
+        userId: 1
+      },
+
+
+      {
+        imageableType: 'group',
+        groupId: 4,
+        url: 'https://res.cloudinary.com/hansenguo/image/upload/v1654572770/cld-sample-4.jpg',
+        userId: 1
+      },
+      {
+        imageableType: 'group',
+        groupId: 4,
+        url: 'https://res.cloudinary.com/hansenguo/image/upload/v1654572769/cld-sample.jpg',
+        userId: 2
+      },
+      {
+        imageableType: 'group',
+        groupId: 4,
+        url: 'https://res.cloudinary.com/hansenguo/image/upload/v1654572752/samples/bike.jpg',
+        userId: 1
+      },
+      {
+        imageableType: 'group',
+        groupId: 4,
+        url: 'https://res.cloudinary.com/hansenguo/image/upload/v1654572758/samples/cloudinary-group.jpg',
+        userId: 1
+      },
+      {
+        imageableType: 'group',
+        groupId: 4,
+        url: 'https://res.cloudinary.com/hansenguo/image/upload/v1654572759/samples/animals/kitten-playing.gif',
+        userId: 1
+      },
+      {
+        imageableType: 'group',
+        groupId: 4,
+        url: 'https://res.cloudinary.com/hansenguo/image/upload/v1654572771/cld-sample-5.jpg',
+        userId: 1
+      },
+      {
+        imageableType: 'group',
+        groupId: 4,
+        url: 'https://res.cloudinary.com/hansenguo/image/upload/v1654572770/cld-sample-3.jpg',
+        userId: 1
+      },
+      {
+        imageableType: 'group',
+        groupId: 4,
+        url: 'https://res.cloudinary.com/hansenguo/image/upload/v1654572770/cld-sample-3.jpg',
+        userId: 1
+      },
+      {
+        imageableType: 'group',
+        groupId: 3,
+        url: 'https://res.cloudinary.com/hansenguo/image/upload/v1654572769/cld-sample.jpg',
+        userId: 2
+      },
+      {
+        imageableType: 'group',
+        groupId: 4,
+        url: 'https://res.cloudinary.com/hansenguo/image/upload/v1654572752/samples/bike.jpg',
         userId: 1
       },
 

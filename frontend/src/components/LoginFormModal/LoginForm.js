@@ -1,26 +1,41 @@
 import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
-import { useDispatch } from "react-redux";
-import { NavLink, useParams, Route, Switch, Link } from 'react-router-dom';
+import { useDispatch, useSelector } from "react-redux";
+import { Redirect } from 'react-router-dom';
+import { NavLink, useParams, Route, Switch, Link, useHistory } from 'react-router-dom';
 import './LoginForm.css';
 
 function LoginForm( {setModal}) {
 
     const dispatch = useDispatch();
+    const history = useHistory();
     const [credential, setCredential] = useState("");
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState([]);
 
+    const sessionUser = useSelector(state => state.session.user);    
+    if (sessionUser) {
+        window.alert('You are logged in')
+        return (<Redirect to="/" />)
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
         setErrors([]);
-      
-        return dispatch(sessionActions.login({ credential, password })).catch(
+        dispatch(sessionActions.login({ credential, password }))
+            .then(() => {
+                history.push(`/`);
+            })
+
+            .catch(
             async (res) => {
                 const data = await res.json();
                 if (data && data.errors) setErrors(data.errors);
+               
             }
         );
+        
+        return 
     };
 
     return (

@@ -1,4 +1,6 @@
 import { csrfFetch } from './csrf';
+// import { getEventListThunk } from './events';
+// import { getGroupListThunk } from './groups';
 
 const SET_USER = 'session/setUser';
 const REMOVE_USER = 'session/removeUser';
@@ -28,6 +30,7 @@ export const login = (user) => async (dispatch) => {
     const data = await response.json();
     console.log(data)
     dispatch(setUser(data.userJson));
+
     return response;
 };
 
@@ -44,7 +47,6 @@ export const signup = (user) => async (dispatch) => {
         }),
     });
     const data = await response.json();
-    console.log(data)
     
     dispatch(setUser(data.userJson));
     return response;
