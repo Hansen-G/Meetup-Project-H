@@ -47,9 +47,9 @@ function ProfileButton({ user }) {
             {showMenu && (
             <div className="menuDiv">
               <div className="dropdownBox">
-                <div className="usernameDiv">
+                {/* <div className="usernameDiv">
                     Welcome {user.lastName}!
-                </div>
+                </div> */}
                 <div className="usernameDiv">
                   Username: {user.username}
                 </div>
