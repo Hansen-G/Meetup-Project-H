@@ -26,7 +26,6 @@ function LoginForm( {setModal}) {
             .then(() => {
                 history.push(`/`);
             })
-
             .catch(
             async (res) => {
                 const data = await res.json();

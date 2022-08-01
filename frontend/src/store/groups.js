@@ -121,9 +121,7 @@ export const putUpdateGroupThunk = (newGroup, groupId) => async dispatch => {
     
     if (response.ok) {
         const data = await response.json();
-        await dispatch(putUpdateGroup(data));
-        await dispatch(getGroupListThunk());
-        await dispatch(getEventListThunk());
+        dispatch(putUpdateGroup(data));   
         return data;
     }
     return response
