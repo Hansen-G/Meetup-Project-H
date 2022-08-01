@@ -1,4 +1,5 @@
 import { csrfFetch } from './csrf';
+import { getEventListThunk } from './events'
 
 const GET_GROUPLIST = 'groups/GET_GROUPLIST';
 const GET_GROUP_BY_ID = 'groups/GET_GROUP_BY_ID';
@@ -101,7 +102,9 @@ export const postNewGroupThunk = (group) => async dispatch => {
     });
     if (response.ok) {
         const data = await response.json();
-        dispatch(postNewGroup(data));
+        await dispatch(postNewGroup(data));
+        await dispatch(getGroupListThunk());
+        await dispatch(getEventListThunk());
         return data;
     }
     return response
@@ -118,7 +121,9 @@ export const putUpdateGroupThunk = (newGroup, groupId) => async dispatch => {
     
     if (response.ok) {
         const data = await response.json();
-        dispatch(putUpdateGroup(data));
+        await dispatch(putUpdateGroup(data));
+        await dispatch(getGroupListThunk());
+        await dispatch(getEventListThunk());
         return data;
     }
     return response
@@ -155,7 +160,9 @@ export const deleteGroupThunk = (groupId) => async dispatch => {
         method: 'DELETE'
     });
     if (response.ok) {
-        dispatch(deleteGroup(groupId));
+        await dispatch(deleteGroup(groupId));
+        await dispatch(getGroupListThunk());
+        await dispatch(getEventListThunk());
         return response.ok;
     }
     return response

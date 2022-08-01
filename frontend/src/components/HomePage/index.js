@@ -66,7 +66,7 @@ function HomePage() {
                 </div>
             </div>
 
-            <div className='part3'>
+            {/* <div className='part3'>
                 <div className='part3Left'>
                     <h2>
                         What do you want to do?
@@ -93,7 +93,7 @@ function HomePage() {
                     </div>
 
                 </div>
-            </div>
+            </div> */}
 
             <div className='part4'>
                 <h2 className='centerText'>

@@ -196,7 +196,7 @@ function GroupDetails() {
                     ))}
 
                     <h2>
-                        Photos
+                        Photos ({imageArr.length})
                     </h2>
                     <div className='groupDetailsImgContiner'>
                         {imageArr.map(img => (

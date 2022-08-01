@@ -21,6 +21,13 @@ p {
     color: white;
 }
 
+div, h1, h2, h3, h4, p, a{
+    word-break: break-word;
+}
+
+.demo{
+    word-break: normal;
+}
 
 
 

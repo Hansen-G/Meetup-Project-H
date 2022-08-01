@@ -53,18 +53,18 @@
 }
 
 .event2Right {
-  width: 40%;
+  width: 500px;
 }
 
 .eventGroupCard2 {
     background-color: white;
     border-radius: 15px;
     align-items: center;
-    height: 120px;
+    min-height: 120px;
 }
 
 .groupInfoCard {
-    height: 80px;
+    min-height: 80px;
     flex-direction: column;
     justify-content: space-around;
     align-items:flex-start;
@@ -82,7 +82,7 @@
 #eventGroupCard2Img {
     object-fit: cover;
     width: 80px;
-    height: 80px;
+    min-height: 80px;
 }
 
 .groupInfoCardName {
@@ -119,14 +119,14 @@
     position: relative;
     text-align: right;
     height: 500px;
-    width: 100%;
+    width: 500px;
 }
 
 .gmap_canvas {
     overflow: hidden;
     background: none !important;
     height: 500px;
-    width: 100%;
+    width: 500px;
     border-radius: 15px;
     margin-top: 20px;
 }
