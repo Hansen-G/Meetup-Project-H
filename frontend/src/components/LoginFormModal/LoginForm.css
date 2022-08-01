@@ -2,3 +2,18 @@
     background-color: rgba(0,0,0,0);
     border: 0px solid #4CAF50;
 }
+
+.loginForm {
+    padding: 40px;
+    border-radius: 15px;
+    box-sizing: border-box;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.loginForm form {
+   flex: 0 0 300px;
+}

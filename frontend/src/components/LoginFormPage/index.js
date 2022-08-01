@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import { NavLink, useParams, Route, Switch, Link } from 'react-router-dom';
 import './LoginForm.css';
 
 function LoginFormPage() {
@@ -26,34 +27,44 @@ function LoginFormPage() {
     }
 
     return (
-        <form onSubmit={handleSubmit} className='loginPage'>
-            <div className="roundLogoContiner flex">
-                <img src="https://res.cloudinary.com/hansenguo/image/upload/v1658770529/WeMeet/logo-round_yxfzs4.png" className="roundLogo"></img>
-            </div>
-            
-            <ul>
-                {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-            </ul>
-            <label>
-                Username or Email
-                <input
-                    type="text"
-                    value={credential}
-                    onChange={(e) => setCredential(e.target.value)}
-                    required
-                />
-            </label>
-            <label>
-                Password
-                <input
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                />
-            </label>
-            <button type="submit" className="signUpButton">Log In</button>
-        </form>
+        <div className='loginForm flex'>
+            <img src="https://res.cloudinary.com/hansenguo/image/upload/v1658770529/WeMeet/logo-round_yxfzs4.png" className="roundLogo"></img>
+            <h1 className="title">
+                Log in
+            </h1>
+            <p>
+                Not a member yet? <Link to='/signup'>Sign up</Link>
+            </p>
+
+
+            <form onSubmit={handleSubmit}>
+
+                <ul>
+                    {errors.map((error, idx) => (
+                        <li key={idx}>{error}</li>
+                    ))}
+                </ul>
+                <label>
+                    Username or Email
+                    <input
+                        type="text"
+                        value={credential}
+                        onChange={(e) => setCredential(e.target.value)}
+                        required
+                    />
+                </label>
+                <label>
+                    Password
+                    <input
+                        type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                    />
+                </label>
+                <button type="submit" className="signUpButton" >Log In</button>
+            </form>
+        </div>
     );
 }
 

@@ -69,19 +69,23 @@ function EditGroupFrom({hiddenForm, group}) {
             previewImage
         };
 
-        let newGroupRes;
-        try {
-            newGroupRes = await dispatch(putUpdateGroupThunk(newGroup, group.id));
-        
-        } catch (error) {
-            console.log(error);
-        }
+        setErrors([]);
 
-        if (newGroupRes) {
-            history.push(`/groups/${newGroupRes.id}`);
+        dispatch(putUpdateGroupThunk(newGroup, group.id)).then((res) => {
+   
+ 
+            history.push(`/groups/${res.id}`);
             hiddenForm();
-        }
-
+        }).catch(
+            async (res) => {
+                const data = await res.json();
+                if (Object.keys(data.errors).length > 0) {
+                    let bandEndError = Object.values(data.errors)
+                    bandEndError.unshift('The group name is already exist, please change your group name')
+                    setErrors(bandEndError);
+                }
+            }
+        )
     };
     return (
         <div className="createGroup">

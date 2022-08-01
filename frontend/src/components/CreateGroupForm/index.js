@@ -77,23 +77,13 @@ function CreateGroupFrom () {
             async (res) => {
                 const data = await res.json();
                 if (Object.keys(data.errors).length > 0) {
-                    //const err = Object.values(data.errors)
-                    let bandEndError = []
+                    let bandEndError = Object.values(data.errors)
                     bandEndError.unshift('The group name is already exist, please change your group name')
                     setErrors(bandEndError);
                 }
             }
         )
-        // try {
-        //     newGroup = await dispatch(postNewGroupThunk(group));
 
-        // } catch (error) {
-        //     console.log(error);
-        // }
-
-        // if (newGroup) {
-        //     history.push(`/groups/${newGroup.newGroup.id}`);
-        // }
     };
     return (
         <div className="createGroup">

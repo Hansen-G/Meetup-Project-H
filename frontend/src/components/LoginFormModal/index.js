@@ -5,13 +5,16 @@ import LoginForm from './LoginForm';
 
 function LoginFormModal() {
     const [showModal, setShowModal] = useState(false);
+    
+    // function that returns setShwoMOdalfalse and pass as prop
+    const setModal = (show) => setShowModal(show);
 
     return (
         <>
             <button className='navButton' onClick={() => setShowModal(true)}>Log In</button>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
-                    <LoginForm />
+                    <LoginForm setModal={setModal}/>
                 </Modal>
             )}
         </>

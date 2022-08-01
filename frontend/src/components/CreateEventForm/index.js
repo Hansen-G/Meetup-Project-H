@@ -94,6 +94,20 @@ function CreateEventFrom({ hiddenForm, group }) {
 
 
         setErrors([])
+
+        dispatch(postNewEventThunk(event, group.id)).then((res) => {
+            console.log('!!!!!!!!!', res)
+            history.push(`/events/${res.id}`);
+        }).catch(
+            async (res) => {
+                const data = await res.json();
+                if (Object.keys(data.errors).length > 0) {
+                    let bandEndError = Object.values(data.errors)
+                    bandEndError.unshift('The group name is already exist, please change your group name')
+                    setErrors(bandEndError);
+                }
+            }
+        )
         
         let newEvent;
         try {
@@ -112,7 +126,9 @@ function CreateEventFrom({ hiddenForm, group }) {
     };
     return (
         <div className="createGroup">
-            Create A New Event For Your Group:
+            <h2>
+                Create A New Event For Your Group:
+            </h2>
             <form onSubmit={handleSubmit} >
                 <label>Name:<input type={'text'} value={name} onChange={e => setName(e.target.value)}></input></label>
                 <label>Description:<input type={'text'} value={description} onChange={e => setDescription(e.target.value)}></input></label>

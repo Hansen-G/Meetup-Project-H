@@ -100,7 +100,6 @@ export const postNewGroupThunk = (group) => async dispatch => {
         body: JSON.stringify(group)
     });
     if (response.ok) {
-        
         const data = await response.json();
         dispatch(postNewGroup(data));
         return data;
@@ -122,6 +121,7 @@ export const putUpdateGroupThunk = (newGroup, groupId) => async dispatch => {
         dispatch(putUpdateGroup(data));
         return data;
     }
+    return response
 }
 
 export const getGroupEventThunk = (groupId) => async dispatch => {
@@ -158,6 +158,7 @@ export const deleteGroupThunk = (groupId) => async dispatch => {
         dispatch(deleteGroup(groupId));
         return response.ok;
     }
+    return response
 }
 
 
@@ -185,9 +186,7 @@ const groupsReducer = (state = initialState, action) => {
         }
         case PUT_UPDATE_GROUP: {
             newState = { ...state };
-            // newState[action.groupId] = { ...newState[action.groupId], events: action.events };
             newState[action.group.id] = { ...newState[action.group.id], ...action.group };
-            // newState[action.group.id] = action.group
             return newState
         }
         case GET_GROUP_EVENTS: {
@@ -200,7 +199,6 @@ const groupsReducer = (state = initialState, action) => {
             const members = {};
             action.members.forEach(member => members[member.id] = member);
             if (![state[action.groupId].events]){
-                // console.log('!', state[action.groupId].events)
                 newState[action.groupId] = { ...newState[action.groupId], events: [...state[action.groupId].events], members }
             } else {
                 newState[action.groupId] = { ...newState[action.groupId], members }

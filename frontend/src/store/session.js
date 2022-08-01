@@ -44,17 +44,24 @@ export const signup = (user) => async (dispatch) => {
         }),
     });
     const data = await response.json();
+    console.log(data)
     
-    dispatch(setUser(data));
+    dispatch(setUser(data.userJson));
     return response;
 };
 
 
+// export const restoreUser = () => async dispatch => {
+//     const response = await csrfFetch('/api/session');
+//     const data = await response.json();
+//     dispatch(setUser(data));
+//     return response;
+// };
 export const restoreUser = () => async dispatch => {
     const response = await csrfFetch('/api/session');
     const data = await response.json();
     dispatch(setUser(data.user));
-    return response;
+    return response.arrayBuffer;
 };
 
 
@@ -68,6 +75,7 @@ export const logout = () => async (dispatch) => {
 
 
 const initialState = { user: null };
+
 
 const sessionReducer = (state = initialState, action) => {
     let newState;
@@ -84,5 +92,6 @@ const sessionReducer = (state = initialState, action) => {
             return state;
     }
 };
+
 
 export default sessionReducer;

@@ -8,9 +8,6 @@ const POST_NEW_EVENT = 'events/ POST_NEW_EVENT';
 const PUT_UPDATE_EVENT = 'events/PUT_UPDATE_EVENT';
 const DELETE_EVENT = 'groups/DELETE_EVENT'
 
-// // const POST_GROUP_NEW_EVENT = 'groups/POST_GROUP_NEW_EVENT';
-
-
 
 const getEventList = (events) => {
     return {
@@ -81,24 +78,8 @@ export const postNewEventThunk = (event, groupId) => async dispatch => {
         dispatch(postNewEvent(data));
         return data;
     }
+    return response
 }
-
-// // export const putUpdateGroupThunk = (newGroup, groupId) => async dispatch => {
-// //     const response = await csrfFetch(`/api/groups/${groupId}`, {
-// //         method: 'PUT',
-// //         headers: {
-// //             'Content-Type': 'application/json'
-// //         },
-// //         body: JSON.stringify(newGroup)
-// //     });
-// //     if (response.ok) {
-// //         const data = await response.json();
-// //         dispatch(putUpdateGroup(data));
-// //         return data;
-// //     }
-// // }
-
-
 
 export const getEventAttendeeThunk = (eventId) => async dispatch => {
     const response = await fetch(`/api/events/${eventId}/attendees`);
@@ -124,9 +105,8 @@ export const deleteEventThunk = (eventId) => async dispatch => {
         dispatch(deleteEvent(eventId));
         return response.ok;
     }
+    return response
 }
-
-
 
 const initialState = {};
 
@@ -150,16 +130,6 @@ const eventsReducer = (state = initialState, action) => {
             newState[action.event.id] = action.event;
             return newState;
         }
-        // case PUT_UPDATE_GROUP: {
-        //     newState = { ...state };
-        //     newState[action.groupId] = { ...newState[action.groupId], events: action.events };
-        //     return newState
-        // }
-        // case GET_GROUP_EVENTS: {
-        //     newState = { ...state };
-        //     newState[action.groupId] = { ...newState[action.groupId], events: action.events };
-        //     return newState
-        // }
         case GET_EVENT_ATTENDEE: {
             newState = { ...state };
             const attendees = {};

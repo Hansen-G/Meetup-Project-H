@@ -35,7 +35,7 @@ function ProfileButton({ user }) {
         );
     };
     
-
+    console.log(user, user.lastName)
     return (
         <> 
             <div className="profileButtonDiv">
@@ -48,7 +48,7 @@ function ProfileButton({ user }) {
             <div className="menuDiv">
               <div className="dropdownBox">
                 <div className="usernameDiv">
-                    Welcome, {user.firstName}!
+                    Welcome {user.lastName}!
                 </div>
                 <div className="usernameDiv">
                   Username: {user.username}

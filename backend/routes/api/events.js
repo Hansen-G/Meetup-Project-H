@@ -542,7 +542,7 @@ router.post('/new/groups/:groupId', checkAuth, async (req, res, next) => {
     try {
        
         const newEvent = await Event.create({
-            groupId, venueId, name, type, capacity, price, description, startDate, endDate
+            groupId, venueId, name, type, capacity, price, description, startDate, endDate, previewImage
         });
         const newEventJson = newEvent.toJSON();
         delete newEventJson.updatedAt;

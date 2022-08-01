@@ -204,6 +204,10 @@ function EventDetails() {
                                 </div>
                                 <div id="map"></div>
                             </div>
+                            
+                        </div>
+                        <div id="map">
+                            <div id="map" dangerouslySetInnerHTML={{ __html: event.Venue.html }} />
                         </div>
                     </div>
                 </div>
