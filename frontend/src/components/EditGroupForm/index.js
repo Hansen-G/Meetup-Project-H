@@ -195,7 +195,7 @@ function EditGroupFrom({hiddenForm, group}) {
                     ))}
                 </ol>
 
-                <button onClick={hiddenForm} className='enabled' id='editgroup'>Cancle</button>
+                <button onClick={hiddenForm} className='enabled' id='editgroup'>Cancel</button>
                 <button type="submit" disabled={errors.length} className={errors.length> 0 ? 'disabled' : 'enabled'} id='editgroup'>Submit</button>
 
             </form>
