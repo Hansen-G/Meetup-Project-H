@@ -82,7 +82,7 @@ a:active {
 
 .card:hover {
     transform: translateY(-5px) scale(1.005) translateZ(0);
-    background-color: #fff3f3;
+    background-color: rgba(56,128,146,0.2);
     box-shadow: 0 24px 36px rgba(0, 0, 0, 0.11),
         0 24px 46px var(--box-shadow-color);
 }
