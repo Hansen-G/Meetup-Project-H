@@ -98,6 +98,10 @@ function ButtomBar() {
                             <a href='https://www.linkedin.com/in/hansen-guo/' className='toobarLink'>
                                 <i className="fa-brands fa-linkedin fa-2x followMeIcon"></i>
                             </a>
+                            
+                            <a href='https://github.com/Hansen-G' className='toobarLink'>
+                                <i className="fa-brands fa-github fa-2x followMeIcon"></i>
+                            </a>
 
                         </div>
 
