@@ -6,6 +6,7 @@
 .event1 {
     width: 80%;
     margin: 0 auto;
+    max-width: 1300px;
 }
 
 .event3Buttondiv {
@@ -21,9 +22,14 @@
 
 .event2 {
     background-color: rgb(245, 246, 247);
-    padding: 3% 10%;
+    justify-content: center;
+    
 }
 
+#event2 {
+    max-width: 1300px;
+    padding: 3% 10%;
+}
 .event2Left {
     width: 60%;
     margin-right: 5%;

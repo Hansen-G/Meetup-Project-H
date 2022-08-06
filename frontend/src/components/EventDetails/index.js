@@ -102,125 +102,128 @@ function EventDetails() {
                 </div>
 
                 <div className='event2 flex'>
-                    <div className='event2Left'>
-                        <div className='event2Img'>
-                            <img src={event.previewImage}></img>
-                        </div>
+                    <div className='event2 flex' id='event2'>
+                        <div className='event2Left'>
+                            <div className='event2Img'>
+                                <img src={event.previewImage}></img>
+                            </div>
 
-                        <div className='eventDetails'>
-                            <h3>
-                                Details
-                            </h3>
-                            
-                            {(attendees['Auth']) && (
-                            <p>
-                                { event.description }
-                            </p>)
-                            }
-                            {!(attendees['Auth']) && (
-                                <div className='noAuthCard flex'>
-                                    <i className="fa-solid fa-lock noAuth"></i>
+                            <div className='eventDetails'>
+                                <h3>
+                                    Details
+                                </h3>
+
+                                {(attendees['Auth']) && (
                                     <p>
-                                        This content is available only to members
-                                    </p>
-                                    
-                                </div>
+                                        {event.description}
+                                    </p>)
+                                }
+                                {!(attendees['Auth']) && (
+                                    <div className='noAuthCard flex'>
+                                        <i className="fa-solid fa-lock noAuth"></i>
+                                        <p>
+                                            This content is available only to members
+                                        </p>
+
+                                    </div>
 
                                 )
-                            }
-                            
-                        </div>
+                                }
 
-                        <div className='eventAttendees'>
-                            <h3>
-                                Attendees
-                            </h3>
-                            {(attendees['Auth']) && (
-                                <p>
-                                    {(attendeesArr.length > 0) && attendeesArr.map(attendee => (
-                                        <p key={attendee.id}>
-                                            {attendee.firstName} {attendee.lastName} - {attendee.EventAttendees[0].attendeeStatus}
-                                        </p>
-                                    ))
-                                    }
-                                </p>)}
-                            {(attendees['Auth']) && (
-                                <p>
-                                    {(attendeesArr.length == 0) && (
-                                        <div>
-                                            No attendee yet
-                                        </div>
-                                    )
-                                    }
-                                </p>)}
+                            </div>
 
-                            {!(attendees['Auth']) && (
-                                <div className='noAuthCard flex'>
-                                    <i className="fa-solid fa-lock noAuth"></i>
+                            <div className='eventAttendees'>
+                                <h3>
+                                    Attendees
+                                </h3>
+                                {(attendees['Auth']) && (
                                     <p>
-                                        This content is available only to members
-                                    </p>
+                                        {(attendeesArr.length > 0) && attendeesArr.map(attendee => (
+                                            <p key={attendee.id}>
+                                                {attendee.firstName} {attendee.lastName} - {attendee.EventAttendees[0].attendeeStatus}
+                                            </p>
+                                        ))
+                                        }
+                                    </p>)}
+                                {(attendees['Auth']) && (
+                                    <p>
+                                        {(attendeesArr.length == 0) && (
+                                            <div>
+                                                No attendee yet
+                                            </div>
+                                        )
+                                        }
+                                    </p>)}
 
+                                {!(attendees['Auth']) && (
+                                    <div className='noAuthCard flex'>
+                                        <i className="fa-solid fa-lock noAuth"></i>
+                                        <p>
+                                            This content is available only to members
+                                        </p>
+
+                                    </div>
+                                )}
+                            </div>
+
+
+                        </div>
+                        <div className='event2Right'>
+                            <Link to={`/groups/${event.Group.id}`}>
+                                <div className='eventGroupCard2 flex'>
+                                    <div className='eventGroupCard2Img'>
+                                        <img id='eventGroupCard2Img' src={event.Group.previewImage}></img>
+                                    </div>
+                                    <div className='groupInfoCard flex'>
+                                        <div className='groupInfoCardName'>
+                                            {event.Group.name}
+                                        </div>
+                                        <div>
+                                            {state}
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </Link>
+
+                            <div className='eventInfoDetial'>
+                                <div className='eventInfoDetialTime flex'>
+                                    <div className='eventInfoDetialIcon'>
+                                        <i className="fa-solid fa-clock"></i>
+                                    </div>
+                                    <div className='eventInfoText'>
+                                        {timeHelper(event.startDate)} to {timeHelper(event.endDate)}
+                                    </div>
+
+                                </div>
+                                <div className='eventInfoDetialLocation flex'>
+                                    <div className='eventInfoDetialIcon'>
+                                        <i className="fa-solid fa-location-dot"></i>
+                                    </div>
+                                    <div className='eventInfoText'>
+                                        {event.Venue.address !== 'Online' && (
+                                            <div>
+                                                {event.Venue.address}, {event.Venue.city}, {event.Venue.state}
+                                            </div>
+                                        )}
+                                        {event.Venue.address === 'Online' && (
+                                            <div>
+                                                {event.Venue.address}
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
+
+                            </div>
+                            {event.Venue.address !== 'Online' && (
+                                <div id="map">
+                                    <div id="map" dangerouslySetInnerHTML={{ __html: event.Venue.html }} />
                                 </div>
                             )}
+
                         </div>
-
-                     
                     </div>
-                    <div className='event2Right'>
-                        <Link to={`/groups/${event.Group.id}`}>
-                            <div className='eventGroupCard2 flex'>
-                                <div className='eventGroupCard2Img'>
-                                    <img id='eventGroupCard2Img' src={event.Group.previewImage}></img>
-                                </div>
-                                <div className='groupInfoCard flex'>
-                                    <div className='groupInfoCardName'>
-                                        {event.Group.name}
-                                    </div>
-                                    <div>
-                                        {state}
-                                    </div>
-                                </div>
 
-                            </div>
-                        </Link>
-
-                        <div className='eventInfoDetial'>
-                            <div className='eventInfoDetialTime flex'>
-                                <div className='eventInfoDetialIcon'>
-                                    <i className="fa-solid fa-clock"></i>
-                                </div>
-                                <div className='eventInfoText'>
-                                    {timeHelper(event.startDate)} to {timeHelper(event.endDate)}
-                                </div>
-
-                            </div>
-                            <div className='eventInfoDetialLocation flex'>
-                                <div className='eventInfoDetialIcon'>
-                                    <i className="fa-solid fa-location-dot"></i>
-                                </div>
-                                <div className='eventInfoText'>
-                                    {event.Venue.address !== 'Online' && (
-                                        <div>
-                                             { event.Venue.address }, { event.Venue.city }, { event.Venue.state }
-                                        </div>
-                                    )}
-                                    {event.Venue.address === 'Online' && (
-                                        <div>
-                                            {event.Venue.address}
-                                        </div>
-                                    )}
-                                </div>
-                            </div>
-                            
-                        </div>
-                        { event.Venue.address !=='Online' && (
-                            <div id="map">
-                                <div id="map" dangerouslySetInnerHTML={{ __html: event.Venue.html }} />
-                            </div>
-                        )}
-                        
-                    </div>
                 </div>
             </div>
         )
@@ -245,112 +248,108 @@ function EventDetails() {
                 </div>
 
                 <div className='event2 flex'>
-                    <div className='event2Left'>
-                        
-                        <div className='eventDetails'>
-                            <div className='event2Img'>
-                                <img src={event.previewImage}></img>
-                            </div>
+                    <div className='event2 flex' id='event2'>
+                        <div className='event2Left'>
 
-                            <h3>
-                                Details
-                            </h3>
-                            <p>
-                                {event.description}
-                            </p>
-                        </div>
+                            <div className='eventDetails'>
+                                <div className='event2Img'>
+                                    <img src={event.previewImage}></img>
+                                </div>
 
-                        <div className='eventAttendees'>
-                            <h3>
-                                Attendees
-                            </h3>
-                            {(attendees['Auth']) && (
-                            <p>
-                                {(attendeesArr.length > 0) && attendeesArr.map(attendee => (
-                                    <p key={attendee.id}>
-                                        {attendee.firstName} {attendee.lastName} - {attendee.EventAttendees[0].attendeeStatus}
-                                    </p>
-                                ))
-                                }
-                            </p>)}
-                            {(attendees['Auth']) && (
+                                <h3>
+                                    Details
+                                </h3>
                                 <p>
-                                    {(attendeesArr.length == 0) && (
-                                        <div>
-                                            No attendee yet
-                                        </div>
-                                    )
-                                    }
-                                </p>)}
-
-                            {!(attendees['Auth']) && (
-                                <p>
-                                    <i className="fa-solid fa-lock"></i>
-                                    This content is available only to members
+                                    {event.description}
                                 </p>
+                            </div>
+
+                            <div className='eventAttendees'>
+                                <h3>
+                                    Attendees
+                                </h3>
+                                {(attendees['Auth']) && (
+                                    <p>
+                                        {(attendeesArr.length > 0) && attendeesArr.map(attendee => (
+                                            <p key={attendee.id}>
+                                                {attendee.firstName} {attendee.lastName} - {attendee.EventAttendees[0].attendeeStatus}
+                                            </p>
+                                        ))
+                                        }
+                                    </p>)}
+                                {(attendees['Auth']) && (
+                                    <p>
+                                        {(attendeesArr.length == 0) && (
+                                            <div>
+                                                No attendee yet
+                                            </div>
+                                        )
+                                        }
+                                    </p>)}
+
+                                {!(attendees['Auth']) && (
+                                    <p>
+                                        <i className="fa-solid fa-lock"></i>
+                                        This content is available only to members
+                                    </p>
+                                )}
+                            </div>
+                        </div>
+                        <div className='event2Right'>
+                            <Link to={`/groups/${event.Group.id}`}>
+                                <div className='eventGroupCard2 flex'>
+                                    <div className='eventGroupCard2Img'>
+                                        <img id='eventGroupCard2Img' src={event.Group.previewImage}></img>
+                                    </div>
+                                    <div className='groupInfoCard flex'>
+                                        <div className='groupInfoCardName'>
+                                            {event.Group.name}
+                                        </div>
+                                        <div>
+                                            {state}
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </Link>
+
+                            <div className='eventInfoDetial'>
+                                <div className='eventInfoDetialTime flex'>
+                                    <div className='eventInfoDetialIcon'>
+                                        <i className="fa-solid fa-clock"></i>
+                                    </div>
+                                    <div className='eventInfoText'>
+                                        {timeHelper(event.startDate)} to {timeHelper(event.endDate)}
+                                    </div>
+
+                                </div>
+                                <div className='eventInfoDetialLocation flex'>
+                                    <div className='eventInfoDetialIcon'>
+                                        <i className="fa-solid fa-location-dot"></i>
+                                    </div>
+                                    <div className='eventInfoText'>
+                                        {event.Venue.address !== 'Online' && (
+                                            <div>
+                                                {event.Venue.address}, {event.Venue.city}, {event.Venue.state}
+                                            </div>
+                                        )}
+                                        {event.Venue.address === 'Online' && (
+                                            <div>
+                                                {event.Venue.address}
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+
+                            {event.Venue.address !== 'Online' && (
+                                <div id="map">
+                                    <div id="map" dangerouslySetInnerHTML={{ __html: event.Venue.html }} />
+                                </div>
                             )}
+
                         </div>
                     </div>
-                    <div className='event2Right'>
-                        <Link to={`/groups/${event.Group.id}`}>
-                            <div className='eventGroupCard2 flex'>
-                                <div className='eventGroupCard2Img'>
-                                    <img id='eventGroupCard2Img' src={event.Group.previewImage}></img>
-                                </div>
-                                <div className='groupInfoCard flex'>
-                                    <div className='groupInfoCardName'>
-                                        {event.Group.name}
-                                    </div>
-                                    <div>
-                                        {state}
-                                    </div>
-                                </div>
-
-                            </div>
-                        </Link>
-
-                        <div className='eventInfoDetial'>
-                            <div className='eventInfoDetialTime flex'>
-                                <div className='eventInfoDetialIcon'>
-                                    <i className="fa-solid fa-clock"></i>
-                                </div>
-                                <div className='eventInfoText'>
-                                    {timeHelper(event.startDate)} to {timeHelper(event.endDate)}
-                                </div>
-
-                            </div>
-                            <div className='eventInfoDetialLocation flex'>
-                                <div className='eventInfoDetialIcon'>
-                                    <i className="fa-solid fa-location-dot"></i>
-                                </div>
-                                <div className='eventInfoText'>
-                                    {event.Venue.address !== 'Online' && (
-                                        <div>
-                                            {event.Venue.address}, {event.Venue.city}, {event.Venue.state}
-                                        </div>
-                                    )}
-                                    {event.Venue.address === 'Online' && (
-                                        <div>
-                                            {event.Venue.address}
-                                        </div>
-                                    )}
-                                </div>
-                            </div>
-                        </div>
-
-                        {event.Venue.address !== 'Online' && (
-                            <div id="map">
-                                <div id="map" dangerouslySetInnerHTML={{ __html: event.Venue.html }} />
-                            </div>
-                        )}
-
-                    </div>
-
-              
-              
-
-                    
-
                 </div>
             </div>
         )

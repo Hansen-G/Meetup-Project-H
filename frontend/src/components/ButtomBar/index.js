@@ -8,7 +8,7 @@ function ButtomBar() {
         <div className='buttomBarContiner' >
             <div className='buttomBar'>
                 <p className='buttomTitle'>
-                    Create your own Meetup group.
+                    Create your own WeMeet group.
                     {/* TBD */}
                     <NavLink to="/createNewGroup">
                         <button className='barButton'>

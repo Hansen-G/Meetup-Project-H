@@ -162,75 +162,78 @@ function GroupDetails() {
 
 
             <div className='group2 flex'>
-                <div className='group2Left'>
-                    <h2>
-                        What we're about
-                    </h2>
-                    <p>
-                        {group.about}
-                    </p>
+                <div className='group2 flex' id='group2'>
+                    <div className='group2Left'>
+                        <h2>
+                            What we're about
+                        </h2>
+                        <p>
+                            {group.about}
+                        </p>
 
-                    <h2>
-                        Events ({eventArr.length})
-                    </h2>
-                    {(eventArr.length > 0) && eventArr.map(event => (
-                        <Link to={`/events/${event.id}` }>
-                            <div key={event.id} className='eventCard flex card' id='eventCard'>
+                        <h2>
+                            Events ({eventArr.length})
+                        </h2>
+                        {(eventArr.length > 0) && eventArr.map(event => (
+                            <Link to={`/events/${event.id}`}>
+                                <div key={event.id} className='eventCard flex card' id='eventCard'>
 
-                                <div className='eventImgDiv'>
-                                    <img className='eventImgPre' src={event.previewImage}></img>
+                                    <div className='eventImgDiv'>
+                                        <img className='eventImgPre' src={event.previewImage}></img>
+                                    </div>
+                                    <div className='eventInfo'>
+                                        <div className='eventTime'> {timeHelper(event.startDate)} EST</div>
+                                        <div className='eventName'>{event.name} </div>
+                                        <div className='eventGroup'>
+                                            <i className="fa-solid fa-location-dot"></i>
+                                            {' '}{event.Venue.city}, {event.Venue.state}
+                                        </div>
+                                        <div className='eventAttendee'> {event.numAttending} attendees</div>
+                                    </div>
+
                                 </div>
-                                <div className='eventInfo'>
-                                    <div className='eventTime'> {timeHelper(event.startDate)} EST</div>
-                                    <div className='eventName'>{event.name} </div>
-                                    <div className='eventGroup'>  
-                                        <i className="fa-solid fa-location-dot"></i>
-                                        {' '}{event.Venue.city}, {event.Venue.state}
-                                     </div>
-                                    <div className='eventAttendee'> {event.numAttending} attendees</div>
-                                </div>
-
-                            </div>
-                        </Link>
-
-                    ))}
-
-                    <h2>
-                        Photos ({imageArr.length})
-                    </h2>
-                    <div className='groupDetailsImgContiner'>
-                        {imageArr.map(img => (
-
-
-                            <img src={img} className='groupDetailsImg'></img>
+                            </Link>
 
                         ))}
+
+                        <h2>
+                            Photos ({imageArr.length})
+                        </h2>
+                        <div className='groupDetailsImgContiner'>
+                            {imageArr.map(img => (
+
+
+                                <img src={img} className='groupDetailsImg' id='groupImg'></img>
+
+                            ))}
+                        </div>
+
                     </div>
 
-                </div>
+                    <div className='group2Right'>
+                        <h2>
+                            Organizer
+                        </h2>
+                        <p>
+                            {group.Organizer.firstName} {group.Organizer.lastName}
+                        </p>
 
-                <div className='group2Right'>
-                    <h2>
-                        Organizer
-                    </h2>
-                    <p>
-                        {group.Organizer.firstName} {group.Organizer.lastName}
-                    </p>
+                        <h2>
+                            Members ({memberArr.length})
+                        </h2>
+                        <div>
+                            {(memberArr.length > 0) && memberArr.map(member => (
+                                <p key={member.id}>
+                                    {member.firstName} {member.lastName}
+                                </p>
+                            ))
+                            }
+                        </div>
 
-                    <h2>
-                        Members ({memberArr.length})
-                    </h2>
-                    <div>
-                        {(memberArr.length > 0) && memberArr.map(member => (
-                            <p key={member.id}>
-                                {member.firstName} {member.lastName}
-                            </p>
-                        ))
-                        }
+
                     </div>
-
-
                 </div>
+
 
             </div>
 

@@ -65,10 +65,10 @@ function HomePage2() {
             <div className='part9'>
                 <div className='part9Title centerText'>
                     <h2>
-                        Stories from Meetup
+                        Stories from WeMeet
                     </h2>
                     <p className='part9Title center'>
-                        People on Meetup have fostered community, learned new skills, started businesses, and made life-long friends. Learn how.
+                        People on WeMeet have fostered community, learned new skills, started businesses, and made life-long friends. Learn how.
                     </p>
                 </div>
                 <div className='part9CardContiner flex'>
@@ -93,7 +93,7 @@ function HomePage2() {
                             </h4>
                         </a>
                         <p>
-                            Since Meetup began nearly 20 years ago, we’ve fostered connections between more than 50 million people in 190 countries worldwide. Here are five simple strategies to help you feel more connected and improve your wellbeing.
+                            Since WeMeet began nearly 20 years ago, we’ve fostered connections between more than 50 million people in 190 countries worldwide. Here are five simple strategies to help you feel more connected and improve your wellbeing.
                         </p>
                     </div>
                     <div className='part9Card'>

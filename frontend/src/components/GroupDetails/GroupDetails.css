@@ -1,8 +1,9 @@
 .group1 {
     justify-content: center;
-    
+    max-width: 1200px;
     align-items: center;
-    margin: 20px;
+    margin: 0 auto;
+    /* margin: 20px; */
     height: 300px;
 }
 
@@ -42,6 +43,10 @@
 .group2 {
     background-color: rgb(245,246,247);
     justify-content: center;
+}
+
+#group2{
+    max-width: 1500px;
 }
 
 .group2Left {

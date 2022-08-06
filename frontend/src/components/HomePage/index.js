@@ -26,7 +26,7 @@ function HomePage() {
                         Celebrating 0 years of real connections on WeMeet
                     </h1>
                     <p>
-                        Whatever you’re looking to do this year, Meetup can help. For 20 years, people have turned to Meetup to meet people, make friends, find support, grow a business, and explore their interests. Thousands of events are happening every day—join the fun.
+                        Whatever you’re looking to do this year, WeMeet can help. For 0 years, people have turned to WeMeet to meet people, make friends, find support, grow a business, and explore their interests. Thousands of events are happening every day—join the fun.
                     </p>
                 </div>
                 <div className='part1Right'>
@@ -66,7 +66,7 @@ function HomePage() {
                 </div>
             </div>
 
-            {/* <div className='part3'>
+            <div className='part3'>
                 <div className='part3Left'>
                     <h2>
                         What do you want to do?
@@ -93,7 +93,7 @@ function HomePage() {
                     </div>
 
                 </div>
-            </div> */}
+            </div>
 
             <div className='part4'>
                 <h2 className='centerText'>

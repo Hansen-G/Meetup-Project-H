@@ -47,7 +47,7 @@ const deleteEvent = (eventId) => {
 }
 
 export const getEventListThunk = () => async dispatch => {
-    const response = await fetch('/api/events')
+    const response = await fetch(`/api/events`)
     if (response.ok) {
         const data = await response.json();
         console.log('data', data);
